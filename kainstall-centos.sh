@@ -3973,7 +3973,7 @@ while [ "${1:-}" != "" ]; do
 done
 
 # 开始
-log::info "[start]" "bash $0 ${SCRIPT_PARAMETER//${SSH_PASSWORD:-${SUDO_PASSWORD:-}}/zzzzzz}"
+log::info "[start]" "bash $0 ${SCRIPT_PARAMETER//${SSH_PASSWORD:-${SUDO_PASSWORD:-}}/zzzzzz}" # 隐藏密码,用zzzzz代替
 
 # 数据处理
 transform::data
