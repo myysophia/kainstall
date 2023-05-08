@@ -128,7 +128,7 @@ spec:
   template:
     metadata:
       labels:
-        k8s-app: metrics-servers
+        k8s-app: metrics-server
     spec:
       containers:
       - args:
