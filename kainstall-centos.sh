@@ -24,7 +24,7 @@ FLANNEL_VERSION="${FLANNEL_VERSION:-0.19.0}"
 METRICS_SERVER_VERSION="${METRICS_SERVER_VERSION:-0.6.1}"
 INGRESS_NGINX="${INGRESS_NGINX:-1.3.0}"
 TRAEFIK_VERSION="${TRAEFIK_VERSION:-2.6.1}"
-CALICO_VERSION="${CALICO_VERSION:-3.22.4}"
+CALICO_VERSION="${CALICO_VERSION:-3.22.1}"
 CILIUM_VERSION="${CILIUM_VERSION:-1.9.17}"
 KUBE_PROMETHEUS_VERSION="${KUBE_PROMETHEUS_VERSION:-0.11.0}"
 ELASTICSEARCH_VERSION="${ELASTICSEARCH_VERSION:-8.3.2}"
@@ -38,8 +38,9 @@ KUBE_DNSDOMAIN="${KUBE_DNSDOMAIN:-cluster.local}"
 KUBE_APISERVER="${KUBE_APISERVER:-apiserver.$KUBE_DNSDOMAIN}"
 KUBE_POD_SUBNET="${KUBE_POD_SUBNET:-10.244.0.0/16}"
 KUBE_SERVICE_SUBNET="${KUBE_SERVICE_SUBNET:-10.96.0.0/16}"
-KUBE_IMAGE_REPO="${KUBE_IMAGE_REPO:-registry.cn-hangzhou.aliyuncs.com/kainstall}"
-KUBE_NETWORK="${KUBE_NETWORK:-flannel}"
+KUBE_IMAGE_REPO="${KUBE_IMAGE_REPO:-10.50.10.185/kainstall}"
+KUBE_IMAGE_REPO_CERT_PATH="${KUBE_IMAGE_REPO_CERT_PATH:-/etc/docker/certs.d/10.50.10.185/}"
+KUBE_NETWORK="${KUBE_NETWORK:-calico}"
 KUBE_INGRESS="${KUBE_INGRESS:-nginx}"
 KUBE_MONITOR="${KUBE_MONITOR:-prometheus}"
 KUBE_STORAGE="${KUBE_STORAGE:-rook}"
@@ -220,7 +221,7 @@ function utils::is_element_in_array() {
   # 判断是否在数组中存在元素
 
   local -r element="${1}"
-  local -r array=("${@:2}")
+  local -r array=("${@:2}") # ${@:2}表示从第二个参数开始的所有参数，这些参数被放入一个数组中，并将该数组分配给array变量
 
   local walker=''
 
@@ -607,11 +608,12 @@ kernel.softlockup_panic=1
 EOF
 
   # history
+  # 设置history记录格式和履历 谁在什么时间点做了什么？
   cat << EOF >> /etc/bashrc
 ## Kainstall managed start
 # history actions record，include action time, user, login ip
-HISTFILESIZE=5000
-HISTSIZE=5000
+HISTFILESIZE=50000
+HISTSIZE=50000
 USER_IP=\$(who -u am i 2>/dev/null | awk '{print \$NF}' | sed -e 's/[()]//g')
 if [ -z \$USER_IP ]
 then
@@ -662,7 +664,7 @@ echo -e "\033[0;32m
  █████╔╝ ╚█████╔╝███████╗
  ██╔═██╗ ██╔══██╗╚════██║
  ██║  ██╗╚█████╔╝███████║
- ╚═╝  ╚═╝ ╚════╝ ╚══════ by kainstall\033[0m"
+ ╚═╝  ╚═╝ ╚════╝ ╚══════ \033[0m"
 
 # os
 upSeconds="\$(cut -d. -f1 /proc/uptime)"
@@ -758,6 +760,7 @@ EOF
   echo 'ALL ALL=(ALL) NOPASSWD:/usr/bin/crictl' > /etc/sudoers.d/crictl
 
   # time sync
+  # 离线安装这个校时需要和内部的校时服务器进行校时
   ntpd --help >/dev/null 2>&1 && yum remove -y ntp
   [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y chrony 
   [ ! -f /etc/chrony.conf_bak ] && cp /etc/chrony.conf{,_bak} #备份默认配置
@@ -1015,16 +1018,18 @@ EOF
 
   [ -d /etc/bash_completion.d ] && crictl completion bash > /etc/bash_completion.d/crictl
 
-  containerd config default > /etc/containerd/config.toml
-  sed -i -e "s#k8s.gcr.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" \
-         -e "s#registry.k8s.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" \
-         -e "s#https://registry-1.docker.io#https://yssx4sxy.mirror.aliyuncs.com#g" \
-         -e "s#SystemdCgroup = false#SystemdCgroup = true#g" \
-         -e "s#oom_score = 0#oom_score = -999#" \
-         -e "s#max_concurrent_downloads = 3#max_concurrent_downloads = 10#g" /etc/containerd/config.toml
+  # containerd config default > /etc/containerd/config.toml
+  # sed -i -e "s#k8s.gcr.io#10.50.10.185/kainstall#g" \
+  #        -e "s#registry.k8s.io#10.50.10.185/kainstall#g" \
+  #        -e "s#https://registry-1.docker.io#https://yssx4sxy.mirror.aliyuncs.com#g" \
+  #        -e "s#SystemdCgroup = false#SystemdCgroup = true#g" \
+  #        -e "s#oom_score = 0#oom_score = -999#" \
+  #        -e "s#max_concurrent_downloads = 3#max_concurrent_downloads = 10#g" /etc/containerd/config.toml
 
-  grep docker.io /etc/containerd/config.toml ||  sed -i -e "/registry.mirrors]/a\ \ \ \ \ \ \ \ [plugins.\"io.containerd.grpc.v1.cri\".registry.mirrors.\"docker.io\"]\n           endpoint = [\"https://yssx4sxy.mirror.aliyuncs.com\"]" \
-       /etc/containerd/config.toml
+  # grep docker.io /etc/containerd/config.toml ||  sed -i -e "/registry.mirrors]/a\ \ \ \ \ \ \ \ [plugins.\"io.containerd.grpc.v1.cri\".registry.mirrors.\"docker.io\"]\n           endpoint = [\"https://yssx4sxy.mirror.aliyuncs.com\"]" \
+  #      /etc/containerd/config.toml
+
+  curl -o /etc/containerd/config.toml 10.50.10.25/pigsty/containerd_config.toml
 
   cat << EOF > /etc/crictl.yaml
 runtime-endpoint: unix:///run/containerd/containerd.sock
@@ -1078,8 +1083,8 @@ EOF
       crio-status completion bash > /etc/bash_completion.d/crio-status; }
 
   crio config --default > /etc/crio/crio.conf
-  sed -i -e "s#k8s.gcr.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" \
-         -e "s#registry.k8s.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" \
+  sed -i -e "s#k8s.gcr.io#10.50.10.185/kainstall#g" \
+         -e "s#registry.k8s.io#10.50.10.185/kainstall#g" \
          -e 's|#registries = \[|registries = ["docker.io", "quay.io"]|g' /etc/crio/crio.conf
 
   [ -d /etc/containers/registries.conf.d ] && cat << EOF > /etc/containers/registries.conf.d/000-dockerio.conf
@@ -1359,6 +1364,9 @@ function install::package() {
 
   for host in $MASTER_NODES $WORKER_NODES
   do
+    # insatll harbor cert
+     command::exec "${host}" "mkdir -p /etc/containerd/10.50.10.185 && curl -o /etc/containerd/10.50.10.185/ca.crt 10.50.10.25/pigsty/ca.crt"
+     log::info "[install]" "install harbor cert on $host"
     # install cri
     log::info "[install]" "install ${KUBE_CRI} on $host."
     command::exec "${host}" "
@@ -1461,12 +1469,13 @@ function init::upgrade_kernel() {
   
   for host in $MASTER_NODES $WORKER_NODES
   do
-    command::exec "${host}" "bash -c 'sleep 15 && reboot' &>/dev/null &"
+    command::exec "${host}" "bash -c 'sleep 15' &>/dev/null &"
+    log::info "[notice]" "Please reboot !!!!!" 
     check::exit_code "$?" "init" "$host: Wait for 15s to restart"
   done
 
   log::info "[notice]" "Please execute the command again!" 
-  log::access "[command]" "bash $0 ${SCRIPT_PARAMETER// --upgrade-kernel/}"
+  log::access "[command]" "bash $0 ${SCRIPT_PARAMETER// --upgrade-kernel/}" # //表示全局替换，--upgrade-kernel是要替换的子字符串，而空字符串表示要替换成的内容。这个语句的作用是从SCRIPT_PARAMETER变量中删除所有--upgrade-kernel参数
   exit 0
 }
 
@@ -2163,7 +2172,8 @@ function add::ingress() {
     log::info "[ingress]" "add ingress-nginx"
     
     local ingress_nginx_file="${OFFLINE_DIR}/manifests/ingress-nginx.yml"
-    utils::download_file "${GITHUB_PROXY}https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v${INGRESS_NGINX}/deploy/static/provider/baremetal/deploy.yaml" "${ingress_nginx_file}"
+    # http://10.50.10.25/pigsty/ingress-nginx-deploy-v1.3.0.yaml
+    utils::download_file "http://10.50.10.25/pigsty/ingress-nginx-deploy-v${INGRESS_NGINX}.yaml" "${ingress_nginx_file}"
     command::exec "${MGMT_NODE}" "
       sed -i -e 's#k8s.gcr.io/ingress-nginx#${KUBE_IMAGE_REPO}#g' \
              -e 's#registry.k8s.io/ingress-nginx#${KUBE_IMAGE_REPO}#g' \
@@ -2492,14 +2502,15 @@ function add::network() {
 
   elif [[ "$KUBE_NETWORK" == "calico" ]]; then
     log::info "[network]" "add calico"
-    utils::download_file "https://projectcalico.docs.tigera.io/archive/v${CALICO_VERSION%.*}/manifests/calico.yaml" "${OFFLINE_DIR}/manifests/calico.yaml"
-    utils::download_file "https://projectcalico.docs.tigera.io/archive/v${CALICO_VERSION%.*}/manifests/calicoctl.yaml" "${OFFLINE_DIR}/manifests/calicoctl.yaml"
-    
-    command::exec "${MGMT_NODE}" "
-      sed -i \"s#:v.*#:v${CALICO_VERSION}#g\" \"${OFFLINE_DIR}/manifests/calico.yaml\"
-      sed -i 's#value: \"Always\"#value: \"CrossSubnet\"#g' \"${OFFLINE_DIR}/manifests/calico.yaml\"
-      sed -i \"s#:v.*#:v${CALICO_VERSION}#g\" \"${OFFLINE_DIR}/manifests/calicoctl.yaml\"
-    "
+    # utils::download_file "https://projectcalico.docs.tigera.io/archive/v${CALICO_VERSION%.*}/manifests/calico.yaml" "${OFFLINE_DIR}/manifests/calico.yaml"
+    # utils::download_file "https://projectcalico.docs.tigera.io/archive/v${CALICO_VERSION%.*}/manifests/calicoctl.yaml" "${OFFLINE_DIR}/manifests/calicoctl.yaml"
+    utils::download_file "http://10.50.10.25/pigsty/calico-v${CALICO_VERSION}.yaml" "${OFFLINE_DIR}/manifests/calico.yaml"
+    utils::download_file "http://10.50.10.25/pigsty/calico-ctl.yaml" "${OFFLINE_DIR}/manifests/calicoctl.yaml"
+    # command::exec "${MGMT_NODE}" "
+    #   sed -i \"s#:v.*#:v${CALICO_VERSION}#g\" \"${OFFLINE_DIR}/manifests/calico.yaml\"
+    #   sed -i 's#value: \"Always\"#value: \"CrossSubnet\"#g' \"${OFFLINE_DIR}/manifests/calico.yaml\"
+    #   sed -i \"s#:v.*#:v${CALICO_VERSION}#g\" \"${OFFLINE_DIR}/manifests/calicoctl.yaml\"
+    # "
     check::exit_code "$?" "network" "change calico version to ${CALICO_VERSION}"
     
     kube::apply "${OFFLINE_DIR}/manifests/calico.yaml"
@@ -2580,7 +2591,8 @@ function add::addon() {
   if [[ "$KUBE_ADDON" == "metrics-server" ]]; then
     log::info "[addon]" "download metrics-server manifests"
     local metrics_server_file="${OFFLINE_DIR}/manifests/metrics-server.yml"
-    utils::download_file "${GITHUB_PROXY}https://github.com/kubernetes-sigs/metrics-server/releases/download/v${METRICS_SERVER_VERSION}/components.yaml" "${metrics_server_file}"
+    # http://10.50.10.25/pigsty/metric-server-v0.6.1.yaml
+    utils::download_file "http://10.50.10.25/pigsty/metric-server-v${METRICS_SERVER_VERSION}.yaml" "${metrics_server_file}"
   
     command::exec "${MGMT_NODE}" "
       sed -i -e 's#k8s.gcr.io/metrics-server#$KUBE_IMAGE_REPO#g' \
@@ -3474,7 +3486,7 @@ function offline::load() {
   for host in ${hosts}
   do
     log::info "[offline]" "${role} ${host}: load offline file"
-    command::exec "${host}"  "[[ ! -d \"${OFFLINE_DIR}\" ]] && { mkdir -pv \"${OFFLINE_DIR}\"; chmod 777 \"${OFFLINE_DIR}\"; } ||:"
+    command::exec "${host}"  "[[ ! -d ${OFFLINE_DIR} ]] && { mkdir -pv ${OFFLINE_DIR}; chmod 777 ${OFFLINE_DIR}; } ||:" #command::exec "${host}"  "[[ ! -d \"${OFFLINE_DIR}\" ]] && { mkdir -pv \"${OFFLINE_DIR}\"; chmod 777 \"${OFFLINE_DIR}\"; } ||:"
     check::exit_code "$?" "offline" "$host: mkdir offline dir" "exit"
 
     if [[ "${UPGRADE_KERNEL_TAG:-}" == "1" ]]; then
@@ -3762,6 +3774,7 @@ function transform::data {
   MASTER_NODES=$(echo "${MASTER_NODES}" | tr ',' ' ')
   WORKER_NODES=$(echo "${WORKER_NODES}" | tr ',' ' ')
 
+  # check CRI的支持情况
   if ! utils::is_element_in_array "$KUBE_CRI" docker containerd cri-o ; then
     log::error "[limit]" "$KUBE_CRI is not supported, only [docker,containerd,cri-o]"
     exit 1
@@ -3775,7 +3788,7 @@ function transform::data {
   criSocket: ${KUBE_CRI_ENDPOINT:-/run/containerd/containerd.sock}
   kubeletExtraArgs:
     runtime-cgroups: /system.slice/${KUBE_CRI//-/}.service
-    pod-infra-container-image: ${KUBE_IMAGE_REPO}/pause:${PAUSE_VERSION:-3.7}
+    pod-infra-container-image: ${KUBE_IMAGE_REPO}/pause:${PAUSE_VERSION:-3.5}
 "
 }
 

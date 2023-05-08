@@ -1,0 +1,3271 @@
+[2023-05-04T22:48:53.524127404+0800]: [32mINFO:    [0m[start] bash kainstall-centos.sh init --master 10.50.10.21 --worker 10.50.10.22,10.50.10.23 --user root --password zzzzzz --version 1.22.10 --10years --offline-file 1.22.10_centos7.tgz
+[2023-05-04T22:48:53.531466170+0800]: [32mINFO:    [0m[check] ssh command exists.
+[2023-05-04T22:48:53.533982533+0800]: [32mINFO:    [0m[check] sshpass command exists.
+[2023-05-04T22:48:53.536451874+0800]: [32mINFO:    [0m[check] wget command exists.
+[2023-05-04T22:48:53.539100932+0800]: [32mINFO:    [0m[check] tar command exists.
+[2023-05-04T22:48:53.551182747+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c 'echo 0'
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+0
+[2023-05-04T22:48:53.670224331+0800]: [32mINFO:    [0m[check] ssh 10.50.10.21 connection succeeded.
+[2023-05-04T22:48:53.681596594+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c 'echo 0'
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+0
+[2023-05-04T22:48:53.808677947+0800]: [32mINFO:    [0m[check] ssh 10.50.10.22 connection succeeded.
+[2023-05-04T22:48:53.820359842+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c 'echo 0'
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+0
+[2023-05-04T22:48:54.005355738+0800]: [32mINFO:    [0m[check] ssh 10.50.10.23 connection succeeded.
+[2023-05-04T22:48:54.007869266+0800]: [32mINFO:    [0m[check] os support: centos7 centos8
+[2023-05-04T22:48:54.019753976+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+      [ -f /etc/os-release ] && source /etc/os-release
+      echo client_os:${ID:-}${VERSION_ID:-}
+      if [[ "centos7 centos8" == *"${ID:-}${VERSION_ID:-}"* ]]; then
+        exit 0
+      fi
+      exit 1
+    '
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+client_os:centos7
+[2023-05-04T22:48:54.188663423+0800]: [32mINFO:    [0m[check] 10.50.10.21 os support succeeded.
+[2023-05-04T22:48:54.200004141+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c '
+      [ -f /etc/os-release ] && source /etc/os-release
+      echo client_os:${ID:-}${VERSION_ID:-}
+      if [[ "centos7 centos8" == *"${ID:-}${VERSION_ID:-}"* ]]; then
+        exit 0
+      fi
+      exit 1
+    '
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+client_os:centos7
+[2023-05-04T22:48:54.312999164+0800]: [32mINFO:    [0m[check] 10.50.10.22 os support succeeded.
+[2023-05-04T22:48:54.324416786+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c '
+      [ -f /etc/os-release ] && source /etc/os-release
+      echo client_os:${ID:-}${VERSION_ID:-}
+      if [[ "centos7 centos8" == *"${ID:-}${VERSION_ID:-}"* ]]; then
+        exit 0
+      fi
+      exit 1
+    '
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+client_os:centos7
+[2023-05-04T22:48:54.443341738+0800]: [32mINFO:    [0m[check] 10.50.10.23 os support succeeded.
+[2023-05-04T22:48:54.449058897+0800]: [32mINFO:    [0m[offline] Unzip offline package on local.
+[2023-05-04T22:49:02.289816143+0800]: [32mINFO:    [0m[offline] Unzip offline package succeeded.
+[2023-05-04T22:49:02.326991225+0800]: [32mINFO:    [0m[offline] master 10.50.10.21: load offline file
+[2023-05-04T22:49:02.405767034+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '[[ ! -d /tmp/kainstall-offline-file/ ]] && { mkdir -pv /tmp/kainstall-offline-file/; chmod 777 /tmp/kainstall-offline-file/; } ||:'
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+mkdir: created directory ‘/tmp/kainstall-offline-file/’
+[2023-05-04T22:49:02.737417099+0800]: [32mINFO:    [0m[offline] 10.50.10.21: mkdir offline dir succeeded.
+[2023-05-04T22:49:02.756866883+0800]: [32mINFO:    [0m[offline] master 10.50.10.21: copy offline file
+[2023-05-04T22:49:02.794033372+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/packages/kubeadm/* root@10.50.10.21:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:04.659122947+0800]: [32mINFO:    [0m[offline] scp kube file to 10.50.10.21 succeeded.
+[2023-05-04T22:49:04.663784544+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/packages/all/* root@10.50.10.21:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:07.736084472+0800]: [32mINFO:    [0m[offline] scp all file to 10.50.10.21 succeeded.
+[2023-05-04T22:49:07.739092807+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/images/master.tgz root@10.50.10.21:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:09.069138093+0800]: [32mINFO:    [0m[offline] scp master images to 10.50.10.21 succeeded.
+[2023-05-04T22:49:09.071958230+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/images/all.tgz root@10.50.10.21:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:09.672019553+0800]: [32mINFO:    [0m[offline] scp all images to 10.50.10.21 succeeded.
+[2023-05-04T22:49:09.674754183+0800]: [32mINFO:    [0m[offline] master 10.50.10.21: install package
+[2023-05-04T22:49:09.687297511+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c 'yum localinstall -y --skip-broken /tmp/kainstall-offline-file//*.rpm'
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+Loaded plugins: fastestmirror
+Examining /tmp/kainstall-offline-file//16ae432ead5585248fe238548734a2da4465c551640890f1b3a2a0e970af4342-kubectl-1.22.10-0.x86_64.rpm: kubectl-1.22.10-0.x86_64
+/tmp/kainstall-offline-file//16ae432ead5585248fe238548734a2da4465c551640890f1b3a2a0e970af4342-kubectl-1.22.10-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//9165e89a2de0f1a2acfb151177ac6985022ee0c2a8a78d45a4982aa1b11ffd68-cri-tools-1.24.0-0.x86_64.rpm: cri-tools-1.24.0-0.x86_64
+/tmp/kainstall-offline-file//9165e89a2de0f1a2acfb151177ac6985022ee0c2a8a78d45a4982aa1b11ffd68-cri-tools-1.24.0-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//9a0fedf7bcb1916b65ecfc6cc7fceeefeae4ef4fdd0a1d5ce04adb41725f4146-kubelet-1.22.10-0.x86_64.rpm: kubelet-1.22.10-0.x86_64
+/tmp/kainstall-offline-file//9a0fedf7bcb1916b65ecfc6cc7fceeefeae4ef4fdd0a1d5ce04adb41725f4146-kubelet-1.22.10-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//a64647fbf3ef51047fcc845c07b1ab5389b666f5bdf0ea550d6a759783b84a5e-kubeadm-1.22.10-0.x86_64.rpm: kubeadm-1.22.10-0.x86_64
+/tmp/kainstall-offline-file//a64647fbf3ef51047fcc845c07b1ab5389b666f5bdf0ea550d6a759783b84a5e-kubeadm-1.22.10-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//audit-2.8.5-4.el7.x86_64.rpm: audit-2.8.5-4.el7.x86_64
+/tmp/kainstall-offline-file//audit-2.8.5-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//audit-libs-2.8.5-4.el7.x86_64.rpm: audit-libs-2.8.5-4.el7.x86_64
+/tmp/kainstall-offline-file//audit-libs-2.8.5-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//audit-libs-python-2.8.5-4.el7.x86_64.rpm: audit-libs-python-2.8.5-4.el7.x86_64
+/tmp/kainstall-offline-file//audit-libs-python-2.8.5-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//bash-completion-2.1-8.el7.noarch.rpm: 1:bash-completion-2.1-8.el7.noarch
+/tmp/kainstall-offline-file//bash-completion-2.1-8.el7.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//checkpolicy-2.5-8.el7.x86_64.rpm: checkpolicy-2.5-8.el7.x86_64
+/tmp/kainstall-offline-file//checkpolicy-2.5-8.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//chrony-3.4-1.el7.x86_64.rpm: chrony-3.4-1.el7.x86_64
+/tmp/kainstall-offline-file//chrony-3.4-1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//conntrack-tools-1.4.4-7.el7.x86_64.rpm: conntrack-tools-1.4.4-7.el7.x86_64
+/tmp/kainstall-offline-file//conntrack-tools-1.4.4-7.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//containerd.io-1.6.6-3.1.el7.x86_64.rpm: containerd.io-1.6.6-3.1.el7.x86_64
+/tmp/kainstall-offline-file//containerd.io-1.6.6-3.1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//container-selinux-2.119.2-1.911c772.el7_8.noarch.rpm: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+/tmp/kainstall-offline-file//container-selinux-2.119.2-1.911c772.el7_8.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//cronie-1.4.11-24.el7_9.x86_64.rpm: cronie-1.4.11-24.el7_9.x86_64
+/tmp/kainstall-offline-file//cronie-1.4.11-24.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//cronie-anacron-1.4.11-24.el7_9.x86_64.rpm: cronie-anacron-1.4.11-24.el7_9.x86_64
+/tmp/kainstall-offline-file//cronie-anacron-1.4.11-24.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//crontabs-1.11-6.20121102git.el7.noarch.rpm: crontabs-1.11-6.20121102git.el7.noarch
+/tmp/kainstall-offline-file//crontabs-1.11-6.20121102git.el7.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//curl-7.29.0-59.el7_9.1.x86_64.rpm: curl-7.29.0-59.el7_9.1.x86_64
+/tmp/kainstall-offline-file//curl-7.29.0-59.el7_9.1.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//db7cb5cb0b3f6875f54d10f02e625573988e3e91fd4fc5eef0b1876bb18604ad-kubernetes-cni-0.8.7-0.x86_64.rpm: kubernetes-cni-0.8.7-0.x86_64
+/tmp/kainstall-offline-file//db7cb5cb0b3f6875f54d10f02e625573988e3e91fd4fc5eef0b1876bb18604ad-kubernetes-cni-0.8.7-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-ce-20.10.17-3.el7.x86_64.rpm: 3:docker-ce-20.10.17-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-ce-20.10.17-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-ce-cli-20.10.17-3.el7.x86_64.rpm: 1:docker-ce-cli-20.10.17-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-ce-cli-20.10.17-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-ce-rootless-extras-20.10.17-3.el7.x86_64.rpm: docker-ce-rootless-extras-20.10.17-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-ce-rootless-extras-20.10.17-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-scan-plugin-0.17.0-3.el7.x86_64.rpm: docker-scan-plugin-0.17.0-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-scan-plugin-0.17.0-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ebtables-2.0.10-16.el7.x86_64.rpm: ebtables-2.0.10-16.el7.x86_64
+/tmp/kainstall-offline-file//ebtables-2.0.10-16.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//epel-release-7-14.noarch.rpm: epel-release-7-14.noarch
+/tmp/kainstall-offline-file//epel-release-7-14.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ethtool-4.8-10.el7.x86_64.rpm: 2:ethtool-4.8-10.el7.x86_64
+/tmp/kainstall-offline-file//ethtool-4.8-10.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fipscheck-1.4.1-6.el7.x86_64.rpm: fipscheck-1.4.1-6.el7.x86_64
+/tmp/kainstall-offline-file//fipscheck-1.4.1-6.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fipscheck-lib-1.4.1-6.el7.x86_64.rpm: fipscheck-lib-1.4.1-6.el7.x86_64
+/tmp/kainstall-offline-file//fipscheck-lib-1.4.1-6.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fuse3-libs-3.6.1-4.el7.x86_64.rpm: fuse3-libs-3.6.1-4.el7.x86_64
+/tmp/kainstall-offline-file//fuse3-libs-3.6.1-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm: fuse-overlayfs-0.7.2-6.el7_8.x86_64
+/tmp/kainstall-offline-file//fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//gzip-1.5-10.el7.x86_64.rpm: gzip-1.5-10.el7.x86_64
+/tmp/kainstall-offline-file//gzip-1.5-10.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//gzip-1.5-11.el7_9.x86_64.rpm: gzip-1.5-11.el7_9.x86_64
+/tmp/kainstall-offline-file//gzip-1.5-11.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//iproute-4.11.0-30.el7.x86_64.rpm: iproute-4.11.0-30.el7.x86_64
+/tmp/kainstall-offline-file//iproute-4.11.0-30.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ipset-7.1-1.el7.x86_64.rpm: ipset-7.1-1.el7.x86_64
+/tmp/kainstall-offline-file//ipset-7.1-1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ipset-libs-7.1-1.el7.x86_64.rpm: ipset-libs-7.1-1.el7.x86_64
+/tmp/kainstall-offline-file//ipset-libs-7.1-1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//iptables-1.4.21-35.el7.x86_64.rpm: iptables-1.4.21-35.el7.x86_64
+/tmp/kainstall-offline-file//iptables-1.4.21-35.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ipvsadm-1.27-8.el7.x86_64.rpm: ipvsadm-1.27-8.el7.x86_64
+/tmp/kainstall-offline-file//ipvsadm-1.27-8.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libcgroup-0.41-21.el7.x86_64.rpm: libcgroup-0.41-21.el7.x86_64
+/tmp/kainstall-offline-file//libcgroup-0.41-21.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libcurl-7.29.0-59.el7_9.1.x86_64.rpm: libcurl-7.29.0-59.el7_9.1.x86_64
+/tmp/kainstall-offline-file//libcurl-7.29.0-59.el7_9.1.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libedit-3.0-12.20121213cvs.el7.x86_64.rpm: libedit-3.0-12.20121213cvs.el7.x86_64
+/tmp/kainstall-offline-file//libedit-3.0-12.20121213cvs.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libmnl-1.0.3-7.el7.x86_64.rpm: libmnl-1.0.3-7.el7.x86_64
+/tmp/kainstall-offline-file//libmnl-1.0.3-7.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_conntrack-1.0.6-1.el7_3.x86_64.rpm: libnetfilter_conntrack-1.0.6-1.el7_3.x86_64
+/tmp/kainstall-offline-file//libnetfilter_conntrack-1.0.6-1.el7_3.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_cthelper-1.0.0-11.el7.x86_64.rpm: libnetfilter_cthelper-1.0.0-11.el7.x86_64
+/tmp/kainstall-offline-file//libnetfilter_cthelper-1.0.0-11.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_cttimeout-1.0.0-7.el7.x86_64.rpm: libnetfilter_cttimeout-1.0.0-7.el7.x86_64
+/tmp/kainstall-offline-file//libnetfilter_cttimeout-1.0.0-7.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_queue-1.0.2-2.el7_2.x86_64.rpm: libnetfilter_queue-1.0.2-2.el7_2.x86_64
+/tmp/kainstall-offline-file//libnetfilter_queue-1.0.2-2.el7_2.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnfnetlink-1.0.1-4.el7.x86_64.rpm: libnfnetlink-1.0.1-4.el7.x86_64
+/tmp/kainstall-offline-file//libnfnetlink-1.0.1-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnl3-3.2.28-4.el7.x86_64.rpm: libnl3-3.2.28-4.el7.x86_64
+/tmp/kainstall-offline-file//libnl3-3.2.28-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libseccomp-2.3.1-4.el7.x86_64.rpm: libseccomp-2.3.1-4.el7.x86_64
+/tmp/kainstall-offline-file//libseccomp-2.3.1-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libselinux-2.5-15.el7.x86_64.rpm: libselinux-2.5-15.el7.x86_64
+/tmp/kainstall-offline-file//libselinux-2.5-15.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libselinux-python-2.5-15.el7.x86_64.rpm: libselinux-python-2.5-15.el7.x86_64
+/tmp/kainstall-offline-file//libselinux-python-2.5-15.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libselinux-utils-2.5-15.el7.x86_64.rpm: libselinux-utils-2.5-15.el7.x86_64
+/tmp/kainstall-offline-file//libselinux-utils-2.5-15.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libsemanage-python-2.5-14.el7.x86_64.rpm: libsemanage-python-2.5-14.el7.x86_64
+/tmp/kainstall-offline-file//libsemanage-python-2.5-14.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//lm_sensors-libs-3.4.0-8.20160601gitf9185e5.el7.x86_64.rpm: lm_sensors-libs-3.4.0-8.20160601gitf9185e5.el7.x86_64
+/tmp/kainstall-offline-file//lm_sensors-libs-3.4.0-8.20160601gitf9185e5.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//make-3.82-24.el7.x86_64.rpm: 1:make-3.82-24.el7.x86_64
+/tmp/kainstall-offline-file//make-3.82-24.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//openssh-7.4p1-22.el7_9.x86_64.rpm: openssh-7.4p1-22.el7_9.x86_64
+/tmp/kainstall-offline-file//openssh-7.4p1-22.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//openssl-1.0.2k-25.el7_9.x86_64.rpm: 1:openssl-1.0.2k-25.el7_9.x86_64
+/tmp/kainstall-offline-file//openssl-1.0.2k-25.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//openssl-libs-1.0.2k-25.el7_9.x86_64.rpm: 1:openssl-libs-1.0.2k-25.el7_9.x86_64
+/tmp/kainstall-offline-file//openssl-libs-1.0.2k-25.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//policycoreutils-2.5-34.el7.x86_64.rpm: policycoreutils-2.5-34.el7.x86_64
+/tmp/kainstall-offline-file//policycoreutils-2.5-34.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//policycoreutils-python-2.5-34.el7.x86_64.rpm: policycoreutils-python-2.5-34.el7.x86_64
+/tmp/kainstall-offline-file//policycoreutils-python-2.5-34.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//python-IPy-0.75-6.el7.noarch.rpm: python-IPy-0.75-6.el7.noarch
+/tmp/kainstall-offline-file//python-IPy-0.75-6.el7.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//selinux-policy-3.13.1-268.el7_9.2.noarch.rpm: selinux-policy-3.13.1-268.el7_9.2.noarch
+/tmp/kainstall-offline-file//selinux-policy-3.13.1-268.el7_9.2.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//selinux-policy-targeted-3.13.1-268.el7_9.2.noarch.rpm: selinux-policy-targeted-3.13.1-268.el7_9.2.noarch
+/tmp/kainstall-offline-file//selinux-policy-targeted-3.13.1-268.el7_9.2.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//setools-libs-3.3.8-4.el7.x86_64.rpm: setools-libs-3.3.8-4.el7.x86_64
+/tmp/kainstall-offline-file//setools-libs-3.3.8-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//slirp4netns-0.4.3-4.el7_8.x86_64.rpm: slirp4netns-0.4.3-4.el7_8.x86_64
+/tmp/kainstall-offline-file//slirp4netns-0.4.3-4.el7_8.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//socat-1.7.3.2-2.el7.x86_64.rpm: socat-1.7.3.2-2.el7.x86_64
+/tmp/kainstall-offline-file//socat-1.7.3.2-2.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//sshpass-1.06-2.el7.x86_64.rpm: sshpass-1.06-2.el7.x86_64
+/tmp/kainstall-offline-file//sshpass-1.06-2.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//sysstat-10.1.5-19.el7.x86_64.rpm: sysstat-10.1.5-19.el7.x86_64
+/tmp/kainstall-offline-file//sysstat-10.1.5-19.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-219-78.el7_9.5.x86_64.rpm: systemd-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-libs-219-78.el7_9.5.x86_64.rpm: systemd-libs-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-libs-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-python-219-78.el7_9.5.x86_64.rpm: systemd-python-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-python-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-sysv-219-78.el7_9.5.x86_64.rpm: systemd-sysv-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-sysv-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//tcp_wrappers-libs-7.6-77.el7.x86_64.rpm: tcp_wrappers-libs-7.6-77.el7.x86_64
+/tmp/kainstall-offline-file//tcp_wrappers-libs-7.6-77.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//unzip-6.0-24.el7_9.x86_64.rpm: unzip-6.0-24.el7_9.x86_64
+/tmp/kainstall-offline-file//unzip-6.0-24.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//wget-1.14-18.el7_6.1.x86_64.rpm: wget-1.14-18.el7_6.1.x86_64
+/tmp/kainstall-offline-file//wget-1.14-18.el7_6.1.x86_64.rpm: does not update installed package.
+Nothing to do
+[2023-05-04T22:49:10.068220565+0800]: [32mINFO:    [0m[offline] master 10.50.10.21: install package succeeded.
+[2023-05-04T22:49:10.083096470+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+        set -e
+        for target in firewalld python-firewall firewalld-filesystem iptables; do
+          systemctl stop $target &>/dev/null || true
+          systemctl disable $target &>/dev/null || true
+        done
+        systemctl start docker &&         cd /tmp/kainstall-offline-file/ &&         gzip -d -c master.tgz | docker load && gzip -d -c all.tgz | docker load
+      '
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/kube-scheduler:v1.22.10
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/kube-controller-manager:v1.22.10
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/etcd:3.5.0-0
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/kube-apiserver:v1.22.10
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/kube-proxy:v1.22.10
+Loaded image: rancher/mirrored-flannelcni-flannel:v0.16.3
+Loaded image: rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/coredns:v1.8.4
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.5
+[2023-05-04T22:49:25.108423737+0800]: [32mINFO:    [0m[offline] 10.50.10.21: load images succeeded.
+[2023-05-04T22:49:25.119898481+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c 'rm -rf /tmp/kainstall-offline-file/'
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:25.283443116+0800]: [32mINFO:    [0m[offline] 10.50.10.21: clean offline file succeeded.
+[2023-05-04T22:49:25.285969135+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/manifests root@10.50.10.21:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:25.408855303+0800]: [32mINFO:    [0m[offline] scp manifests file to 10.50.10.21 succeeded.
+[2023-05-04T22:49:25.410967586+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/bins root@10.50.10.21:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:25.984601121+0800]: [32mINFO:    [0m[offline] scp bins file to 10.50.10.21 succeeded.
+[2023-05-04T22:49:25.987323643+0800]: [32mINFO:    [0m[offline] worker 10.50.10.22: load offline file
+[2023-05-04T22:49:25.999832290+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c '[[ ! -d /tmp/kainstall-offline-file/ ]] && { mkdir -pv /tmp/kainstall-offline-file/; chmod 777 /tmp/kainstall-offline-file/; } ||:'
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:26.120219138+0800]: [32mINFO:    [0m[offline] 10.50.10.22: mkdir offline dir succeeded.
+[2023-05-04T22:49:26.123222651+0800]: [32mINFO:    [0m[offline] worker 10.50.10.22: copy offline file
+[2023-05-04T22:49:26.125531849+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/packages/kubeadm/* root@10.50.10.22:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:26.919998615+0800]: [32mINFO:    [0m[offline] scp kube file to 10.50.10.22 succeeded.
+[2023-05-04T22:49:26.922546724+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/packages/all/* root@10.50.10.22:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:28.385971538+0800]: [32mINFO:    [0m[offline] scp all file to 10.50.10.22 succeeded.
+[2023-05-04T22:49:28.388462569+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/packages/worker/* root@10.50.10.22:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:28.574258390+0800]: [32mINFO:    [0m[offline] scp worker file to 10.50.10.22 succeeded.
+[2023-05-04T22:49:28.576897724+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/images/worker.tgz root@10.50.10.22:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:31.024288260+0800]: [32mINFO:    [0m[offline] scp worker images to 10.50.10.22 succeeded.
+[2023-05-04T22:49:31.026817695+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/images/all.tgz root@10.50.10.22:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:31.770583637+0800]: [32mINFO:    [0m[offline] scp all images to 10.50.10.22 succeeded.
+[2023-05-04T22:49:31.773317514+0800]: [32mINFO:    [0m[offline] worker 10.50.10.22: install package
+[2023-05-04T22:49:31.786045342+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c 'yum localinstall -y --skip-broken /tmp/kainstall-offline-file//*.rpm'
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+Loaded plugins: fastestmirror
+Examining /tmp/kainstall-offline-file//16ae432ead5585248fe238548734a2da4465c551640890f1b3a2a0e970af4342-kubectl-1.22.10-0.x86_64.rpm: kubectl-1.22.10-0.x86_64
+/tmp/kainstall-offline-file//16ae432ead5585248fe238548734a2da4465c551640890f1b3a2a0e970af4342-kubectl-1.22.10-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//9165e89a2de0f1a2acfb151177ac6985022ee0c2a8a78d45a4982aa1b11ffd68-cri-tools-1.24.0-0.x86_64.rpm: cri-tools-1.24.0-0.x86_64
+/tmp/kainstall-offline-file//9165e89a2de0f1a2acfb151177ac6985022ee0c2a8a78d45a4982aa1b11ffd68-cri-tools-1.24.0-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//9a0fedf7bcb1916b65ecfc6cc7fceeefeae4ef4fdd0a1d5ce04adb41725f4146-kubelet-1.22.10-0.x86_64.rpm: kubelet-1.22.10-0.x86_64
+/tmp/kainstall-offline-file//9a0fedf7bcb1916b65ecfc6cc7fceeefeae4ef4fdd0a1d5ce04adb41725f4146-kubelet-1.22.10-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//a64647fbf3ef51047fcc845c07b1ab5389b666f5bdf0ea550d6a759783b84a5e-kubeadm-1.22.10-0.x86_64.rpm: kubeadm-1.22.10-0.x86_64
+/tmp/kainstall-offline-file//a64647fbf3ef51047fcc845c07b1ab5389b666f5bdf0ea550d6a759783b84a5e-kubeadm-1.22.10-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//audit-2.8.5-4.el7.x86_64.rpm: audit-2.8.5-4.el7.x86_64
+/tmp/kainstall-offline-file//audit-2.8.5-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//audit-libs-2.8.5-4.el7.x86_64.rpm: audit-libs-2.8.5-4.el7.x86_64
+/tmp/kainstall-offline-file//audit-libs-2.8.5-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//audit-libs-python-2.8.5-4.el7.x86_64.rpm: audit-libs-python-2.8.5-4.el7.x86_64
+/tmp/kainstall-offline-file//audit-libs-python-2.8.5-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//bash-completion-2.1-8.el7.noarch.rpm: 1:bash-completion-2.1-8.el7.noarch
+/tmp/kainstall-offline-file//bash-completion-2.1-8.el7.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//checkpolicy-2.5-8.el7.x86_64.rpm: checkpolicy-2.5-8.el7.x86_64
+/tmp/kainstall-offline-file//checkpolicy-2.5-8.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//chrony-3.4-1.el7.x86_64.rpm: chrony-3.4-1.el7.x86_64
+/tmp/kainstall-offline-file//chrony-3.4-1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//conntrack-tools-1.4.4-7.el7.x86_64.rpm: conntrack-tools-1.4.4-7.el7.x86_64
+/tmp/kainstall-offline-file//conntrack-tools-1.4.4-7.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//containerd.io-1.6.6-3.1.el7.x86_64.rpm: containerd.io-1.6.6-3.1.el7.x86_64
+/tmp/kainstall-offline-file//containerd.io-1.6.6-3.1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//container-selinux-2.119.2-1.911c772.el7_8.noarch.rpm: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+/tmp/kainstall-offline-file//container-selinux-2.119.2-1.911c772.el7_8.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//cronie-1.4.11-24.el7_9.x86_64.rpm: cronie-1.4.11-24.el7_9.x86_64
+/tmp/kainstall-offline-file//cronie-1.4.11-24.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//cronie-anacron-1.4.11-24.el7_9.x86_64.rpm: cronie-anacron-1.4.11-24.el7_9.x86_64
+/tmp/kainstall-offline-file//cronie-anacron-1.4.11-24.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//crontabs-1.11-6.20121102git.el7.noarch.rpm: crontabs-1.11-6.20121102git.el7.noarch
+/tmp/kainstall-offline-file//crontabs-1.11-6.20121102git.el7.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//curl-7.29.0-59.el7_9.1.x86_64.rpm: curl-7.29.0-59.el7_9.1.x86_64
+/tmp/kainstall-offline-file//curl-7.29.0-59.el7_9.1.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//db7cb5cb0b3f6875f54d10f02e625573988e3e91fd4fc5eef0b1876bb18604ad-kubernetes-cni-0.8.7-0.x86_64.rpm: kubernetes-cni-0.8.7-0.x86_64
+/tmp/kainstall-offline-file//db7cb5cb0b3f6875f54d10f02e625573988e3e91fd4fc5eef0b1876bb18604ad-kubernetes-cni-0.8.7-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-ce-20.10.17-3.el7.x86_64.rpm: 3:docker-ce-20.10.17-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-ce-20.10.17-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-ce-cli-20.10.17-3.el7.x86_64.rpm: 1:docker-ce-cli-20.10.17-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-ce-cli-20.10.17-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-ce-rootless-extras-20.10.17-3.el7.x86_64.rpm: docker-ce-rootless-extras-20.10.17-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-ce-rootless-extras-20.10.17-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-scan-plugin-0.17.0-3.el7.x86_64.rpm: docker-scan-plugin-0.17.0-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-scan-plugin-0.17.0-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ebtables-2.0.10-16.el7.x86_64.rpm: ebtables-2.0.10-16.el7.x86_64
+/tmp/kainstall-offline-file//ebtables-2.0.10-16.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//epel-release-7-14.noarch.rpm: epel-release-7-14.noarch
+/tmp/kainstall-offline-file//epel-release-7-14.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ethtool-4.8-10.el7.x86_64.rpm: 2:ethtool-4.8-10.el7.x86_64
+/tmp/kainstall-offline-file//ethtool-4.8-10.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fipscheck-1.4.1-6.el7.x86_64.rpm: fipscheck-1.4.1-6.el7.x86_64
+/tmp/kainstall-offline-file//fipscheck-1.4.1-6.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fipscheck-lib-1.4.1-6.el7.x86_64.rpm: fipscheck-lib-1.4.1-6.el7.x86_64
+/tmp/kainstall-offline-file//fipscheck-lib-1.4.1-6.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fuse3-libs-3.6.1-4.el7.x86_64.rpm: fuse3-libs-3.6.1-4.el7.x86_64
+/tmp/kainstall-offline-file//fuse3-libs-3.6.1-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm: fuse-overlayfs-0.7.2-6.el7_8.x86_64
+/tmp/kainstall-offline-file//fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//gzip-1.5-10.el7.x86_64.rpm: gzip-1.5-10.el7.x86_64
+/tmp/kainstall-offline-file//gzip-1.5-10.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//gzip-1.5-11.el7_9.x86_64.rpm: gzip-1.5-11.el7_9.x86_64
+/tmp/kainstall-offline-file//gzip-1.5-11.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//haproxy-1.5.18-9.el7_9.1.x86_64.rpm: haproxy-1.5.18-9.el7_9.1.x86_64
+/tmp/kainstall-offline-file//haproxy-1.5.18-9.el7_9.1.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//iproute-4.11.0-30.el7.x86_64.rpm: iproute-4.11.0-30.el7.x86_64
+/tmp/kainstall-offline-file//iproute-4.11.0-30.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ipset-7.1-1.el7.x86_64.rpm: ipset-7.1-1.el7.x86_64
+/tmp/kainstall-offline-file//ipset-7.1-1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ipset-libs-7.1-1.el7.x86_64.rpm: ipset-libs-7.1-1.el7.x86_64
+/tmp/kainstall-offline-file//ipset-libs-7.1-1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//iptables-1.4.21-35.el7.x86_64.rpm: iptables-1.4.21-35.el7.x86_64
+/tmp/kainstall-offline-file//iptables-1.4.21-35.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ipvsadm-1.27-8.el7.x86_64.rpm: ipvsadm-1.27-8.el7.x86_64
+/tmp/kainstall-offline-file//ipvsadm-1.27-8.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libcgroup-0.41-21.el7.x86_64.rpm: libcgroup-0.41-21.el7.x86_64
+/tmp/kainstall-offline-file//libcgroup-0.41-21.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libcurl-7.29.0-59.el7_9.1.x86_64.rpm: libcurl-7.29.0-59.el7_9.1.x86_64
+/tmp/kainstall-offline-file//libcurl-7.29.0-59.el7_9.1.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libedit-3.0-12.20121213cvs.el7.x86_64.rpm: libedit-3.0-12.20121213cvs.el7.x86_64
+/tmp/kainstall-offline-file//libedit-3.0-12.20121213cvs.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libmnl-1.0.3-7.el7.x86_64.rpm: libmnl-1.0.3-7.el7.x86_64
+/tmp/kainstall-offline-file//libmnl-1.0.3-7.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_conntrack-1.0.6-1.el7_3.x86_64.rpm: libnetfilter_conntrack-1.0.6-1.el7_3.x86_64
+/tmp/kainstall-offline-file//libnetfilter_conntrack-1.0.6-1.el7_3.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_cthelper-1.0.0-11.el7.x86_64.rpm: libnetfilter_cthelper-1.0.0-11.el7.x86_64
+/tmp/kainstall-offline-file//libnetfilter_cthelper-1.0.0-11.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_cttimeout-1.0.0-7.el7.x86_64.rpm: libnetfilter_cttimeout-1.0.0-7.el7.x86_64
+/tmp/kainstall-offline-file//libnetfilter_cttimeout-1.0.0-7.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_queue-1.0.2-2.el7_2.x86_64.rpm: libnetfilter_queue-1.0.2-2.el7_2.x86_64
+/tmp/kainstall-offline-file//libnetfilter_queue-1.0.2-2.el7_2.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnfnetlink-1.0.1-4.el7.x86_64.rpm: libnfnetlink-1.0.1-4.el7.x86_64
+/tmp/kainstall-offline-file//libnfnetlink-1.0.1-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnl3-3.2.28-4.el7.x86_64.rpm: libnl3-3.2.28-4.el7.x86_64
+/tmp/kainstall-offline-file//libnl3-3.2.28-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libseccomp-2.3.1-4.el7.x86_64.rpm: libseccomp-2.3.1-4.el7.x86_64
+/tmp/kainstall-offline-file//libseccomp-2.3.1-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libselinux-2.5-15.el7.x86_64.rpm: libselinux-2.5-15.el7.x86_64
+/tmp/kainstall-offline-file//libselinux-2.5-15.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libselinux-python-2.5-15.el7.x86_64.rpm: libselinux-python-2.5-15.el7.x86_64
+/tmp/kainstall-offline-file//libselinux-python-2.5-15.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libselinux-utils-2.5-15.el7.x86_64.rpm: libselinux-utils-2.5-15.el7.x86_64
+/tmp/kainstall-offline-file//libselinux-utils-2.5-15.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libsemanage-python-2.5-14.el7.x86_64.rpm: libsemanage-python-2.5-14.el7.x86_64
+/tmp/kainstall-offline-file//libsemanage-python-2.5-14.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//lm_sensors-libs-3.4.0-8.20160601gitf9185e5.el7.x86_64.rpm: lm_sensors-libs-3.4.0-8.20160601gitf9185e5.el7.x86_64
+/tmp/kainstall-offline-file//lm_sensors-libs-3.4.0-8.20160601gitf9185e5.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//make-3.82-24.el7.x86_64.rpm: 1:make-3.82-24.el7.x86_64
+/tmp/kainstall-offline-file//make-3.82-24.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//openssh-7.4p1-22.el7_9.x86_64.rpm: openssh-7.4p1-22.el7_9.x86_64
+/tmp/kainstall-offline-file//openssh-7.4p1-22.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//openssl-1.0.2k-25.el7_9.x86_64.rpm: 1:openssl-1.0.2k-25.el7_9.x86_64
+/tmp/kainstall-offline-file//openssl-1.0.2k-25.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//openssl-libs-1.0.2k-25.el7_9.x86_64.rpm: 1:openssl-libs-1.0.2k-25.el7_9.x86_64
+/tmp/kainstall-offline-file//openssl-libs-1.0.2k-25.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//policycoreutils-2.5-34.el7.x86_64.rpm: policycoreutils-2.5-34.el7.x86_64
+/tmp/kainstall-offline-file//policycoreutils-2.5-34.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//policycoreutils-python-2.5-34.el7.x86_64.rpm: policycoreutils-python-2.5-34.el7.x86_64
+/tmp/kainstall-offline-file//policycoreutils-python-2.5-34.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//python-IPy-0.75-6.el7.noarch.rpm: python-IPy-0.75-6.el7.noarch
+/tmp/kainstall-offline-file//python-IPy-0.75-6.el7.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//selinux-policy-3.13.1-268.el7_9.2.noarch.rpm: selinux-policy-3.13.1-268.el7_9.2.noarch
+/tmp/kainstall-offline-file//selinux-policy-3.13.1-268.el7_9.2.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//selinux-policy-targeted-3.13.1-268.el7_9.2.noarch.rpm: selinux-policy-targeted-3.13.1-268.el7_9.2.noarch
+/tmp/kainstall-offline-file//selinux-policy-targeted-3.13.1-268.el7_9.2.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//setools-libs-3.3.8-4.el7.x86_64.rpm: setools-libs-3.3.8-4.el7.x86_64
+/tmp/kainstall-offline-file//setools-libs-3.3.8-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//slirp4netns-0.4.3-4.el7_8.x86_64.rpm: slirp4netns-0.4.3-4.el7_8.x86_64
+/tmp/kainstall-offline-file//slirp4netns-0.4.3-4.el7_8.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//socat-1.7.3.2-2.el7.x86_64.rpm: socat-1.7.3.2-2.el7.x86_64
+/tmp/kainstall-offline-file//socat-1.7.3.2-2.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//sshpass-1.06-2.el7.x86_64.rpm: sshpass-1.06-2.el7.x86_64
+/tmp/kainstall-offline-file//sshpass-1.06-2.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//sysstat-10.1.5-19.el7.x86_64.rpm: sysstat-10.1.5-19.el7.x86_64
+/tmp/kainstall-offline-file//sysstat-10.1.5-19.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-219-78.el7_9.5.x86_64.rpm: systemd-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-libs-219-78.el7_9.5.x86_64.rpm: systemd-libs-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-libs-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-python-219-78.el7_9.5.x86_64.rpm: systemd-python-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-python-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-sysv-219-78.el7_9.5.x86_64.rpm: systemd-sysv-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-sysv-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//tcp_wrappers-libs-7.6-77.el7.x86_64.rpm: tcp_wrappers-libs-7.6-77.el7.x86_64
+/tmp/kainstall-offline-file//tcp_wrappers-libs-7.6-77.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//unzip-6.0-24.el7_9.x86_64.rpm: unzip-6.0-24.el7_9.x86_64
+/tmp/kainstall-offline-file//unzip-6.0-24.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//wget-1.14-18.el7_6.1.x86_64.rpm: wget-1.14-18.el7_6.1.x86_64
+/tmp/kainstall-offline-file//wget-1.14-18.el7_6.1.x86_64.rpm: does not update installed package.
+Nothing to do
+[2023-05-04T22:49:32.227129573+0800]: [32mINFO:    [0m[offline] worker 10.50.10.22: install package succeeded.
+[2023-05-04T22:49:32.240261828+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c '
+        set -e
+        for target in firewalld python-firewall firewalld-filesystem iptables; do
+          systemctl stop $target &>/dev/null || true
+          systemctl disable $target &>/dev/null || true
+        done
+        systemctl start docker &&         cd /tmp/kainstall-offline-file/ &&         gzip -d -c worker.tgz | docker load && gzip -d -c all.tgz | docker load
+      '
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+Loaded image: traefik:v2.6.1
+Loaded image: kubernetesui/dashboard:v2.5.1
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/controller:v1.1.2
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/metrics-server:v0.6.1
+Loaded image: traefik/whoami:v1.7.1
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/kube-webhook-certgen:v1.1.1
+Loaded image: kubernetesui/metrics-scraper:v1.0.7
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/defaultbackend-amd64:1.5
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/kube-proxy:v1.22.10
+Loaded image: rancher/mirrored-flannelcni-flannel:v0.16.3
+Loaded image: rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/coredns:v1.8.4
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.5
+[2023-05-04T22:49:42.785975407+0800]: [32mINFO:    [0m[offline] 10.50.10.22: load images succeeded.
+[2023-05-04T22:49:42.797172713+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c 'rm -rf /tmp/kainstall-offline-file/'
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:42.956751223+0800]: [32mINFO:    [0m[offline] 10.50.10.22: clean offline file succeeded.
+[2023-05-04T22:49:42.959269184+0800]: [32mINFO:    [0m[offline] worker 10.50.10.23: load offline file
+[2023-05-04T22:49:42.970696508+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c '[[ ! -d /tmp/kainstall-offline-file/ ]] && { mkdir -pv /tmp/kainstall-offline-file/; chmod 777 /tmp/kainstall-offline-file/; } ||:'
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:43.086194499+0800]: [32mINFO:    [0m[offline] 10.50.10.23: mkdir offline dir succeeded.
+[2023-05-04T22:49:43.088378210+0800]: [32mINFO:    [0m[offline] worker 10.50.10.23: copy offline file
+[2023-05-04T22:49:43.090736796+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/packages/kubeadm/* root@10.50.10.23:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:43.887762746+0800]: [32mINFO:    [0m[offline] scp kube file to 10.50.10.23 succeeded.
+[2023-05-04T22:49:43.890487277+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/packages/all/* root@10.50.10.23:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:45.257257147+0800]: [32mINFO:    [0m[offline] scp all file to 10.50.10.23 succeeded.
+[2023-05-04T22:49:45.259832554+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/packages/worker/* root@10.50.10.23:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:45.445256842+0800]: [32mINFO:    [0m[offline] scp worker file to 10.50.10.23 succeeded.
+[2023-05-04T22:49:45.447945391+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/images/worker.tgz root@10.50.10.23:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:48.062543710+0800]: [32mINFO:    [0m[offline] scp worker images to 10.50.10.23 succeeded.
+[2023-05-04T22:49:48.065312406+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/images/all.tgz root@10.50.10.23:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:49:49.107329262+0800]: [32mINFO:    [0m[offline] scp all images to 10.50.10.23 succeeded.
+[2023-05-04T22:49:49.109926014+0800]: [32mINFO:    [0m[offline] worker 10.50.10.23: install package
+[2023-05-04T22:49:49.122499292+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c 'yum localinstall -y --skip-broken /tmp/kainstall-offline-file//*.rpm'
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+Loaded plugins: fastestmirror
+Examining /tmp/kainstall-offline-file//16ae432ead5585248fe238548734a2da4465c551640890f1b3a2a0e970af4342-kubectl-1.22.10-0.x86_64.rpm: kubectl-1.22.10-0.x86_64
+/tmp/kainstall-offline-file//16ae432ead5585248fe238548734a2da4465c551640890f1b3a2a0e970af4342-kubectl-1.22.10-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//9165e89a2de0f1a2acfb151177ac6985022ee0c2a8a78d45a4982aa1b11ffd68-cri-tools-1.24.0-0.x86_64.rpm: cri-tools-1.24.0-0.x86_64
+/tmp/kainstall-offline-file//9165e89a2de0f1a2acfb151177ac6985022ee0c2a8a78d45a4982aa1b11ffd68-cri-tools-1.24.0-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//9a0fedf7bcb1916b65ecfc6cc7fceeefeae4ef4fdd0a1d5ce04adb41725f4146-kubelet-1.22.10-0.x86_64.rpm: kubelet-1.22.10-0.x86_64
+/tmp/kainstall-offline-file//9a0fedf7bcb1916b65ecfc6cc7fceeefeae4ef4fdd0a1d5ce04adb41725f4146-kubelet-1.22.10-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//a64647fbf3ef51047fcc845c07b1ab5389b666f5bdf0ea550d6a759783b84a5e-kubeadm-1.22.10-0.x86_64.rpm: kubeadm-1.22.10-0.x86_64
+/tmp/kainstall-offline-file//a64647fbf3ef51047fcc845c07b1ab5389b666f5bdf0ea550d6a759783b84a5e-kubeadm-1.22.10-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//audit-2.8.5-4.el7.x86_64.rpm: audit-2.8.5-4.el7.x86_64
+/tmp/kainstall-offline-file//audit-2.8.5-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//audit-libs-2.8.5-4.el7.x86_64.rpm: audit-libs-2.8.5-4.el7.x86_64
+/tmp/kainstall-offline-file//audit-libs-2.8.5-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//audit-libs-python-2.8.5-4.el7.x86_64.rpm: audit-libs-python-2.8.5-4.el7.x86_64
+/tmp/kainstall-offline-file//audit-libs-python-2.8.5-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//bash-completion-2.1-8.el7.noarch.rpm: 1:bash-completion-2.1-8.el7.noarch
+/tmp/kainstall-offline-file//bash-completion-2.1-8.el7.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//checkpolicy-2.5-8.el7.x86_64.rpm: checkpolicy-2.5-8.el7.x86_64
+/tmp/kainstall-offline-file//checkpolicy-2.5-8.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//chrony-3.4-1.el7.x86_64.rpm: chrony-3.4-1.el7.x86_64
+/tmp/kainstall-offline-file//chrony-3.4-1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//conntrack-tools-1.4.4-7.el7.x86_64.rpm: conntrack-tools-1.4.4-7.el7.x86_64
+/tmp/kainstall-offline-file//conntrack-tools-1.4.4-7.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//containerd.io-1.6.6-3.1.el7.x86_64.rpm: containerd.io-1.6.6-3.1.el7.x86_64
+/tmp/kainstall-offline-file//containerd.io-1.6.6-3.1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//container-selinux-2.119.2-1.911c772.el7_8.noarch.rpm: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+/tmp/kainstall-offline-file//container-selinux-2.119.2-1.911c772.el7_8.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//cronie-1.4.11-24.el7_9.x86_64.rpm: cronie-1.4.11-24.el7_9.x86_64
+/tmp/kainstall-offline-file//cronie-1.4.11-24.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//cronie-anacron-1.4.11-24.el7_9.x86_64.rpm: cronie-anacron-1.4.11-24.el7_9.x86_64
+/tmp/kainstall-offline-file//cronie-anacron-1.4.11-24.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//crontabs-1.11-6.20121102git.el7.noarch.rpm: crontabs-1.11-6.20121102git.el7.noarch
+/tmp/kainstall-offline-file//crontabs-1.11-6.20121102git.el7.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//curl-7.29.0-59.el7_9.1.x86_64.rpm: curl-7.29.0-59.el7_9.1.x86_64
+/tmp/kainstall-offline-file//curl-7.29.0-59.el7_9.1.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//db7cb5cb0b3f6875f54d10f02e625573988e3e91fd4fc5eef0b1876bb18604ad-kubernetes-cni-0.8.7-0.x86_64.rpm: kubernetes-cni-0.8.7-0.x86_64
+/tmp/kainstall-offline-file//db7cb5cb0b3f6875f54d10f02e625573988e3e91fd4fc5eef0b1876bb18604ad-kubernetes-cni-0.8.7-0.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-ce-20.10.17-3.el7.x86_64.rpm: 3:docker-ce-20.10.17-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-ce-20.10.17-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-ce-cli-20.10.17-3.el7.x86_64.rpm: 1:docker-ce-cli-20.10.17-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-ce-cli-20.10.17-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-ce-rootless-extras-20.10.17-3.el7.x86_64.rpm: docker-ce-rootless-extras-20.10.17-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-ce-rootless-extras-20.10.17-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//docker-scan-plugin-0.17.0-3.el7.x86_64.rpm: docker-scan-plugin-0.17.0-3.el7.x86_64
+/tmp/kainstall-offline-file//docker-scan-plugin-0.17.0-3.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ebtables-2.0.10-16.el7.x86_64.rpm: ebtables-2.0.10-16.el7.x86_64
+/tmp/kainstall-offline-file//ebtables-2.0.10-16.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//epel-release-7-14.noarch.rpm: epel-release-7-14.noarch
+/tmp/kainstall-offline-file//epel-release-7-14.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ethtool-4.8-10.el7.x86_64.rpm: 2:ethtool-4.8-10.el7.x86_64
+/tmp/kainstall-offline-file//ethtool-4.8-10.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fipscheck-1.4.1-6.el7.x86_64.rpm: fipscheck-1.4.1-6.el7.x86_64
+/tmp/kainstall-offline-file//fipscheck-1.4.1-6.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fipscheck-lib-1.4.1-6.el7.x86_64.rpm: fipscheck-lib-1.4.1-6.el7.x86_64
+/tmp/kainstall-offline-file//fipscheck-lib-1.4.1-6.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fuse3-libs-3.6.1-4.el7.x86_64.rpm: fuse3-libs-3.6.1-4.el7.x86_64
+/tmp/kainstall-offline-file//fuse3-libs-3.6.1-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm: fuse-overlayfs-0.7.2-6.el7_8.x86_64
+/tmp/kainstall-offline-file//fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//gzip-1.5-10.el7.x86_64.rpm: gzip-1.5-10.el7.x86_64
+/tmp/kainstall-offline-file//gzip-1.5-10.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//gzip-1.5-11.el7_9.x86_64.rpm: gzip-1.5-11.el7_9.x86_64
+/tmp/kainstall-offline-file//gzip-1.5-11.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//haproxy-1.5.18-9.el7_9.1.x86_64.rpm: haproxy-1.5.18-9.el7_9.1.x86_64
+/tmp/kainstall-offline-file//haproxy-1.5.18-9.el7_9.1.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//iproute-4.11.0-30.el7.x86_64.rpm: iproute-4.11.0-30.el7.x86_64
+/tmp/kainstall-offline-file//iproute-4.11.0-30.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ipset-7.1-1.el7.x86_64.rpm: ipset-7.1-1.el7.x86_64
+/tmp/kainstall-offline-file//ipset-7.1-1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ipset-libs-7.1-1.el7.x86_64.rpm: ipset-libs-7.1-1.el7.x86_64
+/tmp/kainstall-offline-file//ipset-libs-7.1-1.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//iptables-1.4.21-35.el7.x86_64.rpm: iptables-1.4.21-35.el7.x86_64
+/tmp/kainstall-offline-file//iptables-1.4.21-35.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//ipvsadm-1.27-8.el7.x86_64.rpm: ipvsadm-1.27-8.el7.x86_64
+/tmp/kainstall-offline-file//ipvsadm-1.27-8.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libcgroup-0.41-21.el7.x86_64.rpm: libcgroup-0.41-21.el7.x86_64
+/tmp/kainstall-offline-file//libcgroup-0.41-21.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libcurl-7.29.0-59.el7_9.1.x86_64.rpm: libcurl-7.29.0-59.el7_9.1.x86_64
+/tmp/kainstall-offline-file//libcurl-7.29.0-59.el7_9.1.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libedit-3.0-12.20121213cvs.el7.x86_64.rpm: libedit-3.0-12.20121213cvs.el7.x86_64
+/tmp/kainstall-offline-file//libedit-3.0-12.20121213cvs.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libmnl-1.0.3-7.el7.x86_64.rpm: libmnl-1.0.3-7.el7.x86_64
+/tmp/kainstall-offline-file//libmnl-1.0.3-7.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_conntrack-1.0.6-1.el7_3.x86_64.rpm: libnetfilter_conntrack-1.0.6-1.el7_3.x86_64
+/tmp/kainstall-offline-file//libnetfilter_conntrack-1.0.6-1.el7_3.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_cthelper-1.0.0-11.el7.x86_64.rpm: libnetfilter_cthelper-1.0.0-11.el7.x86_64
+/tmp/kainstall-offline-file//libnetfilter_cthelper-1.0.0-11.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_cttimeout-1.0.0-7.el7.x86_64.rpm: libnetfilter_cttimeout-1.0.0-7.el7.x86_64
+/tmp/kainstall-offline-file//libnetfilter_cttimeout-1.0.0-7.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnetfilter_queue-1.0.2-2.el7_2.x86_64.rpm: libnetfilter_queue-1.0.2-2.el7_2.x86_64
+/tmp/kainstall-offline-file//libnetfilter_queue-1.0.2-2.el7_2.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnfnetlink-1.0.1-4.el7.x86_64.rpm: libnfnetlink-1.0.1-4.el7.x86_64
+/tmp/kainstall-offline-file//libnfnetlink-1.0.1-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libnl3-3.2.28-4.el7.x86_64.rpm: libnl3-3.2.28-4.el7.x86_64
+/tmp/kainstall-offline-file//libnl3-3.2.28-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libseccomp-2.3.1-4.el7.x86_64.rpm: libseccomp-2.3.1-4.el7.x86_64
+/tmp/kainstall-offline-file//libseccomp-2.3.1-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libselinux-2.5-15.el7.x86_64.rpm: libselinux-2.5-15.el7.x86_64
+/tmp/kainstall-offline-file//libselinux-2.5-15.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libselinux-python-2.5-15.el7.x86_64.rpm: libselinux-python-2.5-15.el7.x86_64
+/tmp/kainstall-offline-file//libselinux-python-2.5-15.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libselinux-utils-2.5-15.el7.x86_64.rpm: libselinux-utils-2.5-15.el7.x86_64
+/tmp/kainstall-offline-file//libselinux-utils-2.5-15.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//libsemanage-python-2.5-14.el7.x86_64.rpm: libsemanage-python-2.5-14.el7.x86_64
+/tmp/kainstall-offline-file//libsemanage-python-2.5-14.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//lm_sensors-libs-3.4.0-8.20160601gitf9185e5.el7.x86_64.rpm: lm_sensors-libs-3.4.0-8.20160601gitf9185e5.el7.x86_64
+/tmp/kainstall-offline-file//lm_sensors-libs-3.4.0-8.20160601gitf9185e5.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//make-3.82-24.el7.x86_64.rpm: 1:make-3.82-24.el7.x86_64
+/tmp/kainstall-offline-file//make-3.82-24.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//openssh-7.4p1-22.el7_9.x86_64.rpm: openssh-7.4p1-22.el7_9.x86_64
+/tmp/kainstall-offline-file//openssh-7.4p1-22.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//openssl-1.0.2k-25.el7_9.x86_64.rpm: 1:openssl-1.0.2k-25.el7_9.x86_64
+/tmp/kainstall-offline-file//openssl-1.0.2k-25.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//openssl-libs-1.0.2k-25.el7_9.x86_64.rpm: 1:openssl-libs-1.0.2k-25.el7_9.x86_64
+/tmp/kainstall-offline-file//openssl-libs-1.0.2k-25.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//policycoreutils-2.5-34.el7.x86_64.rpm: policycoreutils-2.5-34.el7.x86_64
+/tmp/kainstall-offline-file//policycoreutils-2.5-34.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//policycoreutils-python-2.5-34.el7.x86_64.rpm: policycoreutils-python-2.5-34.el7.x86_64
+/tmp/kainstall-offline-file//policycoreutils-python-2.5-34.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//python-IPy-0.75-6.el7.noarch.rpm: python-IPy-0.75-6.el7.noarch
+/tmp/kainstall-offline-file//python-IPy-0.75-6.el7.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//selinux-policy-3.13.1-268.el7_9.2.noarch.rpm: selinux-policy-3.13.1-268.el7_9.2.noarch
+/tmp/kainstall-offline-file//selinux-policy-3.13.1-268.el7_9.2.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//selinux-policy-targeted-3.13.1-268.el7_9.2.noarch.rpm: selinux-policy-targeted-3.13.1-268.el7_9.2.noarch
+/tmp/kainstall-offline-file//selinux-policy-targeted-3.13.1-268.el7_9.2.noarch.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//setools-libs-3.3.8-4.el7.x86_64.rpm: setools-libs-3.3.8-4.el7.x86_64
+/tmp/kainstall-offline-file//setools-libs-3.3.8-4.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//slirp4netns-0.4.3-4.el7_8.x86_64.rpm: slirp4netns-0.4.3-4.el7_8.x86_64
+/tmp/kainstall-offline-file//slirp4netns-0.4.3-4.el7_8.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//socat-1.7.3.2-2.el7.x86_64.rpm: socat-1.7.3.2-2.el7.x86_64
+/tmp/kainstall-offline-file//socat-1.7.3.2-2.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//sshpass-1.06-2.el7.x86_64.rpm: sshpass-1.06-2.el7.x86_64
+/tmp/kainstall-offline-file//sshpass-1.06-2.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//sysstat-10.1.5-19.el7.x86_64.rpm: sysstat-10.1.5-19.el7.x86_64
+/tmp/kainstall-offline-file//sysstat-10.1.5-19.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-219-78.el7_9.5.x86_64.rpm: systemd-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-libs-219-78.el7_9.5.x86_64.rpm: systemd-libs-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-libs-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-python-219-78.el7_9.5.x86_64.rpm: systemd-python-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-python-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//systemd-sysv-219-78.el7_9.5.x86_64.rpm: systemd-sysv-219-78.el7_9.5.x86_64
+/tmp/kainstall-offline-file//systemd-sysv-219-78.el7_9.5.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//tcp_wrappers-libs-7.6-77.el7.x86_64.rpm: tcp_wrappers-libs-7.6-77.el7.x86_64
+/tmp/kainstall-offline-file//tcp_wrappers-libs-7.6-77.el7.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//unzip-6.0-24.el7_9.x86_64.rpm: unzip-6.0-24.el7_9.x86_64
+/tmp/kainstall-offline-file//unzip-6.0-24.el7_9.x86_64.rpm: does not update installed package.
+Examining /tmp/kainstall-offline-file//wget-1.14-18.el7_6.1.x86_64.rpm: wget-1.14-18.el7_6.1.x86_64
+/tmp/kainstall-offline-file//wget-1.14-18.el7_6.1.x86_64.rpm: does not update installed package.
+Nothing to do
+[2023-05-04T22:49:49.525541551+0800]: [32mINFO:    [0m[offline] worker 10.50.10.23: install package succeeded.
+[2023-05-04T22:49:49.538723376+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c '
+        set -e
+        for target in firewalld python-firewall firewalld-filesystem iptables; do
+          systemctl stop $target &>/dev/null || true
+          systemctl disable $target &>/dev/null || true
+        done
+        systemctl start docker &&         cd /tmp/kainstall-offline-file/ &&         gzip -d -c worker.tgz | docker load && gzip -d -c all.tgz | docker load
+      '
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+Loaded image: traefik:v2.6.1
+Loaded image: kubernetesui/dashboard:v2.5.1
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/controller:v1.1.2
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/metrics-server:v0.6.1
+Loaded image: traefik/whoami:v1.7.1
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/kube-webhook-certgen:v1.1.1
+Loaded image: kubernetesui/metrics-scraper:v1.0.7
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/defaultbackend-amd64:1.5
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/kube-proxy:v1.22.10
+Loaded image: rancher/mirrored-flannelcni-flannel:v0.16.3
+Loaded image: rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/coredns:v1.8.4
+Loaded image: registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.5
+[2023-05-04T22:50:01.027661601+0800]: [32mINFO:    [0m[offline] 10.50.10.23: load images succeeded.
+[2023-05-04T22:50:01.039817875+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c 'rm -rf /tmp/kainstall-offline-file/'
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:01.223211797+0800]: [32mINFO:    [0m[offline] 10.50.10.23: clean offline file succeeded.
+[2023-05-04T22:50:01.225664777+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/manifests root@10.50.10.21:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:01.358493988+0800]: [32mINFO:    [0m[offline] scp manifests file to 10.50.10.21 succeeded.
+[2023-05-04T22:50:01.360790271+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall.NPh7jWi3sa/bins root@10.50.10.21:/tmp/kainstall-offline-file/
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:01.850011511+0800]: [32mINFO:    [0m[offline] scp bins file to 10.50.10.21 succeeded.
+[2023-05-04T22:50:01.852991354+0800]: [32mINFO:    [0m[init] Get 10.50.10.21 InternalIP.
+[2023-05-04T22:50:01.864914063+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+    ip -4 route get 8.8.8.8 2>/dev/null | head -1 | awk '"'"'{print $7}'"'"'
+  '
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+10.50.10.21
+[2023-05-04T22:50:01.979229285+0800]: [32mINFO:    [0m[command] get MGMT_NODE_IP value succeeded.
+[2023-05-04T22:50:01.982317755+0800]: [32mINFO:    [0m[init] master: 10.50.10.21
+[2023-05-04T22:50:02.003446917+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+      export OFFLINE_TAG=1 KUBE_APISERVER=apiserver.cluster.local SKIP_SET_OS_REPO=false
+      script::init_node () 
+{ 
+    sed -i -e "/$KUBE_APISERVER/d" -e '"'"'/-worker-/d'"'"' -e '"'"'/-master-/d'"'"' /etc/hosts;
+    sed -i '"'"'/## Kainstall managed start/,/## Kainstall managed end/d'"'"' /etc/security/limits.conf /etc/systemd/system.conf /etc/bashrc /etc/rc.local /etc/audit/rules.d/audit.rules;
+    sed -i '"'"'/SELINUX/s/enforcing/disabled/'"'"' /etc/selinux/config;
+    setenforce 0;
+    swapoff -a && sysctl -w vm.swappiness=0;
+    sed -ri '"'"'/^[^#]*swap/s@^@#@'"'"' /etc/fstab;
+    for target in firewalld python-firewall firewalld-filesystem iptables;
+    do
+        systemctl stop $target &>/dev/null || true;
+        systemctl disable $target &>/dev/null || true;
+    done;
+    [[ -f /etc/yum.repos.d/CentOS-Base.repo && "${SKIP_SET_OS_REPO,,}" == "false" ]] && sed -e '"'"'s!^#baseurl=!baseurl=!g'"'"' -e '"'"'s!^mirrorlist=!#mirrorlist=!g'"'"' -e '"'"'s!mirror.centos.org!mirrors.aliyun.com!g'"'"' -i /etc/yum.repos.d/CentOS-Base.repo;
+    [[ "${OFFLINE_TAG:-}" != "1" && "${SKIP_SET_OS_REPO,,}" == "false" ]] && yum install -y epel-release;
+    [[ -f /etc/yum.repos.d/epel.repo && "${SKIP_SET_OS_REPO,,}" == "false" ]] && sed -e '"'"'s!^mirrorlist=!#mirrorlist=!g'"'"' -e '"'"'s!^metalink=!#metalink=!g'"'"' -e '"'"'s!^#baseurl=!baseurl=!g'"'"' -e '"'"'s!//download.*/pub!//mirrors.aliyun.com!g'"'"' -e '"'"'s!http://mirrors\.aliyun!https://mirrors.aliyun!g'"'"' -i /etc/yum.repos.d/epel.repo;
+    [ ! -f /etc/security/limits.conf_bak ] && cp /etc/security/limits.conf{,_bak};
+    cat  >> /etc/security/limits.conf <<EOF
+## Kainstall managed start
+root soft nofile 655360
+root hard nofile 655360
+root soft nproc 655360
+root hard nproc 655360
+root soft core unlimited
+root hard core unlimited
+
+* soft nofile 655360
+* hard nofile 655360
+* soft nproc 655360
+* hard nproc 655360
+* soft core unlimited
+* hard core unlimited
+## Kainstall managed end
+EOF
+
+    [ -f /etc/security/limits.d/20-nproc.conf ] && sed -i '"'"'s#4096#655360#g'"'"' /etc/security/limits.d/20-nproc.conf;
+    cat  >> /etc/systemd/system.conf <<EOF
+## Kainstall managed start
+DefaultLimitCORE=infinity
+DefaultLimitNOFILE=655360
+DefaultLimitNPROC=655360
+DefaultTasksMax=75%
+## Kainstall managed end
+EOF
+
+    cat  > /etc/sysctl.d/99-kube.conf <<EOF
+# https://www.kernel.org/doc/Documentation/sysctl/
+#############################################################################################
+# 调整虚拟内存
+#############################################################################################
+
+# Default: 30
+# 0 - 任何情况下都丝使用swap。
+# 1 - 除非内存丝足（OOM），坦则丝使用swap。
+vm.swappiness = 0
+
+# 内存分酝策略
+#0 - 表示内核将检查是坦有足够的坯用内存供应用进程使用；如果有足够的坯用内存，内存申请兝许；坦则，内存申请失败，并把错误返回给应用进程。
+#1 - 表示内核兝许分酝所有的物睆内存，而丝管当剝的内存状思如何。
+#2 - 表示内核兝许分酝超过所有物睆内存和交杢空间总和的内存
+vm.overcommit_memory=1
+
+# OOM时处睆
+# 1关闭，等于0时，表示当内存耗尽时，内核会触坑OOM killer杀掉最耗内存的进程。
+vm.panic_on_oom=0
+
+# vm.dirty_background_ratio 用于调整内核如何处睆必须刷新到磝盘的脝页。
+# Default value is 10.
+# 该值是系统内存总針的百分比，在许多情况下将此值设置为5是坈适的。
+# 此设置丝应设置为零。
+vm.dirty_background_ratio = 5
+
+# 内核强制坌步擝作将其刷新到磝盘之剝兝许的脝页总数
+# 也坯以通过更改 vm.dirty_ratio 的值（将其增加到默认值30以上（也坠系统内存的百分比））来增加
+# 推蝝 vm.dirty_ratio 的值在60到80之间。
+vm.dirty_ratio = 60
+
+# vm.max_map_count 计算当剝的内存映射文件数。
+# mmap 陝制（vm.max_map_count）的最尝值是打开文件的ulimit数針（cat /proc/sys/fs/file-max）。
+# 毝128KB系统内存 map_count应该大约为1。 因此，在32GB系统上，max_map_count为262144。
+# Default: 65530
+vm.max_map_count = 2097152
+
+#############################################################################################
+# 调整文件
+#############################################################################################
+
+fs.may_detach_mounts = 1
+
+# 增加文件坥柄和inode缓存的大尝，并陝制核心转储。
+fs.file-max = 2097152
+fs.nr_open = 2097152
+fs.suid_dumpable = 0
+
+# 坌时坯以拥有的的异步IO请求数目
+fs.aio-max-nr = 10000000
+fs.aio-nr = 75552
+
+# 文件监控
+fs.inotify.max_user_instances=8192
+fs.inotify.max_user_watches=524288
+fs.inotify.max_queued_events=16384
+
+#############################################################################################
+# 调整网络设置
+#############################################################################################
+
+# 为毝个套接字的坑逝和接收缓冲区分酝的默认内存針。
+net.core.wmem_default = 25165824
+net.core.rmem_default = 25165824
+
+# 为毝个套接字的坑逝和接收缓冲区分酝的最大内存針。
+net.core.wmem_max = 25165824
+net.core.rmem_max = 25165824
+
+# 除了套接字设置外，坑逝和接收缓冲区的大尝
+# 必须使用net.ipv4.tcp_wmem和net.ipv4.tcp_rmem坂数分别设置TCP套接字。
+# 使用三个以空格分隔的整数设置这些整数，分别指定最尝，默认和最大大尝。
+# 最大大尝丝能大于使用net.core.wmem_max和net.core.rmem_max为所有套接字指定的值。
+# 坈睆的设置是最尝4KiB，默认64KiB和最大2MiB缓冲区。
+net.ipv4.tcp_wmem = 20480 12582912 25165824
+net.ipv4.tcp_rmem = 20480 12582912 25165824
+
+# 增加最大坯分酝的总缓冲区空间
+# 以页为坕佝（4096字节）进行度針
+net.ipv4.tcp_mem = 65536 25165824 262144
+net.ipv4.udp_mem = 65536 25165824 262144
+
+# 为毝个套接字的坑逝和接收缓冲区分酝的最尝内存針。
+net.ipv4.udp_wmem_min = 16384
+net.ipv4.udp_rmem_min = 16384
+
+# 坯用TCP窗坣缩放，客户端坯以更有效地传输数杮，并兝许在代睆方缓冲该数杮。
+net.ipv4.tcp_window_scaling = 1
+
+# 杝高坌时接块连接数。
+net.ipv4.tcp_max_syn_backlog = 10240
+
+# 将net.core.netdev_max_backlog的值增加到大于默认值1000
+# 坯以帮助窝坑网络浝針，特别是在使用数坃兆佝网络连接速度时，
+# 通过兝许更多的数杮包排队等待内核处睆它们。
+net.core.netdev_max_backlog = 65536
+
+# 增加选项内存缓冲区的最大数針
+net.core.optmem_max = 25165824
+
+# 被动TCP连接的SYNACK次数。
+net.ipv4.tcp_synack_retries = 2
+
+# 兝许的本地端坣范围。
+net.ipv4.ip_local_port_range = 2048 65535
+
+# 防止TCP时间等待
+# Default: net.ipv4.tcp_rfc1337 = 0
+net.ipv4.tcp_rfc1337 = 1
+
+# 凝少tcp_fin_timeout连接的时间默认值
+net.ipv4.tcp_fin_timeout = 15
+
+# 积压套接字的最大数針。
+# Default is 128.
+net.core.somaxconn = 32768
+
+# 打开syncookies以进行SYN洪水攻击保护。
+net.ipv4.tcp_syncookies = 1
+
+# 靿兝Smurf攻击
+# 坑逝伪装的ICMP数杮包，目的地址设为柝个网络的广播地址，溝地址设为覝攻击的目的主机，
+# 使所有收到此ICMP数杮包的主机都将对目的主机坑出一个回应，使被攻击主机在柝一段时间内收到戝坃上万的数杮包
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+# 为icmp错误消杯打开保护
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+
+# 坯用自动缩放窗坣。
+# 如果延迟话明坈睆，这将兝许TCP缓冲区超过其通常的最大值64K。
+net.ipv4.tcp_window_scaling = 1
+
+# 打开并记录欺骗，溝路由和針定坑数杮包
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.conf.default.log_martians = 1
+
+# 告诉内核有多少个未附加的TCP套接字维护用户文件坥柄。 万一超过这个数字，
+# 孤立的连接会立坳針置，并显示警告。
+# Default: net.ipv4.tcp_max_orphans = 65536
+net.ipv4.tcp_max_orphans = 65536
+
+# 丝覝在关闭连接时缓存指标
+net.ipv4.tcp_no_metrics_save = 1
+
+# 坯用RFC1323中定义的时间戳记：
+# Default: net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_timestamps = 1
+
+# 坯用选择确认。
+# Default: net.ipv4.tcp_sack = 1
+net.ipv4.tcp_sack = 1
+
+# 增加 tcp-time-wait 存储桶池大尝，以防止简坕的DOS攻击。
+# net.ipv4.tcp_tw_recycle 已从Linux 4.12中删除。请改用net.ipv4.tcp_tw_reuse。
+net.ipv4.tcp_max_tw_buckets = 14400
+net.ipv4.tcp_tw_reuse = 1
+
+# accept_source_route 选项使网络接坣接块设置了严格溝路由（SSR）或松散溝路由（LSR）选项的数杮包。
+# 以下设置将丢弃设置了SSR或LSR选项的数杮包。
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+
+# 打开坝坑路径过滤
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+
+# 禝用ICMP針定坑接块
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+
+# 禝止坑逝所有IPv4 ICMP針定坑数杮包。
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+
+# 开坯IP转坑.
+net.ipv4.ip_forward = 1
+
+# 禝止IPv6
+net.ipv6.conf.lo.disable_ipv6=1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+
+# 覝求iptables丝对bridge的数杮进行处睆
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-arptables = 1
+
+# arp缓存
+# 存在于 ARP 高速缓存中的最少层数，如果少于这个数，垃圾收集器将丝会违行。缺眝值是 128
+net.ipv4.neigh.default.gc_thresh1=2048
+# 保存在 ARP 高速缓存中的最多的记录软陝制。垃圾收集器在开始收集剝，兝许记录数超过这个数字 5 秒。缺眝值是 512
+net.ipv4.neigh.default.gc_thresh2=4096
+# 保存在 ARP 高速缓存中的最多记录的硬陝制，一旦高速缓存中的数目高于此，垃圾收集器将马上违行。缺眝值是 1024
+net.ipv4.neigh.default.gc_thresh3=8192
+
+# 挝久连接
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 10
+
+# conntrack表
+net.nf_conntrack_max=1048576
+net.netfilter.nf_conntrack_max=1048576
+net.netfilter.nf_conntrack_buckets=262144
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait=30
+net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
+net.netfilter.nf_conntrack_tcp_timeout_close_wait=15
+net.netfilter.nf_conntrack_tcp_timeout_established=300
+
+#############################################################################################
+# 调整内核坂数
+#############################################################################################
+
+# 地址空间布局隝机化（ASLR）是一秝用于擝作系统的内存保护过程，坯防止缓冲区溢出攻击。
+# 这有助于确保与系统上正在违行的进程相关蝔的内存地址丝坯预测，
+# 因此，与这些浝程相关的缺陷或漝洞将更加难以利用。
+# Accepted values: 0 = 关闭, 1 = 保守隝机化, 2 = 完全隝机化
+kernel.randomize_va_space = 2
+
+# 调高 PID 数針
+kernel.pid_max = 65536
+kernel.threads-max=30938
+
+# coredump
+kernel.core_pattern=core
+
+# 决定了检测到soft lockup时是坦自动panic，缺眝值是0
+kernel.softlockup_all_cpu_backtrace=1
+kernel.softlockup_panic=1
+EOF
+
+    cat  >> /etc/bashrc <<EOF
+## Kainstall managed start
+# history actions record，include action time, user, login ip
+HISTFILESIZE=5000
+HISTSIZE=5000
+USER_IP=\$(who -u am i 2>/dev/null | awk '"'"'{print \$NF}'"'"' | sed -e '"'"'s/[()]//g'"'"')
+if [ -z \$USER_IP ]
+then
+  USER_IP=\$(hostname -i)
+fi
+HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S \$USER_IP:\$(whoami) "
+export HISTFILESIZE HISTSIZE HISTTIMEFORMAT
+
+# PS1
+PS1='"'"'\[\033[0m\]\[\033[1;36m\][\u\[\033[0m\]@\[\033[1;32m\]\h\[\033[0m\] \[\033[1;31m\]\w\[\033[0m\]\[\033[1;36m\]]\[\033[33;1m\]\\$ \[\033[0m\]'"'"'
+## Kainstall managed end
+EOF
+
+    mkdir -p /var/log/journal /etc/systemd/journald.conf.d;
+    cat  > /etc/systemd/journald.conf.d/99-prophet.conf <<EOF
+[Journal]
+# 挝久化保存到磝盘
+Storage=persistent
+# 压缩历坲日志
+Compress=yes
+SyncIntervalSec=5m
+RateLimitInterval=30s
+RateLimitBurst=1000
+# 最大坠用空间 10G
+SystemMaxUse=10G
+# 坕日志文件最大 200M
+SystemMaxFileSize=200M
+# 日志保存时间 3 周
+MaxRetentionSec=3week
+# 丝将日志转坑到 syslog
+ForwardToSyslog=no
+EOF
+
+    cat  > /etc/profile.d/zz-ssh-login-info.sh <<EOF
+#!/bin/sh
+#
+# @Time    : 2020-02-04
+# @Author  : lework
+# @Desc    : ssh login banner
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\$PATH
+shopt -q login_shell && : || return 0
+echo -e "\033[0;32m
+ ██╗  ██╗ █████╗ ███████╗
+ ██║ ██╔╝██╔╝╝██╗██╔╝╝╝╝╝
+ █████╔╝ ╚█████╔╝███████╗
+ ██╔╝██╗ ██╔╝╝██╗╚╝╝╝╝██║
+ ██║  ██╗╚█████╔╝███████║
+ ╚╝╝  ╚╝╝ ╚╝╝╝╝╝ ╚╝╝╝╝╝╝ by kainstall\033[0m"
+
+# os
+upSeconds="\$(cut -d. -f1 /proc/uptime)"
+secs=\$((\${upSeconds}%60))
+mins=\$((\${upSeconds}/60%60))
+hours=\$((\${upSeconds}/3600%24))
+days=\$((\${upSeconds}/86400))
+UPTIME_INFO=\$(printf "%d days, %02dh %02dm %02ds" "\$days" "\$hours" "\$mins" "\$secs")
+
+if [ -f /etc/redhat-release ] ; then
+    PRETTY_NAME=\$(< /etc/redhat-release)
+
+elif [ -f /etc/debian_version ]; then
+   DIST_VER=\$(</etc/debian_version)
+   PRETTY_NAME="\$(grep PRETTY_NAME /etc/os-release | sed -e '"'"'s/PRETTY_NAME=//g'"'"' -e  '"'"'s/"//g'"'"') (\$DIST_VER)"
+
+else
+    PRETTY_NAME=\$(cat /etc/*-release | grep "PRETTY_NAME" | sed -e '"'"'s/PRETTY_NAME=//g'"'"' -e '"'"'s/"//g'"'"')
+fi
+
+if [[ -d "/system/app/" && -d "/system/priv-app" ]]; then
+    model="\$(getprop ro.product.brand) \$(getprop ro.product.model)"
+
+elif [[ -f /sys/devices/virtual/dmi/id/product_name ||
+        -f /sys/devices/virtual/dmi/id/product_version ]]; then
+    model="\$(< /sys/devices/virtual/dmi/id/product_name)"
+    model+=" \$(< /sys/devices/virtual/dmi/id/product_version)"
+
+elif [[ -f /sys/firmware/devicetree/base/model ]]; then
+    model="\$(< /sys/firmware/devicetree/base/model)"
+
+elif [[ -f /tmp/sysinfo/model ]]; then
+    model="\$(< /tmp/sysinfo/model)"
+fi
+
+MODEL_INFO=\${model}
+KERNEL=\$(uname -srmo)
+USER_NUM=\$(who -u | wc -l)
+RUNNING=\$(ps ax | wc -l | tr -d " ")
+
+# disk
+totaldisk=\$(df -h -x devtmpfs -x tmpfs -x debugfs -x aufs -x overlay --total 2>/dev/null | tail -1)
+disktotal=\$(awk '"'"'{print \$2}'"'"' <<< "\${totaldisk}")
+diskused=\$(awk '"'"'{print \$3}'"'"' <<< "\${totaldisk}")
+diskusedper=\$(awk '"'"'{print \$5}'"'"' <<< "\${totaldisk}")
+DISK_INFO="\033[0;33m\${diskused}\033[0m of \033[1;34m\${disktotal}\033[0m disk space used (\033[0;33m\${diskusedper}\033[0m)"
+
+# cpu
+cpu=\$(awk -F'"'"':'"'"' '"'"'/^model name/ {print \$2}'"'"' /proc/cpuinfo | uniq | sed -e '"'"'s/^[ \t]*//'"'"')
+cpun=\$(grep -c '"'"'^processor'"'"' /proc/cpuinfo)
+cpuc=\$(grep '"'"'^cpu cores'"'"' /proc/cpuinfo | tail -1 | awk '"'"'{print \$4}'"'"')
+cpup=\$(grep '"'"'^physical id'"'"' /proc/cpuinfo | wc -l)
+CPU_INFO="\${cpu} \${cpup}P \${cpuc}C \${cpun}L"
+
+# get the load averages
+read one five fifteen rest < /proc/loadavg
+LOADAVG_INFO="\033[0;33m\${one}\033[0m / \${five} / \${fifteen} with \033[1;34m\$(( cpun*cpuc ))\033[0m core(s) at \033[1;34m\$(grep '"'"'^cpu MHz'"'"' /proc/cpuinfo | tail -1 | awk '"'"'{print \$4}'"'"')\033 MHz"
+
+# mem
+MEM_INFO="\$(cat /proc/meminfo | awk '"'"'/MemTotal:/{total=\$2/1024/1024;next} /MemAvailable:/{use=total-\$2/1024/1024; printf("\033[0;33m%.2fGiB\033[0m of \033[1;34m%.2fGiB\033[0m RAM used (\033[0;33m%.2f%%\033[0m)",use,total,(use/total)*100);}'"'"')"
+
+# network
+# extranet_ip=" and \$(curl -s ip.cip.cc)"
+IP_INFO="\$(ip a|grep -E '"'"'^[0-9]+: em*|^[0-9]+: eno*|^[0-9]+: enp*|^[0-9]+: ens*|^[0-9]+: eth*|^[0-9]+: wlp*'"'"' -A2|grep inet|awk -F '"'"' '"'"' '"'"'{print \$2}'"'"'|cut -f1 -d/|xargs echo)"
+
+# Container info
+CONTAINER_INFO="\$(sudo /usr/bin/crictl ps -a -o yaml 2> /dev/null | awk '"'"'/^  state: /{gsub("CONTAINER_", "", \$NF) ++S[\$NF]}END{for(m in S) printf "%s%s:%s ",substr(m,1,1),tolower(substr(m,2)),S[m]}'"'"')Images:\$(sudo /usr/bin/crictl images -q 2> /dev/null | wc -l)"
+
+# info
+echo -e "
+ Information as of: \033[1;34m\$(date +"%Y-%m-%d %T")\033[0m
+ 
+ \033[0;1;31mProduct\033[0m............: \${MODEL_INFO}
+ \033[0;1;31mOS\033[0m.................: \${PRETTY_NAME}
+ \033[0;1;31mKernel\033[0m.............: \${KERNEL}
+ \033[0;1;31mCPU\033[0m................: \${CPU_INFO}
+
+ \033[0;1;31mHostname\033[0m...........: \033[1;34m\$(hostname)\033[0m
+ \033[0;1;31mIP Addresses\033[0m.......: \033[1;34m\${IP_INFO}\033[0m
+
+ \033[0;1;31mUptime\033[0m.............: \033[0;33m\${UPTIME_INFO}\033[0m
+ \033[0;1;31mMemory\033[0m.............: \${MEM_INFO}
+ \033[0;1;31mLoad Averages\033[0m......: \${LOADAVG_INFO}
+ \033[0;1;31mDisk Usage\033[0m.........: \${DISK_INFO} 
+
+ \033[0;1;31mUsers online\033[0m.......: \033[1;34m\${USER_NUM}\033[0m
+ \033[0;1;31mRunning Processes\033[0m..: \033[1;34m\${RUNNING}\033[0m
+ \033[0;1;31mContainer Info\033[0m.....: \${CONTAINER_INFO}
+"
+EOF
+
+    chmod +x /etc/profile.d/zz-ssh-login-info.sh;
+    echo '"'"'ALL ALL=(ALL) NOPASSWD:/usr/bin/crictl'"'"' > /etc/sudoers.d/crictl;
+    ntpd --help > /dev/null 2>&1 && yum remove -y ntp;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y chrony;
+    [ ! -f /etc/chrony.conf_bak ] && cp /etc/chrony.conf{,_bak};
+    cat  > /etc/chrony.conf <<EOF
+server ntp.aliyun.com iburst
+server cn.ntp.org.cn iburst
+server ntp.shu.edu.cn iburst
+server 0.cn.pool.ntp.org iburst
+server 1.cn.pool.ntp.org iburst
+server 2.cn.pool.ntp.org iburst
+server 3.cn.pool.ntp.org iburst
+
+driftfile /var/lib/chrony/drift
+makestep 1.0 3
+logdir /var/log/chrony
+EOF
+
+    timedatectl set-timezone Asia/Shanghai;
+    chronyd -q -t 1 '"'"'server cn.pool.ntp.org iburst maxsamples 1'"'"';
+    systemctl enable chronyd;
+    systemctl start chronyd;
+    chronyc sources -v;
+    chronyc sourcestats;
+    hwclock --systohc;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y curl wget;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y ipvsadm ipset sysstat conntrack libseccomp;
+    module=(ip_vs ip_vs_rr ip_vs_wrr ip_vs_sh overlay nf_conntrack br_netfilter);
+    [ -f /etc/modules-load.d/ipvs.conf ] && cp -f /etc/modules-load.d/ipvs.conf{,_bak};
+    for kernel_module in "${module[@]}";
+    do
+        /sbin/modinfo -F filename "$kernel_module" 2>&1 | grep -qv ERROR && echo "$kernel_module" >> /etc/modules-load.d/ipvs.conf;
+    done;
+    systemctl restart systemd-modules-load;
+    systemctl enable systemd-modules-load;
+    sysctl --system;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y audit audit-libs;
+    cat  >> /etc/audit/rules.d/audit.rules <<EOF
+## Kainstall managed start
+# Ignore errors
+-i
+
+# SYSCALL
+-a always,exit -F arch=b64 -S kill,tkill,tgkill -F a1=9 -F key=trace_kill_9
+-a always,exit -F arch=b64 -S kill,tkill,tgkill -F a1=15 -F key=trace_kill_15
+
+# docker
+-w /usr/bin/dockerd -k docker
+-w /var/lib/docker -k docker
+-w /etc/docker -k docker
+-w /usr/lib/systemd/system/docker.service -k docker
+-w /etc/systemd/system/docker.service -k docker
+-w /usr/lib/systemd/system/docker.socket -k docker
+-w /etc/default/docker -k docker
+-w /etc/sysconfig/docker -k docker
+-w /etc/docker/daemon.json -k docker
+
+# containerd
+-w /usr/bin/containerd -k containerd
+-w /var/lib/containerd -k containerd
+-w /usr/lib/systemd/system/containerd.service -k containerd
+-w /etc/containerd/config.toml -k containerd
+
+# cri-o
+-w /usr/bin/crio -k cri-o
+-w /etc/crio -k cri-o
+
+# runc 
+-w /usr/bin/runc -k runc
+
+# kube
+-w /usr/bin/kubeadm -k kubeadm
+-w /usr/bin/kubelet -k kubelet
+-w /usr/bin/kubectl -k kubectl
+-w /var/lib/kubelet -k kubelet
+-w /etc/kubernetes -k kubernetes
+## Kainstall managed end
+EOF
+
+    chmod 600 /etc/audit/rules.d/audit.rules;
+    sed -i '"'"'s#max_log_file =.*#max_log_file = 80#g'"'"' /etc/audit/auditd.conf;
+    if [ -f /usr/libexec/initscripts/legacy-actions/auditd/restart ]; then
+        /usr/libexec/initscripts/legacy-actions/auditd/restart;
+    else
+        systemctl stop auditd && systemctl start auditd;
+    fi;
+    systemctl enable auditd;
+    grep single-request-reopen /etc/resolv.conf || sed -i '"'"'1ioptions timeout:2 attempts:3 rotate single-request-reopen'"'"' /etc/resolv.conf;
+    ipvsadm --clear;
+    iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+}
+      script::init_node
+   '
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+setenforce: SELinux is disabled
+vm.swappiness = 0
+2023-05-04T14:50:02Z chronyd version 3.4 starting (+CMDMON +NTP +REFCLOCK +RTC +PRIVDROP +SCFILTER +SIGND +ASYNCDNS +SECHASH +IPV6 +DEBUG)
+2023-05-04T14:50:02Z Fatal error : Another chronyd may already be running (pid=418), check /var/run/chrony/chronyd.pid
+210 Number of sources = 0
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+| /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+===============================================================================
+210 Number of sources = 0
+Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
+==============================================================================
+sysctl: setting key "fs.aio-nr": No such file or directory
+* Applying /usr/lib/sysctl.d/00-system.conf ...
+net.bridge.bridge-nf-call-ip6tables = 0
+net.bridge.bridge-nf-call-iptables = 0
+net.bridge.bridge-nf-call-arptables = 0
+* Applying /usr/lib/sysctl.d/10-default-yama-scope.conf ...
+* Applying /usr/lib/sysctl.d/50-default.conf ...
+kernel.sysrq = 16
+kernel.core_uses_pid = 1
+kernel.kptr_restrict = 1
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.promote_secondaries = 1
+net.ipv4.conf.all.promote_secondaries = 1
+fs.protected_hardlinks = 1
+fs.protected_symlinks = 1
+* Applying /etc/sysctl.d/99-kube.conf ...
+vm.swappiness = 0
+vm.overcommit_memory = 1
+vm.panic_on_oom = 0
+vm.dirty_background_ratio = 5
+vm.dirty_ratio = 60
+vm.max_map_count = 2097152
+fs.file-max = 2097152
+fs.nr_open = 2097152
+fs.suid_dumpable = 0
+fs.aio-max-nr = 10000000
+sysctl: /etc/sysctl.d/k8s.conf(3): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(4): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(6): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(7): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(8): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(9): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(10): invalid syntax, continuing...
+fs.inotify.max_user_instances = 8192
+fs.inotify.max_user_watches = 524288
+fs.inotify.max_queued_events = 16384
+net.core.wmem_default = 25165824
+net.core.rmem_default = 25165824
+net.core.wmem_max = 25165824
+net.core.rmem_max = 25165824
+net.ipv4.tcp_wmem = 20480 12582912 25165824
+net.ipv4.tcp_rmem = 20480 12582912 25165824
+net.ipv4.tcp_mem = 65536 25165824 262144
+net.ipv4.udp_mem = 65536 25165824 262144
+net.ipv4.udp_wmem_min = 16384
+net.ipv4.udp_rmem_min = 16384
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_max_syn_backlog = 10240
+net.core.netdev_max_backlog = 65536
+net.core.optmem_max = 25165824
+net.ipv4.tcp_synack_retries = 2
+net.ipv4.ip_local_port_range = 2048 65535
+net.ipv4.tcp_rfc1337 = 1
+net.ipv4.tcp_fin_timeout = 15
+net.core.somaxconn = 32768
+net.ipv4.tcp_syncookies = 1
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.conf.default.log_martians = 1
+net.ipv4.tcp_max_orphans = 65536
+net.ipv4.tcp_no_metrics_save = 1
+net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_sack = 1
+net.ipv4.tcp_max_tw_buckets = 14400
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.ip_forward = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-arptables = 1
+net.ipv4.neigh.default.gc_thresh1 = 2048
+net.ipv4.neigh.default.gc_thresh2 = 4096
+net.ipv4.neigh.default.gc_thresh3 = 8192
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 10
+net.nf_conntrack_max = 1048576
+net.netfilter.nf_conntrack_max = 1048576
+net.netfilter.nf_conntrack_buckets = 262144
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 30
+net.netfilter.nf_conntrack_tcp_timeout_time_wait = 30
+net.netfilter.nf_conntrack_tcp_timeout_close_wait = 15
+net.netfilter.nf_conntrack_tcp_timeout_established = 300
+kernel.randomize_va_space = 2
+kernel.pid_max = 65536
+kernel.threads-max = 30938
+kernel.core_pattern = core
+kernel.softlockup_all_cpu_backtrace = 1
+kernel.softlockup_panic = 1
+* Applying /etc/sysctl.d/99-sysctl.conf ...
+net.ipv4.ip_forward = 1
+* Applying /etc/sysctl.d/k8s.conf ...
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+* Applying /etc/sysctl.conf ...
+net.ipv4.ip_forward = 1
+Stopping logging: [  OK  ]
+Redirecting start to /bin/systemctl start auditd.service
+options timeout:2 attempts:3 rotate single-request-reopen
+[2023-05-04T22:50:04.754496108+0800]: [32mINFO:    [0m[init] init master 10.50.10.21 succeeded.
+[2023-05-04T22:50:04.765905455+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+      printf "\n10.50.10.21 apiserver.cluster.local\n\n10.50.10.21 k8s-master-node1\n10.50.10.22 k8s-worker-node1\n10.50.10.23 k8s-worker-node2" >> /etc/hosts
+      hostnamectl set-hostname k8s-master-node1
+    '
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:10.923845436+0800]: [32mINFO:    [0m[init] 10.50.10.21 set hostname and hostname resolution succeeded.
+[2023-05-04T22:50:10.926477296+0800]: [32mINFO:    [0m[init] 10.50.10.21: set audit-policy file.
+[2023-05-04T22:50:10.940223014+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+      [ ! -d etc/kubernetes ] && mkdir -p /etc/kubernetes
+      cat << EOF > /etc/kubernetes/audit-policy.yaml
+# Log all requests at the Metadata level.
+apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+- level: Metadata
+EOF
+    '
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:11.062966760+0800]: [32mINFO:    [0m[init] 10.50.10.21: set audit-policy file succeeded.
+[2023-05-04T22:50:11.066818652+0800]: [32mINFO:    [0m[init] worker: 10.50.10.22
+[2023-05-04T22:50:11.088413874+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c '
+      export OFFLINE_TAG=1 KUBE_APISERVER=apiserver.cluster.local SKIP_SET_OS_REPO=false
+      script::init_node () 
+{ 
+    sed -i -e "/$KUBE_APISERVER/d" -e '"'"'/-worker-/d'"'"' -e '"'"'/-master-/d'"'"' /etc/hosts;
+    sed -i '"'"'/## Kainstall managed start/,/## Kainstall managed end/d'"'"' /etc/security/limits.conf /etc/systemd/system.conf /etc/bashrc /etc/rc.local /etc/audit/rules.d/audit.rules;
+    sed -i '"'"'/SELINUX/s/enforcing/disabled/'"'"' /etc/selinux/config;
+    setenforce 0;
+    swapoff -a && sysctl -w vm.swappiness=0;
+    sed -ri '"'"'/^[^#]*swap/s@^@#@'"'"' /etc/fstab;
+    for target in firewalld python-firewall firewalld-filesystem iptables;
+    do
+        systemctl stop $target &>/dev/null || true;
+        systemctl disable $target &>/dev/null || true;
+    done;
+    [[ -f /etc/yum.repos.d/CentOS-Base.repo && "${SKIP_SET_OS_REPO,,}" == "false" ]] && sed -e '"'"'s!^#baseurl=!baseurl=!g'"'"' -e '"'"'s!^mirrorlist=!#mirrorlist=!g'"'"' -e '"'"'s!mirror.centos.org!mirrors.aliyun.com!g'"'"' -i /etc/yum.repos.d/CentOS-Base.repo;
+    [[ "${OFFLINE_TAG:-}" != "1" && "${SKIP_SET_OS_REPO,,}" == "false" ]] && yum install -y epel-release;
+    [[ -f /etc/yum.repos.d/epel.repo && "${SKIP_SET_OS_REPO,,}" == "false" ]] && sed -e '"'"'s!^mirrorlist=!#mirrorlist=!g'"'"' -e '"'"'s!^metalink=!#metalink=!g'"'"' -e '"'"'s!^#baseurl=!baseurl=!g'"'"' -e '"'"'s!//download.*/pub!//mirrors.aliyun.com!g'"'"' -e '"'"'s!http://mirrors\.aliyun!https://mirrors.aliyun!g'"'"' -i /etc/yum.repos.d/epel.repo;
+    [ ! -f /etc/security/limits.conf_bak ] && cp /etc/security/limits.conf{,_bak};
+    cat  >> /etc/security/limits.conf <<EOF
+## Kainstall managed start
+root soft nofile 655360
+root hard nofile 655360
+root soft nproc 655360
+root hard nproc 655360
+root soft core unlimited
+root hard core unlimited
+
+* soft nofile 655360
+* hard nofile 655360
+* soft nproc 655360
+* hard nproc 655360
+* soft core unlimited
+* hard core unlimited
+## Kainstall managed end
+EOF
+
+    [ -f /etc/security/limits.d/20-nproc.conf ] && sed -i '"'"'s#4096#655360#g'"'"' /etc/security/limits.d/20-nproc.conf;
+    cat  >> /etc/systemd/system.conf <<EOF
+## Kainstall managed start
+DefaultLimitCORE=infinity
+DefaultLimitNOFILE=655360
+DefaultLimitNPROC=655360
+DefaultTasksMax=75%
+## Kainstall managed end
+EOF
+
+    cat  > /etc/sysctl.d/99-kube.conf <<EOF
+# https://www.kernel.org/doc/Documentation/sysctl/
+#############################################################################################
+# 调整虚拟内存
+#############################################################################################
+
+# Default: 30
+# 0 - 任何情况下都丝使用swap。
+# 1 - 除非内存丝足（OOM），坦则丝使用swap。
+vm.swappiness = 0
+
+# 内存分酝策略
+#0 - 表示内核将检查是坦有足够的坯用内存供应用进程使用；如果有足够的坯用内存，内存申请兝许；坦则，内存申请失败，并把错误返回给应用进程。
+#1 - 表示内核兝许分酝所有的物睆内存，而丝管当剝的内存状思如何。
+#2 - 表示内核兝许分酝超过所有物睆内存和交杢空间总和的内存
+vm.overcommit_memory=1
+
+# OOM时处睆
+# 1关闭，等于0时，表示当内存耗尽时，内核会触坑OOM killer杀掉最耗内存的进程。
+vm.panic_on_oom=0
+
+# vm.dirty_background_ratio 用于调整内核如何处睆必须刷新到磝盘的脝页。
+# Default value is 10.
+# 该值是系统内存总針的百分比，在许多情况下将此值设置为5是坈适的。
+# 此设置丝应设置为零。
+vm.dirty_background_ratio = 5
+
+# 内核强制坌步擝作将其刷新到磝盘之剝兝许的脝页总数
+# 也坯以通过更改 vm.dirty_ratio 的值（将其增加到默认值30以上（也坠系统内存的百分比））来增加
+# 推蝝 vm.dirty_ratio 的值在60到80之间。
+vm.dirty_ratio = 60
+
+# vm.max_map_count 计算当剝的内存映射文件数。
+# mmap 陝制（vm.max_map_count）的最尝值是打开文件的ulimit数針（cat /proc/sys/fs/file-max）。
+# 毝128KB系统内存 map_count应该大约为1。 因此，在32GB系统上，max_map_count为262144。
+# Default: 65530
+vm.max_map_count = 2097152
+
+#############################################################################################
+# 调整文件
+#############################################################################################
+
+fs.may_detach_mounts = 1
+
+# 增加文件坥柄和inode缓存的大尝，并陝制核心转储。
+fs.file-max = 2097152
+fs.nr_open = 2097152
+fs.suid_dumpable = 0
+
+# 坌时坯以拥有的的异步IO请求数目
+fs.aio-max-nr = 10000000
+fs.aio-nr = 75552
+
+# 文件监控
+fs.inotify.max_user_instances=8192
+fs.inotify.max_user_watches=524288
+fs.inotify.max_queued_events=16384
+
+#############################################################################################
+# 调整网络设置
+#############################################################################################
+
+# 为毝个套接字的坑逝和接收缓冲区分酝的默认内存針。
+net.core.wmem_default = 25165824
+net.core.rmem_default = 25165824
+
+# 为毝个套接字的坑逝和接收缓冲区分酝的最大内存針。
+net.core.wmem_max = 25165824
+net.core.rmem_max = 25165824
+
+# 除了套接字设置外，坑逝和接收缓冲区的大尝
+# 必须使用net.ipv4.tcp_wmem和net.ipv4.tcp_rmem坂数分别设置TCP套接字。
+# 使用三个以空格分隔的整数设置这些整数，分别指定最尝，默认和最大大尝。
+# 最大大尝丝能大于使用net.core.wmem_max和net.core.rmem_max为所有套接字指定的值。
+# 坈睆的设置是最尝4KiB，默认64KiB和最大2MiB缓冲区。
+net.ipv4.tcp_wmem = 20480 12582912 25165824
+net.ipv4.tcp_rmem = 20480 12582912 25165824
+
+# 增加最大坯分酝的总缓冲区空间
+# 以页为坕佝（4096字节）进行度針
+net.ipv4.tcp_mem = 65536 25165824 262144
+net.ipv4.udp_mem = 65536 25165824 262144
+
+# 为毝个套接字的坑逝和接收缓冲区分酝的最尝内存針。
+net.ipv4.udp_wmem_min = 16384
+net.ipv4.udp_rmem_min = 16384
+
+# 坯用TCP窗坣缩放，客户端坯以更有效地传输数杮，并兝许在代睆方缓冲该数杮。
+net.ipv4.tcp_window_scaling = 1
+
+# 杝高坌时接块连接数。
+net.ipv4.tcp_max_syn_backlog = 10240
+
+# 将net.core.netdev_max_backlog的值增加到大于默认值1000
+# 坯以帮助窝坑网络浝針，特别是在使用数坃兆佝网络连接速度时，
+# 通过兝许更多的数杮包排队等待内核处睆它们。
+net.core.netdev_max_backlog = 65536
+
+# 增加选项内存缓冲区的最大数針
+net.core.optmem_max = 25165824
+
+# 被动TCP连接的SYNACK次数。
+net.ipv4.tcp_synack_retries = 2
+
+# 兝许的本地端坣范围。
+net.ipv4.ip_local_port_range = 2048 65535
+
+# 防止TCP时间等待
+# Default: net.ipv4.tcp_rfc1337 = 0
+net.ipv4.tcp_rfc1337 = 1
+
+# 凝少tcp_fin_timeout连接的时间默认值
+net.ipv4.tcp_fin_timeout = 15
+
+# 积压套接字的最大数針。
+# Default is 128.
+net.core.somaxconn = 32768
+
+# 打开syncookies以进行SYN洪水攻击保护。
+net.ipv4.tcp_syncookies = 1
+
+# 靿兝Smurf攻击
+# 坑逝伪装的ICMP数杮包，目的地址设为柝个网络的广播地址，溝地址设为覝攻击的目的主机，
+# 使所有收到此ICMP数杮包的主机都将对目的主机坑出一个回应，使被攻击主机在柝一段时间内收到戝坃上万的数杮包
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+# 为icmp错误消杯打开保护
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+
+# 坯用自动缩放窗坣。
+# 如果延迟话明坈睆，这将兝许TCP缓冲区超过其通常的最大值64K。
+net.ipv4.tcp_window_scaling = 1
+
+# 打开并记录欺骗，溝路由和針定坑数杮包
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.conf.default.log_martians = 1
+
+# 告诉内核有多少个未附加的TCP套接字维护用户文件坥柄。 万一超过这个数字，
+# 孤立的连接会立坳針置，并显示警告。
+# Default: net.ipv4.tcp_max_orphans = 65536
+net.ipv4.tcp_max_orphans = 65536
+
+# 丝覝在关闭连接时缓存指标
+net.ipv4.tcp_no_metrics_save = 1
+
+# 坯用RFC1323中定义的时间戳记：
+# Default: net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_timestamps = 1
+
+# 坯用选择确认。
+# Default: net.ipv4.tcp_sack = 1
+net.ipv4.tcp_sack = 1
+
+# 增加 tcp-time-wait 存储桶池大尝，以防止简坕的DOS攻击。
+# net.ipv4.tcp_tw_recycle 已从Linux 4.12中删除。请改用net.ipv4.tcp_tw_reuse。
+net.ipv4.tcp_max_tw_buckets = 14400
+net.ipv4.tcp_tw_reuse = 1
+
+# accept_source_route 选项使网络接坣接块设置了严格溝路由（SSR）或松散溝路由（LSR）选项的数杮包。
+# 以下设置将丢弃设置了SSR或LSR选项的数杮包。
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+
+# 打开坝坑路径过滤
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+
+# 禝用ICMP針定坑接块
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+
+# 禝止坑逝所有IPv4 ICMP針定坑数杮包。
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+
+# 开坯IP转坑.
+net.ipv4.ip_forward = 1
+
+# 禝止IPv6
+net.ipv6.conf.lo.disable_ipv6=1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+
+# 覝求iptables丝对bridge的数杮进行处睆
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-arptables = 1
+
+# arp缓存
+# 存在于 ARP 高速缓存中的最少层数，如果少于这个数，垃圾收集器将丝会违行。缺眝值是 128
+net.ipv4.neigh.default.gc_thresh1=2048
+# 保存在 ARP 高速缓存中的最多的记录软陝制。垃圾收集器在开始收集剝，兝许记录数超过这个数字 5 秒。缺眝值是 512
+net.ipv4.neigh.default.gc_thresh2=4096
+# 保存在 ARP 高速缓存中的最多记录的硬陝制，一旦高速缓存中的数目高于此，垃圾收集器将马上违行。缺眝值是 1024
+net.ipv4.neigh.default.gc_thresh3=8192
+
+# 挝久连接
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 10
+
+# conntrack表
+net.nf_conntrack_max=1048576
+net.netfilter.nf_conntrack_max=1048576
+net.netfilter.nf_conntrack_buckets=262144
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait=30
+net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
+net.netfilter.nf_conntrack_tcp_timeout_close_wait=15
+net.netfilter.nf_conntrack_tcp_timeout_established=300
+
+#############################################################################################
+# 调整内核坂数
+#############################################################################################
+
+# 地址空间布局隝机化（ASLR）是一秝用于擝作系统的内存保护过程，坯防止缓冲区溢出攻击。
+# 这有助于确保与系统上正在违行的进程相关蝔的内存地址丝坯预测，
+# 因此，与这些浝程相关的缺陷或漝洞将更加难以利用。
+# Accepted values: 0 = 关闭, 1 = 保守隝机化, 2 = 完全隝机化
+kernel.randomize_va_space = 2
+
+# 调高 PID 数針
+kernel.pid_max = 65536
+kernel.threads-max=30938
+
+# coredump
+kernel.core_pattern=core
+
+# 决定了检测到soft lockup时是坦自动panic，缺眝值是0
+kernel.softlockup_all_cpu_backtrace=1
+kernel.softlockup_panic=1
+EOF
+
+    cat  >> /etc/bashrc <<EOF
+## Kainstall managed start
+# history actions record，include action time, user, login ip
+HISTFILESIZE=5000
+HISTSIZE=5000
+USER_IP=\$(who -u am i 2>/dev/null | awk '"'"'{print \$NF}'"'"' | sed -e '"'"'s/[()]//g'"'"')
+if [ -z \$USER_IP ]
+then
+  USER_IP=\$(hostname -i)
+fi
+HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S \$USER_IP:\$(whoami) "
+export HISTFILESIZE HISTSIZE HISTTIMEFORMAT
+
+# PS1
+PS1='"'"'\[\033[0m\]\[\033[1;36m\][\u\[\033[0m\]@\[\033[1;32m\]\h\[\033[0m\] \[\033[1;31m\]\w\[\033[0m\]\[\033[1;36m\]]\[\033[33;1m\]\\$ \[\033[0m\]'"'"'
+## Kainstall managed end
+EOF
+
+    mkdir -p /var/log/journal /etc/systemd/journald.conf.d;
+    cat  > /etc/systemd/journald.conf.d/99-prophet.conf <<EOF
+[Journal]
+# 挝久化保存到磝盘
+Storage=persistent
+# 压缩历坲日志
+Compress=yes
+SyncIntervalSec=5m
+RateLimitInterval=30s
+RateLimitBurst=1000
+# 最大坠用空间 10G
+SystemMaxUse=10G
+# 坕日志文件最大 200M
+SystemMaxFileSize=200M
+# 日志保存时间 3 周
+MaxRetentionSec=3week
+# 丝将日志转坑到 syslog
+ForwardToSyslog=no
+EOF
+
+    cat  > /etc/profile.d/zz-ssh-login-info.sh <<EOF
+#!/bin/sh
+#
+# @Time    : 2020-02-04
+# @Author  : lework
+# @Desc    : ssh login banner
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\$PATH
+shopt -q login_shell && : || return 0
+echo -e "\033[0;32m
+ ██╗  ██╗ █████╗ ███████╗
+ ██║ ██╔╝██╔╝╝██╗██╔╝╝╝╝╝
+ █████╔╝ ╚█████╔╝███████╗
+ ██╔╝██╗ ██╔╝╝██╗╚╝╝╝╝██║
+ ██║  ██╗╚█████╔╝███████║
+ ╚╝╝  ╚╝╝ ╚╝╝╝╝╝ ╚╝╝╝╝╝╝ by kainstall\033[0m"
+
+# os
+upSeconds="\$(cut -d. -f1 /proc/uptime)"
+secs=\$((\${upSeconds}%60))
+mins=\$((\${upSeconds}/60%60))
+hours=\$((\${upSeconds}/3600%24))
+days=\$((\${upSeconds}/86400))
+UPTIME_INFO=\$(printf "%d days, %02dh %02dm %02ds" "\$days" "\$hours" "\$mins" "\$secs")
+
+if [ -f /etc/redhat-release ] ; then
+    PRETTY_NAME=\$(< /etc/redhat-release)
+
+elif [ -f /etc/debian_version ]; then
+   DIST_VER=\$(</etc/debian_version)
+   PRETTY_NAME="\$(grep PRETTY_NAME /etc/os-release | sed -e '"'"'s/PRETTY_NAME=//g'"'"' -e  '"'"'s/"//g'"'"') (\$DIST_VER)"
+
+else
+    PRETTY_NAME=\$(cat /etc/*-release | grep "PRETTY_NAME" | sed -e '"'"'s/PRETTY_NAME=//g'"'"' -e '"'"'s/"//g'"'"')
+fi
+
+if [[ -d "/system/app/" && -d "/system/priv-app" ]]; then
+    model="\$(getprop ro.product.brand) \$(getprop ro.product.model)"
+
+elif [[ -f /sys/devices/virtual/dmi/id/product_name ||
+        -f /sys/devices/virtual/dmi/id/product_version ]]; then
+    model="\$(< /sys/devices/virtual/dmi/id/product_name)"
+    model+=" \$(< /sys/devices/virtual/dmi/id/product_version)"
+
+elif [[ -f /sys/firmware/devicetree/base/model ]]; then
+    model="\$(< /sys/firmware/devicetree/base/model)"
+
+elif [[ -f /tmp/sysinfo/model ]]; then
+    model="\$(< /tmp/sysinfo/model)"
+fi
+
+MODEL_INFO=\${model}
+KERNEL=\$(uname -srmo)
+USER_NUM=\$(who -u | wc -l)
+RUNNING=\$(ps ax | wc -l | tr -d " ")
+
+# disk
+totaldisk=\$(df -h -x devtmpfs -x tmpfs -x debugfs -x aufs -x overlay --total 2>/dev/null | tail -1)
+disktotal=\$(awk '"'"'{print \$2}'"'"' <<< "\${totaldisk}")
+diskused=\$(awk '"'"'{print \$3}'"'"' <<< "\${totaldisk}")
+diskusedper=\$(awk '"'"'{print \$5}'"'"' <<< "\${totaldisk}")
+DISK_INFO="\033[0;33m\${diskused}\033[0m of \033[1;34m\${disktotal}\033[0m disk space used (\033[0;33m\${diskusedper}\033[0m)"
+
+# cpu
+cpu=\$(awk -F'"'"':'"'"' '"'"'/^model name/ {print \$2}'"'"' /proc/cpuinfo | uniq | sed -e '"'"'s/^[ \t]*//'"'"')
+cpun=\$(grep -c '"'"'^processor'"'"' /proc/cpuinfo)
+cpuc=\$(grep '"'"'^cpu cores'"'"' /proc/cpuinfo | tail -1 | awk '"'"'{print \$4}'"'"')
+cpup=\$(grep '"'"'^physical id'"'"' /proc/cpuinfo | wc -l)
+CPU_INFO="\${cpu} \${cpup}P \${cpuc}C \${cpun}L"
+
+# get the load averages
+read one five fifteen rest < /proc/loadavg
+LOADAVG_INFO="\033[0;33m\${one}\033[0m / \${five} / \${fifteen} with \033[1;34m\$(( cpun*cpuc ))\033[0m core(s) at \033[1;34m\$(grep '"'"'^cpu MHz'"'"' /proc/cpuinfo | tail -1 | awk '"'"'{print \$4}'"'"')\033 MHz"
+
+# mem
+MEM_INFO="\$(cat /proc/meminfo | awk '"'"'/MemTotal:/{total=\$2/1024/1024;next} /MemAvailable:/{use=total-\$2/1024/1024; printf("\033[0;33m%.2fGiB\033[0m of \033[1;34m%.2fGiB\033[0m RAM used (\033[0;33m%.2f%%\033[0m)",use,total,(use/total)*100);}'"'"')"
+
+# network
+# extranet_ip=" and \$(curl -s ip.cip.cc)"
+IP_INFO="\$(ip a|grep -E '"'"'^[0-9]+: em*|^[0-9]+: eno*|^[0-9]+: enp*|^[0-9]+: ens*|^[0-9]+: eth*|^[0-9]+: wlp*'"'"' -A2|grep inet|awk -F '"'"' '"'"' '"'"'{print \$2}'"'"'|cut -f1 -d/|xargs echo)"
+
+# Container info
+CONTAINER_INFO="\$(sudo /usr/bin/crictl ps -a -o yaml 2> /dev/null | awk '"'"'/^  state: /{gsub("CONTAINER_", "", \$NF) ++S[\$NF]}END{for(m in S) printf "%s%s:%s ",substr(m,1,1),tolower(substr(m,2)),S[m]}'"'"')Images:\$(sudo /usr/bin/crictl images -q 2> /dev/null | wc -l)"
+
+# info
+echo -e "
+ Information as of: \033[1;34m\$(date +"%Y-%m-%d %T")\033[0m
+ 
+ \033[0;1;31mProduct\033[0m............: \${MODEL_INFO}
+ \033[0;1;31mOS\033[0m.................: \${PRETTY_NAME}
+ \033[0;1;31mKernel\033[0m.............: \${KERNEL}
+ \033[0;1;31mCPU\033[0m................: \${CPU_INFO}
+
+ \033[0;1;31mHostname\033[0m...........: \033[1;34m\$(hostname)\033[0m
+ \033[0;1;31mIP Addresses\033[0m.......: \033[1;34m\${IP_INFO}\033[0m
+
+ \033[0;1;31mUptime\033[0m.............: \033[0;33m\${UPTIME_INFO}\033[0m
+ \033[0;1;31mMemory\033[0m.............: \${MEM_INFO}
+ \033[0;1;31mLoad Averages\033[0m......: \${LOADAVG_INFO}
+ \033[0;1;31mDisk Usage\033[0m.........: \${DISK_INFO} 
+
+ \033[0;1;31mUsers online\033[0m.......: \033[1;34m\${USER_NUM}\033[0m
+ \033[0;1;31mRunning Processes\033[0m..: \033[1;34m\${RUNNING}\033[0m
+ \033[0;1;31mContainer Info\033[0m.....: \${CONTAINER_INFO}
+"
+EOF
+
+    chmod +x /etc/profile.d/zz-ssh-login-info.sh;
+    echo '"'"'ALL ALL=(ALL) NOPASSWD:/usr/bin/crictl'"'"' > /etc/sudoers.d/crictl;
+    ntpd --help > /dev/null 2>&1 && yum remove -y ntp;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y chrony;
+    [ ! -f /etc/chrony.conf_bak ] && cp /etc/chrony.conf{,_bak};
+    cat  > /etc/chrony.conf <<EOF
+server ntp.aliyun.com iburst
+server cn.ntp.org.cn iburst
+server ntp.shu.edu.cn iburst
+server 0.cn.pool.ntp.org iburst
+server 1.cn.pool.ntp.org iburst
+server 2.cn.pool.ntp.org iburst
+server 3.cn.pool.ntp.org iburst
+
+driftfile /var/lib/chrony/drift
+makestep 1.0 3
+logdir /var/log/chrony
+EOF
+
+    timedatectl set-timezone Asia/Shanghai;
+    chronyd -q -t 1 '"'"'server cn.pool.ntp.org iburst maxsamples 1'"'"';
+    systemctl enable chronyd;
+    systemctl start chronyd;
+    chronyc sources -v;
+    chronyc sourcestats;
+    hwclock --systohc;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y curl wget;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y ipvsadm ipset sysstat conntrack libseccomp;
+    module=(ip_vs ip_vs_rr ip_vs_wrr ip_vs_sh overlay nf_conntrack br_netfilter);
+    [ -f /etc/modules-load.d/ipvs.conf ] && cp -f /etc/modules-load.d/ipvs.conf{,_bak};
+    for kernel_module in "${module[@]}";
+    do
+        /sbin/modinfo -F filename "$kernel_module" 2>&1 | grep -qv ERROR && echo "$kernel_module" >> /etc/modules-load.d/ipvs.conf;
+    done;
+    systemctl restart systemd-modules-load;
+    systemctl enable systemd-modules-load;
+    sysctl --system;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y audit audit-libs;
+    cat  >> /etc/audit/rules.d/audit.rules <<EOF
+## Kainstall managed start
+# Ignore errors
+-i
+
+# SYSCALL
+-a always,exit -F arch=b64 -S kill,tkill,tgkill -F a1=9 -F key=trace_kill_9
+-a always,exit -F arch=b64 -S kill,tkill,tgkill -F a1=15 -F key=trace_kill_15
+
+# docker
+-w /usr/bin/dockerd -k docker
+-w /var/lib/docker -k docker
+-w /etc/docker -k docker
+-w /usr/lib/systemd/system/docker.service -k docker
+-w /etc/systemd/system/docker.service -k docker
+-w /usr/lib/systemd/system/docker.socket -k docker
+-w /etc/default/docker -k docker
+-w /etc/sysconfig/docker -k docker
+-w /etc/docker/daemon.json -k docker
+
+# containerd
+-w /usr/bin/containerd -k containerd
+-w /var/lib/containerd -k containerd
+-w /usr/lib/systemd/system/containerd.service -k containerd
+-w /etc/containerd/config.toml -k containerd
+
+# cri-o
+-w /usr/bin/crio -k cri-o
+-w /etc/crio -k cri-o
+
+# runc 
+-w /usr/bin/runc -k runc
+
+# kube
+-w /usr/bin/kubeadm -k kubeadm
+-w /usr/bin/kubelet -k kubelet
+-w /usr/bin/kubectl -k kubectl
+-w /var/lib/kubelet -k kubelet
+-w /etc/kubernetes -k kubernetes
+## Kainstall managed end
+EOF
+
+    chmod 600 /etc/audit/rules.d/audit.rules;
+    sed -i '"'"'s#max_log_file =.*#max_log_file = 80#g'"'"' /etc/audit/auditd.conf;
+    if [ -f /usr/libexec/initscripts/legacy-actions/auditd/restart ]; then
+        /usr/libexec/initscripts/legacy-actions/auditd/restart;
+    else
+        systemctl stop auditd && systemctl start auditd;
+    fi;
+    systemctl enable auditd;
+    grep single-request-reopen /etc/resolv.conf || sed -i '"'"'1ioptions timeout:2 attempts:3 rotate single-request-reopen'"'"' /etc/resolv.conf;
+    ipvsadm --clear;
+    iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+}
+      script::init_node
+    '
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+setenforce: SELinux is disabled
+vm.swappiness = 0
+2023-05-04T14:50:12Z chronyd version 3.4 starting (+CMDMON +NTP +REFCLOCK +RTC +PRIVDROP +SCFILTER +SIGND +ASYNCDNS +SECHASH +IPV6 +DEBUG)
+2023-05-04T14:50:12Z Fatal error : Another chronyd may already be running (pid=406), check /var/run/chrony/chronyd.pid
+210 Number of sources = 0
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+| /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+===============================================================================
+210 Number of sources = 0
+Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
+==============================================================================
+sysctl: setting key "fs.aio-nr": No such file or directory
+* Applying /usr/lib/sysctl.d/00-system.conf ...
+net.bridge.bridge-nf-call-ip6tables = 0
+net.bridge.bridge-nf-call-iptables = 0
+net.bridge.bridge-nf-call-arptables = 0
+* Applying /usr/lib/sysctl.d/10-default-yama-scope.conf ...
+* Applying /usr/lib/sysctl.d/50-default.conf ...
+kernel.sysrq = 16
+kernel.core_uses_pid = 1
+kernel.kptr_restrict = 1
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.promote_secondaries = 1
+net.ipv4.conf.all.promote_secondaries = 1
+fs.protected_hardlinks = 1
+fs.protected_symlinks = 1
+* Applying /etc/sysctl.d/99-kube.conf ...
+vm.swappiness = 0
+vm.overcommit_memory = 1
+vm.panic_on_oom = 0
+vm.dirty_background_ratio = 5
+vm.dirty_ratio = 60
+vm.max_map_count = 2097152
+fs.file-max = 2097152
+fs.nr_open = 2097152
+fs.suid_dumpable = 0
+fs.aio-max-nr = 10000000
+sysctl: /etc/sysctl.d/k8s.conf(3): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(4): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(6): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(7): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(8): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(9): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(10): invalid syntax, continuing...
+fs.inotify.max_user_instances = 8192
+fs.inotify.max_user_watches = 524288
+fs.inotify.max_queued_events = 16384
+net.core.wmem_default = 25165824
+net.core.rmem_default = 25165824
+net.core.wmem_max = 25165824
+net.core.rmem_max = 25165824
+net.ipv4.tcp_wmem = 20480 12582912 25165824
+net.ipv4.tcp_rmem = 20480 12582912 25165824
+net.ipv4.tcp_mem = 65536 25165824 262144
+net.ipv4.udp_mem = 65536 25165824 262144
+net.ipv4.udp_wmem_min = 16384
+net.ipv4.udp_rmem_min = 16384
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_max_syn_backlog = 10240
+net.core.netdev_max_backlog = 65536
+net.core.optmem_max = 25165824
+net.ipv4.tcp_synack_retries = 2
+net.ipv4.ip_local_port_range = 2048 65535
+net.ipv4.tcp_rfc1337 = 1
+net.ipv4.tcp_fin_timeout = 15
+net.core.somaxconn = 32768
+net.ipv4.tcp_syncookies = 1
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.conf.default.log_martians = 1
+net.ipv4.tcp_max_orphans = 65536
+net.ipv4.tcp_no_metrics_save = 1
+net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_sack = 1
+net.ipv4.tcp_max_tw_buckets = 14400
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.ip_forward = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-arptables = 1
+net.ipv4.neigh.default.gc_thresh1 = 2048
+net.ipv4.neigh.default.gc_thresh2 = 4096
+net.ipv4.neigh.default.gc_thresh3 = 8192
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 10
+net.nf_conntrack_max = 1048576
+net.netfilter.nf_conntrack_max = 1048576
+net.netfilter.nf_conntrack_buckets = 262144
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 30
+net.netfilter.nf_conntrack_tcp_timeout_time_wait = 30
+net.netfilter.nf_conntrack_tcp_timeout_close_wait = 15
+net.netfilter.nf_conntrack_tcp_timeout_established = 300
+kernel.randomize_va_space = 2
+kernel.pid_max = 65536
+kernel.threads-max = 30938
+kernel.core_pattern = core
+kernel.softlockup_all_cpu_backtrace = 1
+kernel.softlockup_panic = 1
+* Applying /etc/sysctl.d/99-sysctl.conf ...
+net.ipv4.ip_forward = 1
+* Applying /etc/sysctl.d/k8s.conf ...
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+* Applying /etc/sysctl.conf ...
+net.ipv4.ip_forward = 1
+Stopping logging: [  OK  ]
+Redirecting start to /bin/systemctl start auditd.service
+options timeout:2 attempts:3 rotate single-request-reopen
+[2023-05-04T22:50:12.830506015+0800]: [32mINFO:    [0m[init] init worker 10.50.10.22 succeeded.
+[2023-05-04T22:50:12.841791218+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c '
+      printf "\n127.0.0.1 apiserver.cluster.local\n\n10.50.10.21 k8s-master-node1\n10.50.10.22 k8s-worker-node1\n10.50.10.23 k8s-worker-node2" >> /etc/hosts
+      hostnamectl set-hostname k8s-worker-node1
+    '
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:19.067325015+0800]: [32mINFO:    [0m[init] worker: 10.50.10.23
+[2023-05-04T22:50:19.087398445+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c '
+      export OFFLINE_TAG=1 KUBE_APISERVER=apiserver.cluster.local SKIP_SET_OS_REPO=false
+      script::init_node () 
+{ 
+    sed -i -e "/$KUBE_APISERVER/d" -e '"'"'/-worker-/d'"'"' -e '"'"'/-master-/d'"'"' /etc/hosts;
+    sed -i '"'"'/## Kainstall managed start/,/## Kainstall managed end/d'"'"' /etc/security/limits.conf /etc/systemd/system.conf /etc/bashrc /etc/rc.local /etc/audit/rules.d/audit.rules;
+    sed -i '"'"'/SELINUX/s/enforcing/disabled/'"'"' /etc/selinux/config;
+    setenforce 0;
+    swapoff -a && sysctl -w vm.swappiness=0;
+    sed -ri '"'"'/^[^#]*swap/s@^@#@'"'"' /etc/fstab;
+    for target in firewalld python-firewall firewalld-filesystem iptables;
+    do
+        systemctl stop $target &>/dev/null || true;
+        systemctl disable $target &>/dev/null || true;
+    done;
+    [[ -f /etc/yum.repos.d/CentOS-Base.repo && "${SKIP_SET_OS_REPO,,}" == "false" ]] && sed -e '"'"'s!^#baseurl=!baseurl=!g'"'"' -e '"'"'s!^mirrorlist=!#mirrorlist=!g'"'"' -e '"'"'s!mirror.centos.org!mirrors.aliyun.com!g'"'"' -i /etc/yum.repos.d/CentOS-Base.repo;
+    [[ "${OFFLINE_TAG:-}" != "1" && "${SKIP_SET_OS_REPO,,}" == "false" ]] && yum install -y epel-release;
+    [[ -f /etc/yum.repos.d/epel.repo && "${SKIP_SET_OS_REPO,,}" == "false" ]] && sed -e '"'"'s!^mirrorlist=!#mirrorlist=!g'"'"' -e '"'"'s!^metalink=!#metalink=!g'"'"' -e '"'"'s!^#baseurl=!baseurl=!g'"'"' -e '"'"'s!//download.*/pub!//mirrors.aliyun.com!g'"'"' -e '"'"'s!http://mirrors\.aliyun!https://mirrors.aliyun!g'"'"' -i /etc/yum.repos.d/epel.repo;
+    [ ! -f /etc/security/limits.conf_bak ] && cp /etc/security/limits.conf{,_bak};
+    cat  >> /etc/security/limits.conf <<EOF
+## Kainstall managed start
+root soft nofile 655360
+root hard nofile 655360
+root soft nproc 655360
+root hard nproc 655360
+root soft core unlimited
+root hard core unlimited
+
+* soft nofile 655360
+* hard nofile 655360
+* soft nproc 655360
+* hard nproc 655360
+* soft core unlimited
+* hard core unlimited
+## Kainstall managed end
+EOF
+
+    [ -f /etc/security/limits.d/20-nproc.conf ] && sed -i '"'"'s#4096#655360#g'"'"' /etc/security/limits.d/20-nproc.conf;
+    cat  >> /etc/systemd/system.conf <<EOF
+## Kainstall managed start
+DefaultLimitCORE=infinity
+DefaultLimitNOFILE=655360
+DefaultLimitNPROC=655360
+DefaultTasksMax=75%
+## Kainstall managed end
+EOF
+
+    cat  > /etc/sysctl.d/99-kube.conf <<EOF
+# https://www.kernel.org/doc/Documentation/sysctl/
+#############################################################################################
+# 调整虚拟内存
+#############################################################################################
+
+# Default: 30
+# 0 - 任何情况下都丝使用swap。
+# 1 - 除非内存丝足（OOM），坦则丝使用swap。
+vm.swappiness = 0
+
+# 内存分酝策略
+#0 - 表示内核将检查是坦有足够的坯用内存供应用进程使用；如果有足够的坯用内存，内存申请兝许；坦则，内存申请失败，并把错误返回给应用进程。
+#1 - 表示内核兝许分酝所有的物睆内存，而丝管当剝的内存状思如何。
+#2 - 表示内核兝许分酝超过所有物睆内存和交杢空间总和的内存
+vm.overcommit_memory=1
+
+# OOM时处睆
+# 1关闭，等于0时，表示当内存耗尽时，内核会触坑OOM killer杀掉最耗内存的进程。
+vm.panic_on_oom=0
+
+# vm.dirty_background_ratio 用于调整内核如何处睆必须刷新到磝盘的脝页。
+# Default value is 10.
+# 该值是系统内存总針的百分比，在许多情况下将此值设置为5是坈适的。
+# 此设置丝应设置为零。
+vm.dirty_background_ratio = 5
+
+# 内核强制坌步擝作将其刷新到磝盘之剝兝许的脝页总数
+# 也坯以通过更改 vm.dirty_ratio 的值（将其增加到默认值30以上（也坠系统内存的百分比））来增加
+# 推蝝 vm.dirty_ratio 的值在60到80之间。
+vm.dirty_ratio = 60
+
+# vm.max_map_count 计算当剝的内存映射文件数。
+# mmap 陝制（vm.max_map_count）的最尝值是打开文件的ulimit数針（cat /proc/sys/fs/file-max）。
+# 毝128KB系统内存 map_count应该大约为1。 因此，在32GB系统上，max_map_count为262144。
+# Default: 65530
+vm.max_map_count = 2097152
+
+#############################################################################################
+# 调整文件
+#############################################################################################
+
+fs.may_detach_mounts = 1
+
+# 增加文件坥柄和inode缓存的大尝，并陝制核心转储。
+fs.file-max = 2097152
+fs.nr_open = 2097152
+fs.suid_dumpable = 0
+
+# 坌时坯以拥有的的异步IO请求数目
+fs.aio-max-nr = 10000000
+fs.aio-nr = 75552
+
+# 文件监控
+fs.inotify.max_user_instances=8192
+fs.inotify.max_user_watches=524288
+fs.inotify.max_queued_events=16384
+
+#############################################################################################
+# 调整网络设置
+#############################################################################################
+
+# 为毝个套接字的坑逝和接收缓冲区分酝的默认内存針。
+net.core.wmem_default = 25165824
+net.core.rmem_default = 25165824
+
+# 为毝个套接字的坑逝和接收缓冲区分酝的最大内存針。
+net.core.wmem_max = 25165824
+net.core.rmem_max = 25165824
+
+# 除了套接字设置外，坑逝和接收缓冲区的大尝
+# 必须使用net.ipv4.tcp_wmem和net.ipv4.tcp_rmem坂数分别设置TCP套接字。
+# 使用三个以空格分隔的整数设置这些整数，分别指定最尝，默认和最大大尝。
+# 最大大尝丝能大于使用net.core.wmem_max和net.core.rmem_max为所有套接字指定的值。
+# 坈睆的设置是最尝4KiB，默认64KiB和最大2MiB缓冲区。
+net.ipv4.tcp_wmem = 20480 12582912 25165824
+net.ipv4.tcp_rmem = 20480 12582912 25165824
+
+# 增加最大坯分酝的总缓冲区空间
+# 以页为坕佝（4096字节）进行度針
+net.ipv4.tcp_mem = 65536 25165824 262144
+net.ipv4.udp_mem = 65536 25165824 262144
+
+# 为毝个套接字的坑逝和接收缓冲区分酝的最尝内存針。
+net.ipv4.udp_wmem_min = 16384
+net.ipv4.udp_rmem_min = 16384
+
+# 坯用TCP窗坣缩放，客户端坯以更有效地传输数杮，并兝许在代睆方缓冲该数杮。
+net.ipv4.tcp_window_scaling = 1
+
+# 杝高坌时接块连接数。
+net.ipv4.tcp_max_syn_backlog = 10240
+
+# 将net.core.netdev_max_backlog的值增加到大于默认值1000
+# 坯以帮助窝坑网络浝針，特别是在使用数坃兆佝网络连接速度时，
+# 通过兝许更多的数杮包排队等待内核处睆它们。
+net.core.netdev_max_backlog = 65536
+
+# 增加选项内存缓冲区的最大数針
+net.core.optmem_max = 25165824
+
+# 被动TCP连接的SYNACK次数。
+net.ipv4.tcp_synack_retries = 2
+
+# 兝许的本地端坣范围。
+net.ipv4.ip_local_port_range = 2048 65535
+
+# 防止TCP时间等待
+# Default: net.ipv4.tcp_rfc1337 = 0
+net.ipv4.tcp_rfc1337 = 1
+
+# 凝少tcp_fin_timeout连接的时间默认值
+net.ipv4.tcp_fin_timeout = 15
+
+# 积压套接字的最大数針。
+# Default is 128.
+net.core.somaxconn = 32768
+
+# 打开syncookies以进行SYN洪水攻击保护。
+net.ipv4.tcp_syncookies = 1
+
+# 靿兝Smurf攻击
+# 坑逝伪装的ICMP数杮包，目的地址设为柝个网络的广播地址，溝地址设为覝攻击的目的主机，
+# 使所有收到此ICMP数杮包的主机都将对目的主机坑出一个回应，使被攻击主机在柝一段时间内收到戝坃上万的数杮包
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+# 为icmp错误消杯打开保护
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+
+# 坯用自动缩放窗坣。
+# 如果延迟话明坈睆，这将兝许TCP缓冲区超过其通常的最大值64K。
+net.ipv4.tcp_window_scaling = 1
+
+# 打开并记录欺骗，溝路由和針定坑数杮包
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.conf.default.log_martians = 1
+
+# 告诉内核有多少个未附加的TCP套接字维护用户文件坥柄。 万一超过这个数字，
+# 孤立的连接会立坳針置，并显示警告。
+# Default: net.ipv4.tcp_max_orphans = 65536
+net.ipv4.tcp_max_orphans = 65536
+
+# 丝覝在关闭连接时缓存指标
+net.ipv4.tcp_no_metrics_save = 1
+
+# 坯用RFC1323中定义的时间戳记：
+# Default: net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_timestamps = 1
+
+# 坯用选择确认。
+# Default: net.ipv4.tcp_sack = 1
+net.ipv4.tcp_sack = 1
+
+# 增加 tcp-time-wait 存储桶池大尝，以防止简坕的DOS攻击。
+# net.ipv4.tcp_tw_recycle 已从Linux 4.12中删除。请改用net.ipv4.tcp_tw_reuse。
+net.ipv4.tcp_max_tw_buckets = 14400
+net.ipv4.tcp_tw_reuse = 1
+
+# accept_source_route 选项使网络接坣接块设置了严格溝路由（SSR）或松散溝路由（LSR）选项的数杮包。
+# 以下设置将丢弃设置了SSR或LSR选项的数杮包。
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+
+# 打开坝坑路径过滤
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+
+# 禝用ICMP針定坑接块
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+
+# 禝止坑逝所有IPv4 ICMP針定坑数杮包。
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+
+# 开坯IP转坑.
+net.ipv4.ip_forward = 1
+
+# 禝止IPv6
+net.ipv6.conf.lo.disable_ipv6=1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+
+# 覝求iptables丝对bridge的数杮进行处睆
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-arptables = 1
+
+# arp缓存
+# 存在于 ARP 高速缓存中的最少层数，如果少于这个数，垃圾收集器将丝会违行。缺眝值是 128
+net.ipv4.neigh.default.gc_thresh1=2048
+# 保存在 ARP 高速缓存中的最多的记录软陝制。垃圾收集器在开始收集剝，兝许记录数超过这个数字 5 秒。缺眝值是 512
+net.ipv4.neigh.default.gc_thresh2=4096
+# 保存在 ARP 高速缓存中的最多记录的硬陝制，一旦高速缓存中的数目高于此，垃圾收集器将马上违行。缺眝值是 1024
+net.ipv4.neigh.default.gc_thresh3=8192
+
+# 挝久连接
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 10
+
+# conntrack表
+net.nf_conntrack_max=1048576
+net.netfilter.nf_conntrack_max=1048576
+net.netfilter.nf_conntrack_buckets=262144
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait=30
+net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
+net.netfilter.nf_conntrack_tcp_timeout_close_wait=15
+net.netfilter.nf_conntrack_tcp_timeout_established=300
+
+#############################################################################################
+# 调整内核坂数
+#############################################################################################
+
+# 地址空间布局隝机化（ASLR）是一秝用于擝作系统的内存保护过程，坯防止缓冲区溢出攻击。
+# 这有助于确保与系统上正在违行的进程相关蝔的内存地址丝坯预测，
+# 因此，与这些浝程相关的缺陷或漝洞将更加难以利用。
+# Accepted values: 0 = 关闭, 1 = 保守隝机化, 2 = 完全隝机化
+kernel.randomize_va_space = 2
+
+# 调高 PID 数針
+kernel.pid_max = 65536
+kernel.threads-max=30938
+
+# coredump
+kernel.core_pattern=core
+
+# 决定了检测到soft lockup时是坦自动panic，缺眝值是0
+kernel.softlockup_all_cpu_backtrace=1
+kernel.softlockup_panic=1
+EOF
+
+    cat  >> /etc/bashrc <<EOF
+## Kainstall managed start
+# history actions record，include action time, user, login ip
+HISTFILESIZE=5000
+HISTSIZE=5000
+USER_IP=\$(who -u am i 2>/dev/null | awk '"'"'{print \$NF}'"'"' | sed -e '"'"'s/[()]//g'"'"')
+if [ -z \$USER_IP ]
+then
+  USER_IP=\$(hostname -i)
+fi
+HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S \$USER_IP:\$(whoami) "
+export HISTFILESIZE HISTSIZE HISTTIMEFORMAT
+
+# PS1
+PS1='"'"'\[\033[0m\]\[\033[1;36m\][\u\[\033[0m\]@\[\033[1;32m\]\h\[\033[0m\] \[\033[1;31m\]\w\[\033[0m\]\[\033[1;36m\]]\[\033[33;1m\]\\$ \[\033[0m\]'"'"'
+## Kainstall managed end
+EOF
+
+    mkdir -p /var/log/journal /etc/systemd/journald.conf.d;
+    cat  > /etc/systemd/journald.conf.d/99-prophet.conf <<EOF
+[Journal]
+# 挝久化保存到磝盘
+Storage=persistent
+# 压缩历坲日志
+Compress=yes
+SyncIntervalSec=5m
+RateLimitInterval=30s
+RateLimitBurst=1000
+# 最大坠用空间 10G
+SystemMaxUse=10G
+# 坕日志文件最大 200M
+SystemMaxFileSize=200M
+# 日志保存时间 3 周
+MaxRetentionSec=3week
+# 丝将日志转坑到 syslog
+ForwardToSyslog=no
+EOF
+
+    cat  > /etc/profile.d/zz-ssh-login-info.sh <<EOF
+#!/bin/sh
+#
+# @Time    : 2020-02-04
+# @Author  : lework
+# @Desc    : ssh login banner
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\$PATH
+shopt -q login_shell && : || return 0
+echo -e "\033[0;32m
+ ██╗  ██╗ █████╗ ███████╗
+ ██║ ██╔╝██╔╝╝██╗██╔╝╝╝╝╝
+ █████╔╝ ╚█████╔╝███████╗
+ ██╔╝██╗ ██╔╝╝██╗╚╝╝╝╝██║
+ ██║  ██╗╚█████╔╝███████║
+ ╚╝╝  ╚╝╝ ╚╝╝╝╝╝ ╚╝╝╝╝╝╝ by kainstall\033[0m"
+
+# os
+upSeconds="\$(cut -d. -f1 /proc/uptime)"
+secs=\$((\${upSeconds}%60))
+mins=\$((\${upSeconds}/60%60))
+hours=\$((\${upSeconds}/3600%24))
+days=\$((\${upSeconds}/86400))
+UPTIME_INFO=\$(printf "%d days, %02dh %02dm %02ds" "\$days" "\$hours" "\$mins" "\$secs")
+
+if [ -f /etc/redhat-release ] ; then
+    PRETTY_NAME=\$(< /etc/redhat-release)
+
+elif [ -f /etc/debian_version ]; then
+   DIST_VER=\$(</etc/debian_version)
+   PRETTY_NAME="\$(grep PRETTY_NAME /etc/os-release | sed -e '"'"'s/PRETTY_NAME=//g'"'"' -e  '"'"'s/"//g'"'"') (\$DIST_VER)"
+
+else
+    PRETTY_NAME=\$(cat /etc/*-release | grep "PRETTY_NAME" | sed -e '"'"'s/PRETTY_NAME=//g'"'"' -e '"'"'s/"//g'"'"')
+fi
+
+if [[ -d "/system/app/" && -d "/system/priv-app" ]]; then
+    model="\$(getprop ro.product.brand) \$(getprop ro.product.model)"
+
+elif [[ -f /sys/devices/virtual/dmi/id/product_name ||
+        -f /sys/devices/virtual/dmi/id/product_version ]]; then
+    model="\$(< /sys/devices/virtual/dmi/id/product_name)"
+    model+=" \$(< /sys/devices/virtual/dmi/id/product_version)"
+
+elif [[ -f /sys/firmware/devicetree/base/model ]]; then
+    model="\$(< /sys/firmware/devicetree/base/model)"
+
+elif [[ -f /tmp/sysinfo/model ]]; then
+    model="\$(< /tmp/sysinfo/model)"
+fi
+
+MODEL_INFO=\${model}
+KERNEL=\$(uname -srmo)
+USER_NUM=\$(who -u | wc -l)
+RUNNING=\$(ps ax | wc -l | tr -d " ")
+
+# disk
+totaldisk=\$(df -h -x devtmpfs -x tmpfs -x debugfs -x aufs -x overlay --total 2>/dev/null | tail -1)
+disktotal=\$(awk '"'"'{print \$2}'"'"' <<< "\${totaldisk}")
+diskused=\$(awk '"'"'{print \$3}'"'"' <<< "\${totaldisk}")
+diskusedper=\$(awk '"'"'{print \$5}'"'"' <<< "\${totaldisk}")
+DISK_INFO="\033[0;33m\${diskused}\033[0m of \033[1;34m\${disktotal}\033[0m disk space used (\033[0;33m\${diskusedper}\033[0m)"
+
+# cpu
+cpu=\$(awk -F'"'"':'"'"' '"'"'/^model name/ {print \$2}'"'"' /proc/cpuinfo | uniq | sed -e '"'"'s/^[ \t]*//'"'"')
+cpun=\$(grep -c '"'"'^processor'"'"' /proc/cpuinfo)
+cpuc=\$(grep '"'"'^cpu cores'"'"' /proc/cpuinfo | tail -1 | awk '"'"'{print \$4}'"'"')
+cpup=\$(grep '"'"'^physical id'"'"' /proc/cpuinfo | wc -l)
+CPU_INFO="\${cpu} \${cpup}P \${cpuc}C \${cpun}L"
+
+# get the load averages
+read one five fifteen rest < /proc/loadavg
+LOADAVG_INFO="\033[0;33m\${one}\033[0m / \${five} / \${fifteen} with \033[1;34m\$(( cpun*cpuc ))\033[0m core(s) at \033[1;34m\$(grep '"'"'^cpu MHz'"'"' /proc/cpuinfo | tail -1 | awk '"'"'{print \$4}'"'"')\033 MHz"
+
+# mem
+MEM_INFO="\$(cat /proc/meminfo | awk '"'"'/MemTotal:/{total=\$2/1024/1024;next} /MemAvailable:/{use=total-\$2/1024/1024; printf("\033[0;33m%.2fGiB\033[0m of \033[1;34m%.2fGiB\033[0m RAM used (\033[0;33m%.2f%%\033[0m)",use,total,(use/total)*100);}'"'"')"
+
+# network
+# extranet_ip=" and \$(curl -s ip.cip.cc)"
+IP_INFO="\$(ip a|grep -E '"'"'^[0-9]+: em*|^[0-9]+: eno*|^[0-9]+: enp*|^[0-9]+: ens*|^[0-9]+: eth*|^[0-9]+: wlp*'"'"' -A2|grep inet|awk -F '"'"' '"'"' '"'"'{print \$2}'"'"'|cut -f1 -d/|xargs echo)"
+
+# Container info
+CONTAINER_INFO="\$(sudo /usr/bin/crictl ps -a -o yaml 2> /dev/null | awk '"'"'/^  state: /{gsub("CONTAINER_", "", \$NF) ++S[\$NF]}END{for(m in S) printf "%s%s:%s ",substr(m,1,1),tolower(substr(m,2)),S[m]}'"'"')Images:\$(sudo /usr/bin/crictl images -q 2> /dev/null | wc -l)"
+
+# info
+echo -e "
+ Information as of: \033[1;34m\$(date +"%Y-%m-%d %T")\033[0m
+ 
+ \033[0;1;31mProduct\033[0m............: \${MODEL_INFO}
+ \033[0;1;31mOS\033[0m.................: \${PRETTY_NAME}
+ \033[0;1;31mKernel\033[0m.............: \${KERNEL}
+ \033[0;1;31mCPU\033[0m................: \${CPU_INFO}
+
+ \033[0;1;31mHostname\033[0m...........: \033[1;34m\$(hostname)\033[0m
+ \033[0;1;31mIP Addresses\033[0m.......: \033[1;34m\${IP_INFO}\033[0m
+
+ \033[0;1;31mUptime\033[0m.............: \033[0;33m\${UPTIME_INFO}\033[0m
+ \033[0;1;31mMemory\033[0m.............: \${MEM_INFO}
+ \033[0;1;31mLoad Averages\033[0m......: \${LOADAVG_INFO}
+ \033[0;1;31mDisk Usage\033[0m.........: \${DISK_INFO} 
+
+ \033[0;1;31mUsers online\033[0m.......: \033[1;34m\${USER_NUM}\033[0m
+ \033[0;1;31mRunning Processes\033[0m..: \033[1;34m\${RUNNING}\033[0m
+ \033[0;1;31mContainer Info\033[0m.....: \${CONTAINER_INFO}
+"
+EOF
+
+    chmod +x /etc/profile.d/zz-ssh-login-info.sh;
+    echo '"'"'ALL ALL=(ALL) NOPASSWD:/usr/bin/crictl'"'"' > /etc/sudoers.d/crictl;
+    ntpd --help > /dev/null 2>&1 && yum remove -y ntp;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y chrony;
+    [ ! -f /etc/chrony.conf_bak ] && cp /etc/chrony.conf{,_bak};
+    cat  > /etc/chrony.conf <<EOF
+server ntp.aliyun.com iburst
+server cn.ntp.org.cn iburst
+server ntp.shu.edu.cn iburst
+server 0.cn.pool.ntp.org iburst
+server 1.cn.pool.ntp.org iburst
+server 2.cn.pool.ntp.org iburst
+server 3.cn.pool.ntp.org iburst
+
+driftfile /var/lib/chrony/drift
+makestep 1.0 3
+logdir /var/log/chrony
+EOF
+
+    timedatectl set-timezone Asia/Shanghai;
+    chronyd -q -t 1 '"'"'server cn.pool.ntp.org iburst maxsamples 1'"'"';
+    systemctl enable chronyd;
+    systemctl start chronyd;
+    chronyc sources -v;
+    chronyc sourcestats;
+    hwclock --systohc;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y curl wget;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y ipvsadm ipset sysstat conntrack libseccomp;
+    module=(ip_vs ip_vs_rr ip_vs_wrr ip_vs_sh overlay nf_conntrack br_netfilter);
+    [ -f /etc/modules-load.d/ipvs.conf ] && cp -f /etc/modules-load.d/ipvs.conf{,_bak};
+    for kernel_module in "${module[@]}";
+    do
+        /sbin/modinfo -F filename "$kernel_module" 2>&1 | grep -qv ERROR && echo "$kernel_module" >> /etc/modules-load.d/ipvs.conf;
+    done;
+    systemctl restart systemd-modules-load;
+    systemctl enable systemd-modules-load;
+    sysctl --system;
+    [[ "${OFFLINE_TAG:-}" != "1" ]] && yum install -y audit audit-libs;
+    cat  >> /etc/audit/rules.d/audit.rules <<EOF
+## Kainstall managed start
+# Ignore errors
+-i
+
+# SYSCALL
+-a always,exit -F arch=b64 -S kill,tkill,tgkill -F a1=9 -F key=trace_kill_9
+-a always,exit -F arch=b64 -S kill,tkill,tgkill -F a1=15 -F key=trace_kill_15
+
+# docker
+-w /usr/bin/dockerd -k docker
+-w /var/lib/docker -k docker
+-w /etc/docker -k docker
+-w /usr/lib/systemd/system/docker.service -k docker
+-w /etc/systemd/system/docker.service -k docker
+-w /usr/lib/systemd/system/docker.socket -k docker
+-w /etc/default/docker -k docker
+-w /etc/sysconfig/docker -k docker
+-w /etc/docker/daemon.json -k docker
+
+# containerd
+-w /usr/bin/containerd -k containerd
+-w /var/lib/containerd -k containerd
+-w /usr/lib/systemd/system/containerd.service -k containerd
+-w /etc/containerd/config.toml -k containerd
+
+# cri-o
+-w /usr/bin/crio -k cri-o
+-w /etc/crio -k cri-o
+
+# runc 
+-w /usr/bin/runc -k runc
+
+# kube
+-w /usr/bin/kubeadm -k kubeadm
+-w /usr/bin/kubelet -k kubelet
+-w /usr/bin/kubectl -k kubectl
+-w /var/lib/kubelet -k kubelet
+-w /etc/kubernetes -k kubernetes
+## Kainstall managed end
+EOF
+
+    chmod 600 /etc/audit/rules.d/audit.rules;
+    sed -i '"'"'s#max_log_file =.*#max_log_file = 80#g'"'"' /etc/audit/auditd.conf;
+    if [ -f /usr/libexec/initscripts/legacy-actions/auditd/restart ]; then
+        /usr/libexec/initscripts/legacy-actions/auditd/restart;
+    else
+        systemctl stop auditd && systemctl start auditd;
+    fi;
+    systemctl enable auditd;
+    grep single-request-reopen /etc/resolv.conf || sed -i '"'"'1ioptions timeout:2 attempts:3 rotate single-request-reopen'"'"' /etc/resolv.conf;
+    ipvsadm --clear;
+    iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+}
+      script::init_node
+    '
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+setenforce: SELinux is disabled
+vm.swappiness = 0
+2023-05-04T14:50:18Z chronyd version 3.4 starting (+CMDMON +NTP +REFCLOCK +RTC +PRIVDROP +SCFILTER +SIGND +ASYNCDNS +SECHASH +IPV6 +DEBUG)
+2023-05-04T14:50:18Z Fatal error : Another chronyd may already be running (pid=406), check /var/run/chrony/chronyd.pid
+210 Number of sources = 0
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current synced, '+' = combined , '-' = not combined,
+| /   '?' = unreachable, 'x' = time may be in error, '~' = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+===============================================================================
+210 Number of sources = 0
+Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
+==============================================================================
+* Applying /usr/lib/sysctl.d/00-system.conf ...
+net.bridge.bridge-nf-call-ip6tables = 0
+net.bridge.bridge-nf-call-iptables = 0
+net.bridge.bridge-nf-call-arptables = 0
+* Applying /usr/lib/sysctl.d/10-default-yama-scope.conf ...
+* Applying /usr/lib/sysctl.d/50-default.conf ...
+kernel.sysrq = 16
+kernel.core_uses_pid = 1
+kernel.kptr_restrict = 1
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.promote_secondaries = 1
+net.ipv4.conf.all.promote_secondaries = 1
+fs.protected_hardlinks = 1
+fs.protected_symlinks = 1
+* Applying /etc/sysctl.d/99-kube.conf ...
+vm.swappiness = 0
+vm.overcommit_memory = 1
+vm.panic_on_oom = 0
+vm.dirty_background_ratio = 5
+vm.dirty_ratio = 60
+vm.max_map_count = 2097152
+fs.file-max = 2097152
+fs.nr_open = 2097152
+fs.suid_dumpable = 0
+fs.aio-max-nr = 10000000
+sysctl: setting key "fs.aio-nr": No such file or directory
+fs.inotify.max_user_instances = 8192
+fs.inotify.max_user_watches = 524288
+fs.inotify.max_queued_events = 16384
+net.core.wmem_default = 25165824
+net.core.rmem_default = 25165824
+net.core.wmem_max = 25165824
+net.core.rmem_max = 25165824
+net.ipv4.tcp_wmem = 20480 12582912 25165824
+net.ipv4.tcp_rmem = 20480 12582912 25165824
+net.ipv4.tcp_mem = 65536 25165824 262144
+net.ipv4.udp_mem = 65536 25165824 262144
+net.ipv4.udp_wmem_min = 16384
+net.ipv4.udp_rmem_min = 16384
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_max_syn_backlog = 10240
+net.core.netdev_max_backlog = 65536
+net.core.optmem_max = 25165824
+net.ipv4.tcp_synack_retries = 2
+net.ipv4.ip_local_port_range = 2048 65535
+net.ipv4.tcp_rfc1337 = 1
+net.ipv4.tcp_fin_timeout = 15
+net.core.somaxconn = 32768
+net.ipv4.tcp_syncookies = 1
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.conf.default.log_martians = 1
+net.ipv4.tcp_max_orphans = 65536
+net.ipv4.tcp_no_metrics_save = 1
+net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_sack = 1
+net.ipv4.tcp_max_tw_buckets = 14400
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.ip_forward = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-arptables = 1
+net.ipv4.neigh.default.gc_thresh1 = 2048
+net.ipv4.neigh.default.gc_thresh2 = 4096
+net.ipv4.neigh.default.gc_thresh3 = 8192
+net.ipv4.tcp_keepalive_time = 600
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 10
+net.nf_conntrack_max = 1048576
+net.netfilter.nf_conntrack_max = 1048576
+net.netfilter.nf_conntrack_buckets = 262144
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 30
+net.netfilter.nf_conntrack_tcp_timeout_time_wait = 30
+net.netfilter.nf_conntrack_tcp_timeout_close_wait = 15
+net.netfilter.nf_conntrack_tcp_timeout_established = 300
+kernel.randomize_va_space = 2
+kernel.pid_max = 65536
+kernel.threads-max = 30938
+kernel.core_pattern = core
+kernel.softlockup_all_cpu_backtrace = 1
+kernel.softlockup_panic = 1
+* Applying /etc/sysctl.d/99-sysctl.conf ...
+net.ipv4.ip_forward = 1
+* Applying /etc/sysctl.d/k8s.conf ...
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+sysctl: /etc/sysctl.d/k8s.conf(3): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(4): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(6): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(7): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(8): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(9): invalid syntax, continuing...
+sysctl: /etc/sysctl.d/k8s.conf(10): invalid syntax, continuing...
+* Applying /etc/sysctl.conf ...
+net.ipv4.ip_forward = 1
+Stopping logging: [  OK  ]
+Redirecting start to /bin/systemctl start auditd.service
+options timeout:2 attempts:3 rotate single-request-reopen
+[2023-05-04T22:50:22.485101987+0800]: [32mINFO:    [0m[init] init worker 10.50.10.23 succeeded.
+[2023-05-04T22:50:22.497855435+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c '
+      printf "\n127.0.0.1 apiserver.cluster.local\n\n10.50.10.21 k8s-master-node1\n10.50.10.22 k8s-worker-node1\n10.50.10.23 k8s-worker-node2" >> /etc/hosts
+      hostnamectl set-hostname k8s-worker-node2
+    '
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:28.657024074+0800]: [32mINFO:    [0m[install] install containerd on 10.50.10.21.
+[2023-05-04T22:50:28.669503611+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+      export OFFLINE_TAG=1
+      script::install_containerd () 
+{ 
+    local version="-${1:-latest}";
+    version="${version#-latest}";
+    cat  > /etc/yum.repos.d/docker-ce.repo <<EOF
+[docker-ce-stable]
+name=Docker CE Stable - \$basearch
+baseurl=https://mirrors.aliyun.com/docker-ce/linux/centos/$(rpm --eval '"'"'%{centos_ver}'"'"')/\$basearch/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/docker-ce/linux/centos/gpg
+EOF
+
+    if [[ "${OFFLINE_TAG:-}" != "1" ]]; then
+        [ -f "$(which runc)" ] && yum remove -y runc;
+        [ -f "$(which containerd)" ] && yum remove -y containerd.io;
+        yum install -y containerd.io"${version}" containernetworking bash-completion;
+    fi;
+    [ -d /etc/bash_completion.d ] && crictl completion bash > /etc/bash_completion.d/crictl;
+    containerd config default > /etc/containerd/config.toml;
+    sed -i -e "s#k8s.gcr.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" -e "s#registry.k8s.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" -e "s#https://registry-1.docker.io#https://yssx4sxy.mirror.aliyuncs.com#g" -e "s#SystemdCgroup = false#SystemdCgroup = true#g" -e "s#oom_score = 0#oom_score = -999#" -e "s#max_concurrent_downloads = 3#max_concurrent_downloads = 10#g" /etc/containerd/config.toml;
+    grep docker.io /etc/containerd/config.toml || sed -i -e "/registry.mirrors]/a\ \ \ \ \ \ \ \ [plugins.\"io.containerd.grpc.v1.cri\".registry.mirrors.\"docker.io\"]\n           endpoint = [\"https://yssx4sxy.mirror.aliyuncs.com\"]" /etc/containerd/config.toml;
+    cat  > /etc/crictl.yaml <<EOF
+runtime-endpoint: unix:///run/containerd/containerd.sock
+image-endpoint: unix:///run/containerd/containerd.sock
+timeout: 2
+debug: false
+pull-image-on-create: true
+disable-pull-on-run: false
+EOF
+
+    systemctl restart containerd;
+    systemctl enable containerd
+}
+      script::install_containerd latest
+    '
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:29.054755404+0800]: [32mINFO:    [0m[install] install containerd on 10.50.10.21 succeeded.
+[2023-05-04T22:50:29.057095154+0800]: [32mINFO:    [0m[install] install kube on 10.50.10.21
+[2023-05-04T22:50:29.069248301+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+      export OFFLINE_TAG=1
+      script::install_kube () 
+{ 
+    local version="-${1:-latest}";
+    version="${version#-latest}";
+    cat  > /etc/yum.repos.d/kubernetes.repo <<EOF
+[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+
+    if [[ "${OFFLINE_TAG:-}" != "1" ]]; then
+        [ -f /usr/bin/kubeadm ] && yum remove -y kubeadm;
+        [ -f /usr/bin/kubelet ] && yum remove -y kubelet;
+        [ -f /usr/bin/kubectl ] && yum remove -y kubectl;
+        yum install -y "kubeadm${version}" "kubelet${version}" "kubectl${version}" --disableexcludes=kubernetes;
+    fi;
+    [ -d /etc/bash_completion.d ] && { 
+        kubectl completion bash > /etc/bash_completion.d/kubectl;
+        kubeadm completion bash > /etc/bash_completion.d/kubadm
+    };
+    [ ! -d /usr/lib/systemd/system/kubelet.service.d ] && mkdir -p /usr/lib/systemd/system/kubelet.service.d;
+    cat  > /usr/lib/systemd/system/kubelet.service.d/11-cgroup.conf <<EOF
+[Service]
+CPUAccounting=true
+MemoryAccounting=true
+BlockIOAccounting=true
+ExecStartPre=/bin/bash -c '"'"'/bin/mkdir -p /sys/fs/cgroup/{cpuset,memory,hugetlb,systemd,pids,"cpu,cpuacct"}/{system,kube,kubepods}.slice||:'"'"'
+Slice=kube.slice
+EOF
+
+    systemctl daemon-reload;
+    systemctl enable kubelet;
+    systemctl restart kubelet
+}
+      script::install_kube 1.22.10
+    '
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:29.516738277+0800]: [32mINFO:    [0m[install] install kube on 10.50.10.21 succeeded.
+[2023-05-04T22:50:29.520199119+0800]: [32mINFO:    [0m[install] install containerd on 10.50.10.22.
+[2023-05-04T22:50:29.535151848+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c '
+      export OFFLINE_TAG=1
+      script::install_containerd () 
+{ 
+    local version="-${1:-latest}";
+    version="${version#-latest}";
+    cat  > /etc/yum.repos.d/docker-ce.repo <<EOF
+[docker-ce-stable]
+name=Docker CE Stable - \$basearch
+baseurl=https://mirrors.aliyun.com/docker-ce/linux/centos/$(rpm --eval '"'"'%{centos_ver}'"'"')/\$basearch/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/docker-ce/linux/centos/gpg
+EOF
+
+    if [[ "${OFFLINE_TAG:-}" != "1" ]]; then
+        [ -f "$(which runc)" ] && yum remove -y runc;
+        [ -f "$(which containerd)" ] && yum remove -y containerd.io;
+        yum install -y containerd.io"${version}" containernetworking bash-completion;
+    fi;
+    [ -d /etc/bash_completion.d ] && crictl completion bash > /etc/bash_completion.d/crictl;
+    containerd config default > /etc/containerd/config.toml;
+    sed -i -e "s#k8s.gcr.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" -e "s#registry.k8s.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" -e "s#https://registry-1.docker.io#https://yssx4sxy.mirror.aliyuncs.com#g" -e "s#SystemdCgroup = false#SystemdCgroup = true#g" -e "s#oom_score = 0#oom_score = -999#" -e "s#max_concurrent_downloads = 3#max_concurrent_downloads = 10#g" /etc/containerd/config.toml;
+    grep docker.io /etc/containerd/config.toml || sed -i -e "/registry.mirrors]/a\ \ \ \ \ \ \ \ [plugins.\"io.containerd.grpc.v1.cri\".registry.mirrors.\"docker.io\"]\n           endpoint = [\"https://yssx4sxy.mirror.aliyuncs.com\"]" /etc/containerd/config.toml;
+    cat  > /etc/crictl.yaml <<EOF
+runtime-endpoint: unix:///run/containerd/containerd.sock
+image-endpoint: unix:///run/containerd/containerd.sock
+timeout: 2
+debug: false
+pull-image-on-create: true
+disable-pull-on-run: false
+EOF
+
+    systemctl restart containerd;
+    systemctl enable containerd
+}
+      script::install_containerd latest
+    '
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:30.082780528+0800]: [32mINFO:    [0m[install] install containerd on 10.50.10.22 succeeded.
+[2023-05-04T22:50:30.085998146+0800]: [32mINFO:    [0m[install] install kube on 10.50.10.22
+[2023-05-04T22:50:30.101237017+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c '
+      export OFFLINE_TAG=1
+      script::install_kube () 
+{ 
+    local version="-${1:-latest}";
+    version="${version#-latest}";
+    cat  > /etc/yum.repos.d/kubernetes.repo <<EOF
+[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+
+    if [[ "${OFFLINE_TAG:-}" != "1" ]]; then
+        [ -f /usr/bin/kubeadm ] && yum remove -y kubeadm;
+        [ -f /usr/bin/kubelet ] && yum remove -y kubelet;
+        [ -f /usr/bin/kubectl ] && yum remove -y kubectl;
+        yum install -y "kubeadm${version}" "kubelet${version}" "kubectl${version}" --disableexcludes=kubernetes;
+    fi;
+    [ -d /etc/bash_completion.d ] && { 
+        kubectl completion bash > /etc/bash_completion.d/kubectl;
+        kubeadm completion bash > /etc/bash_completion.d/kubadm
+    };
+    [ ! -d /usr/lib/systemd/system/kubelet.service.d ] && mkdir -p /usr/lib/systemd/system/kubelet.service.d;
+    cat  > /usr/lib/systemd/system/kubelet.service.d/11-cgroup.conf <<EOF
+[Service]
+CPUAccounting=true
+MemoryAccounting=true
+BlockIOAccounting=true
+ExecStartPre=/bin/bash -c '"'"'/bin/mkdir -p /sys/fs/cgroup/{cpuset,memory,hugetlb,systemd,pids,"cpu,cpuacct"}/{system,kube,kubepods}.slice||:'"'"'
+Slice=kube.slice
+EOF
+
+    systemctl daemon-reload;
+    systemctl enable kubelet;
+    systemctl restart kubelet
+}
+      script::install_kube 1.22.10
+    '
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:30.467771945+0800]: [32mINFO:    [0m[install] install kube on 10.50.10.22 succeeded.
+[2023-05-04T22:50:30.470922057+0800]: [32mINFO:    [0m[install] install containerd on 10.50.10.23.
+[2023-05-04T22:50:30.485832348+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c '
+      export OFFLINE_TAG=1
+      script::install_containerd () 
+{ 
+    local version="-${1:-latest}";
+    version="${version#-latest}";
+    cat  > /etc/yum.repos.d/docker-ce.repo <<EOF
+[docker-ce-stable]
+name=Docker CE Stable - \$basearch
+baseurl=https://mirrors.aliyun.com/docker-ce/linux/centos/$(rpm --eval '"'"'%{centos_ver}'"'"')/\$basearch/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/docker-ce/linux/centos/gpg
+EOF
+
+    if [[ "${OFFLINE_TAG:-}" != "1" ]]; then
+        [ -f "$(which runc)" ] && yum remove -y runc;
+        [ -f "$(which containerd)" ] && yum remove -y containerd.io;
+        yum install -y containerd.io"${version}" containernetworking bash-completion;
+    fi;
+    [ -d /etc/bash_completion.d ] && crictl completion bash > /etc/bash_completion.d/crictl;
+    containerd config default > /etc/containerd/config.toml;
+    sed -i -e "s#k8s.gcr.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" -e "s#registry.k8s.io#registry.cn-hangzhou.aliyuncs.com/kainstall#g" -e "s#https://registry-1.docker.io#https://yssx4sxy.mirror.aliyuncs.com#g" -e "s#SystemdCgroup = false#SystemdCgroup = true#g" -e "s#oom_score = 0#oom_score = -999#" -e "s#max_concurrent_downloads = 3#max_concurrent_downloads = 10#g" /etc/containerd/config.toml;
+    grep docker.io /etc/containerd/config.toml || sed -i -e "/registry.mirrors]/a\ \ \ \ \ \ \ \ [plugins.\"io.containerd.grpc.v1.cri\".registry.mirrors.\"docker.io\"]\n           endpoint = [\"https://yssx4sxy.mirror.aliyuncs.com\"]" /etc/containerd/config.toml;
+    cat  > /etc/crictl.yaml <<EOF
+runtime-endpoint: unix:///run/containerd/containerd.sock
+image-endpoint: unix:///run/containerd/containerd.sock
+timeout: 2
+debug: false
+pull-image-on-create: true
+disable-pull-on-run: false
+EOF
+
+    systemctl restart containerd;
+    systemctl enable containerd
+}
+      script::install_containerd latest
+    '
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:30.873602860+0800]: [32mINFO:    [0m[install] install containerd on 10.50.10.23 succeeded.
+[2023-05-04T22:50:30.876763118+0800]: [32mINFO:    [0m[install] install kube on 10.50.10.23
+[2023-05-04T22:50:30.891216368+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c '
+      export OFFLINE_TAG=1
+      script::install_kube () 
+{ 
+    local version="-${1:-latest}";
+    version="${version#-latest}";
+    cat  > /etc/yum.repos.d/kubernetes.repo <<EOF
+[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+
+    if [[ "${OFFLINE_TAG:-}" != "1" ]]; then
+        [ -f /usr/bin/kubeadm ] && yum remove -y kubeadm;
+        [ -f /usr/bin/kubelet ] && yum remove -y kubelet;
+        [ -f /usr/bin/kubectl ] && yum remove -y kubectl;
+        yum install -y "kubeadm${version}" "kubelet${version}" "kubectl${version}" --disableexcludes=kubernetes;
+    fi;
+    [ -d /etc/bash_completion.d ] && { 
+        kubectl completion bash > /etc/bash_completion.d/kubectl;
+        kubeadm completion bash > /etc/bash_completion.d/kubadm
+    };
+    [ ! -d /usr/lib/systemd/system/kubelet.service.d ] && mkdir -p /usr/lib/systemd/system/kubelet.service.d;
+    cat  > /usr/lib/systemd/system/kubelet.service.d/11-cgroup.conf <<EOF
+[Service]
+CPUAccounting=true
+MemoryAccounting=true
+BlockIOAccounting=true
+ExecStartPre=/bin/bash -c '"'"'/bin/mkdir -p /sys/fs/cgroup/{cpuset,memory,hugetlb,systemd,pids,"cpu,cpuacct"}/{system,kube,kubepods}.slice||:'"'"'
+Slice=kube.slice
+EOF
+
+    systemctl daemon-reload;
+    systemctl enable kubelet;
+    systemctl restart kubelet
+}
+      script::install_kube 1.22.10
+    '
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:31.289316605+0800]: [32mINFO:    [0m[install] install kube on 10.50.10.23 succeeded.
+[2023-05-04T22:50:31.292675829+0800]: [32mINFO:    [0m[install] install haproxy on 10.50.10.22
+[2023-05-04T22:50:31.308014716+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c '
+      export OFFLINE_TAG=1
+      script::install_haproxy () 
+{ 
+    local api_servers="$*";
+    if [[ "${OFFLINE_TAG:-}" != "1" ]]; then
+        [ -f /usr/bin/haproxy ] && yum remove -y haproxy;
+        yum install -y haproxy;
+    fi;
+    [ ! -f /etc/haproxy/haproxy.cfg_bak ] && cp /etc/haproxy/haproxy.cfg{,_bak};
+    cat  > /etc/haproxy/haproxy.cfg <<EOF
+global
+  log /dev/log    local0
+  log /dev/log    local1 notice
+  tune.ssl.default-dh-param 2048
+
+defaults
+  log global
+  mode http
+  option dontlognull
+  timeout connect 5000ms
+  timeout client 600000ms
+  timeout server 600000ms
+
+listen stats
+    bind :19090
+    mode http
+    balance
+    stats uri /haproxy_stats
+    stats auth admin:admin123
+    stats admin if TRUE
+
+frontend kube-apiserver-https
+   mode tcp
+   option tcplog
+   bind :6443
+   default_backend kube-apiserver-backend
+
+backend kube-apiserver-backend
+    mode tcp
+    balance roundrobin
+    stick-table type ip size 200k expire 30m
+    stick on src
+$(index=1;for h in $api_servers;do echo "    server apiserver${index} $h:6443 check";index=$((index+1));done)
+EOF
+
+    systemctl enable haproxy;
+    systemctl restart haproxy
+}
+      script::install_haproxy "10.50.10.21"
+  '
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:31.537797055+0800]: [32mINFO:    [0m[install] install haproxy on 10.50.10.22 succeeded.
+[2023-05-04T22:50:31.540814899+0800]: [32mINFO:    [0m[install] install haproxy on 10.50.10.23
+[2023-05-04T22:50:31.556584844+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c '
+      export OFFLINE_TAG=1
+      script::install_haproxy () 
+{ 
+    local api_servers="$*";
+    if [[ "${OFFLINE_TAG:-}" != "1" ]]; then
+        [ -f /usr/bin/haproxy ] && yum remove -y haproxy;
+        yum install -y haproxy;
+    fi;
+    [ ! -f /etc/haproxy/haproxy.cfg_bak ] && cp /etc/haproxy/haproxy.cfg{,_bak};
+    cat  > /etc/haproxy/haproxy.cfg <<EOF
+global
+  log /dev/log    local0
+  log /dev/log    local1 notice
+  tune.ssl.default-dh-param 2048
+
+defaults
+  log global
+  mode http
+  option dontlognull
+  timeout connect 5000ms
+  timeout client 600000ms
+  timeout server 600000ms
+
+listen stats
+    bind :19090
+    mode http
+    balance
+    stats uri /haproxy_stats
+    stats auth admin:admin123
+    stats admin if TRUE
+
+frontend kube-apiserver-https
+   mode tcp
+   option tcplog
+   bind :6443
+   default_backend kube-apiserver-backend
+
+backend kube-apiserver-backend
+    mode tcp
+    balance roundrobin
+    stick-table type ip size 200k expire 30m
+    stick on src
+$(index=1;for h in $api_servers;do echo "    server apiserver${index} $h:6443 check";index=$((index+1));done)
+EOF
+
+    systemctl enable haproxy;
+    systemctl restart haproxy
+}
+      script::install_haproxy "10.50.10.21"
+  '
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:31.767310985+0800]: [32mINFO:    [0m[install] install haproxy on 10.50.10.23 succeeded.
+[2023-05-04T22:50:31.771065296+0800]: [32mINFO:    [0m[install] download kubeadm 10 years certs client
+[2023-05-04T22:50:31.777761394+0800]: [32mINFO:    [0m[download] kubeadm-linux-amd64
+[2023-05-04T22:50:31.791530764+0800]: [34mEXEC:    [0m[command] bash -c '
+    set -e
+    if [ ! -f "/tmp/kainstall-offline-file//bins/kubeadm-linux-amd64" ]; then
+      [ ! -d "/tmp/kainstall-offline-file//bins" ] && mkdir -pv "/tmp/kainstall-offline-file//bins" 
+      wget --timeout=10 --waitretry=3 --tries=5 --retry-connrefused --no-check-certificate "https://ghproxy.com/https://github.com/lework/kubeadm-certs/releases/download/v1.22.10/kubeadm-linux-amd64" -O "/tmp/kainstall-offline-file//bins/kubeadm-linux-amd64"
+      if [[ "1" == "unzip" ]]; then
+        command -v unzip 2>/dev/null || yum install -y unzip
+        unzip -o "/tmp/kainstall-offline-file//bins/kubeadm-linux-amd64" -d "/tmp/kainstall-offline-file//bins"
+      fi
+    else
+      echo "/tmp/kainstall-offline-file//bins/kubeadm-linux-amd64 is exists!"
+    fi
+  '
+/tmp/kainstall-offline-file//bins/kubeadm-linux-amd64 is exists!
+[2023-05-04T22:50:31.798843032+0800]: [32mINFO:    [0m[download] kubeadm-linux-amd64 succeeded.
+[2023-05-04T22:50:31.802201162+0800]: [32mINFO:    [0m[install] scp kubeadm client to 10.50.10.21
+[2023-05-04T22:50:31.804881090+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall-offline-file//bins/kubeadm-linux-amd64 root@10.50.10.21:/tmp/kubeadm-linux-amd64
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:32.347682327+0800]: [32mINFO:    [0m[install] scp kubeadm client to 10.50.10.21 succeeded.
+[2023-05-04T22:50:32.359242759+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+        set -e
+        if [[ -f /tmp/kubeadm-linux-amd64 ]]; then
+        [[ -f /usr/bin/kubeadm && ! -f /usr/bin/kubeadm_src ]] && mv -fv /usr/bin/kubeadm{,_src}
+          mv -fv /tmp/kubeadm-linux-amd64 /usr/bin/kubeadm
+          chmod +x /usr/bin/kubeadm
+        else
+          echo "not found /tmp/kubeadm-linux-amd64"
+          exit 1
+        fi
+    '
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+‘/tmp/kubeadm-linux-amd64’ -> ‘/usr/bin/kubeadm’
+[2023-05-04T22:50:32.476437271+0800]: [32mINFO:    [0m[install] 10.50.10.21: use kubeadm 10 years certs client succeeded.
+[2023-05-04T22:50:32.478977754+0800]: [32mINFO:    [0m[install] scp kubeadm client to 10.50.10.22
+[2023-05-04T22:50:32.481120210+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall-offline-file//bins/kubeadm-linux-amd64 root@10.50.10.22:/tmp/kubeadm-linux-amd64
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:33.030681345+0800]: [32mINFO:    [0m[install] scp kubeadm client to 10.50.10.22 succeeded.
+[2023-05-04T22:50:33.043049542+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.22 -p 22 bash -c '
+        set -e
+        if [[ -f /tmp/kubeadm-linux-amd64 ]]; then
+        [[ -f /usr/bin/kubeadm && ! -f /usr/bin/kubeadm_src ]] && mv -fv /usr/bin/kubeadm{,_src}
+          mv -fv /tmp/kubeadm-linux-amd64 /usr/bin/kubeadm
+          chmod +x /usr/bin/kubeadm
+        else
+          echo "not found /tmp/kubeadm-linux-amd64"
+          exit 1
+        fi
+    '
+Warning: Permanently added '10.50.10.22' (ECDSA) to the list of known hosts.
+‘/tmp/kubeadm-linux-amd64’ -> ‘/usr/bin/kubeadm’
+[2023-05-04T22:50:33.166592720+0800]: [32mINFO:    [0m[install] 10.50.10.22: use kubeadm 10 years certs client succeeded.
+[2023-05-04T22:50:33.169084051+0800]: [32mINFO:    [0m[install] scp kubeadm client to 10.50.10.23
+[2023-05-04T22:50:33.171392307+0800]: [34mEXEC:    [0m[command] sshpass -p "vagrant" scp -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 22 -r /tmp/kainstall-offline-file//bins/kubeadm-linux-amd64 root@10.50.10.23:/tmp/kubeadm-linux-amd64
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:33.835523591+0800]: [32mINFO:    [0m[install] scp kubeadm client to 10.50.10.23 succeeded.
+[2023-05-04T22:50:33.849545968+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.23 -p 22 bash -c '
+        set -e
+        if [[ -f /tmp/kubeadm-linux-amd64 ]]; then
+        [[ -f /usr/bin/kubeadm && ! -f /usr/bin/kubeadm_src ]] && mv -fv /usr/bin/kubeadm{,_src}
+          mv -fv /tmp/kubeadm-linux-amd64 /usr/bin/kubeadm
+          chmod +x /usr/bin/kubeadm
+        else
+          echo "not found /tmp/kubeadm-linux-amd64"
+          exit 1
+        fi
+    '
+Warning: Permanently added '10.50.10.23' (ECDSA) to the list of known hosts.
+‘/tmp/kubeadm-linux-amd64’ -> ‘/usr/bin/kubeadm’
+[2023-05-04T22:50:33.980795660+0800]: [32mINFO:    [0m[install] 10.50.10.23: use kubeadm 10 years certs client succeeded.
+[2023-05-04T22:50:33.983705578+0800]: [32mINFO:    [0m[kubeadm init] kubeadm init on 10.50.10.21
+[2023-05-04T22:50:33.986366499+0800]: [32mINFO:    [0m[kubeadm init] 10.50.10.21: set kubeadmcfg.yaml
+[2023-05-04T22:50:44.061540783+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c '
+    PAUSE_VERSION=3.5
+    cat << EOF > /etc/kubernetes/kubeadmcfg.yaml
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: InitConfiguration
+nodeRegistration:
+  criSocket: unix:///run/containerd/containerd.sock
+  kubeletExtraArgs:
+    runtime-cgroups: /system.slice/containerd.service
+    pod-infra-container-image: registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.7
+
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+mode: ipvs
+ipvs:
+  minSyncPeriod: 5s
+  syncPeriod: 5s
+  # ipvs 负载策略
+  scheduler: '"'"'wrr'"'"'
+
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+maxPods: 200
+cgroupDriver: systemd
+runtimeRequestTimeout: 5m
+# 此酝置保话了 kubelet 能在 swap 开坯的情况下坯动
+failSwapOn: false
+nodeStatusUpdateFrequency: 5s
+rotateCertificates: true
+imageGCLowThresholdPercent: 70
+imageGCHighThresholdPercent: 80
+# 软驱逝阀值
+evictionSoft:
+  imagefs.available: 15%
+  memory.available: 512Mi
+  nodefs.available: 15%
+  nodefs.inodesFree: 10%
+# 达到软阈值之坎，挝续时间超过多久扝进行驱逝
+evictionSoftGracePeriod:
+  imagefs.available: 3m
+  memory.available: 1m
+  nodefs.available: 3m
+  nodefs.inodesFree: 1m
+# 硬驱逝阀值
+evictionHard:
+  imagefs.available: 10%
+  memory.available: 256Mi
+  nodefs.available: 10%
+  nodefs.inodesFree: 5%
+evictionMaxPodGracePeriod: 30
+# 节点资溝预留
+kubeReserved:
+  cpu: 200m$(if [[ $(cat /proc/meminfo | awk '"'"'/MemTotal/ {print $2}'"'"') -gt 3670016 ]]; then echo -e '"'"'\n  memory: 256Mi'"'"';fi)
+  ephemeral-storage: 1Gi
+systemReserved:
+  cpu: 300m$(if [[ $(cat /proc/meminfo | awk '"'"'/MemTotal/ {print $2}'"'"') -gt 3670016 ]]; then echo -e '"'"'\n  memory: 512Mi'"'"';fi)
+  ephemeral-storage: 1Gi
+kubeReservedCgroup: /kube.slice
+systemReservedCgroup: /system.slice
+enforceNodeAllocatable: 
+- pods
+
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+kubernetesVersion: 1.22.10
+controlPlaneEndpoint: apiserver.cluster.local:6443
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.244.0.0/16
+  serviceSubnet: 10.96.0.0/16
+imageRepository: registry.cn-hangzhou.aliyuncs.com/kainstall
+apiServer:
+  certSANs:
+  - 127.0.0.1
+  - apiserver.cluster.local
+  - 10.50.10.21
+  extraArgs:
+    event-ttl: '"'"'720h'"'"'
+    service-node-port-range: '"'"'30000-50000'"'"'
+    # 审计日志相关酝置
+    audit-log-maxage: '"'"'20'"'"'
+    audit-log-maxbackup: '"'"'10'"'"'
+    audit-log-maxsize: '"'"'100'"'"'
+    audit-log-path: /var/log/kube-audit/audit.log
+    audit-policy-file: /etc/kubernetes/audit-policy.yaml
+  extraVolumes:
+  - name: audit-config
+    hostPath: /etc/kubernetes/audit-policy.yaml
+    mountPath: /etc/kubernetes/audit-policy.yaml
+    readOnly: true
+    pathType: File
+  - name: audit-log
+    hostPath: /var/log/kube-audit
+    mountPath: /var/log/kube-audit
+    pathType: DirectoryOrCreate
+  - name: localtime
+    hostPath: /usr/share/zoneinfo/Asia/Shanghai
+    mountPath: /etc/localtime
+    readOnly: true
+    pathType: File
+controllerManager:
+  extraArgs:
+    bind-address: 0.0.0.0
+    node-cidr-mask-size: '"'"'24'"'"'
+    node-monitor-grace-period: '"'"'20s'"'"'
+    pod-eviction-timeout: '"'"'2m'"'"'
+    terminated-pod-gc-threshold: '"'"'30'"'"'
+    cluster-signing-duration: 87600h
+    feature-gates: RotateKubeletServerCertificate=true
+  extraVolumes:
+  - hostPath: /usr/share/zoneinfo/Asia/Shanghai
+    mountPath: /etc/localtime
+    name: localtime
+    readOnly: true
+    pathType: File
+scheduler:
+  extraArgs:
+    bind-address: 0.0.0.0
+  extraVolumes:
+  - hostPath: /usr/share/zoneinfo/Asia/Shanghai
+    mountPath: /etc/localtime
+    name: localtime
+    readOnly: true
+    pathType: File
+
+EOF'
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[2023-05-04T22:50:44.263491716+0800]: [32mINFO:    [0m[kubeadm init] 10.50.10.21: set kubeadmcfg.yaml succeeded.
+[2023-05-04T22:50:44.266232249+0800]: [32mINFO:    [0m[kubeadm init] 10.50.10.21: kubeadm init start.
+[2023-05-04T22:50:44.279918857+0800]: [34mEXEC:    [0m[command] sshpass -p "zzzzzz" ssh -o ConnectTimeout=600 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.50.10.21 -p 22 bash -c 'kubeadm init --config=/etc/kubernetes/kubeadmcfg.yaml --upload-certs'
+Warning: Permanently added '10.50.10.21' (ECDSA) to the list of known hosts.
+[init] Using Kubernetes version: v1.22.10
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+error execution phase preflight: [preflight] Some fatal errors occurred:
+	[ERROR ImagePull]: failed to pull image registry.cn-hangzhou.aliyuncs.com/kainstall/kube-apiserver:v1.22.10: output: E0504 22:51:44.975167   14497 remote_image.go:238] "PullImage from image service failed" err="rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-apiserver:v1.22.10\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-apiserver:v1.22.10\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/kube-apiserver/manifests/v1.22.10\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:41529->10.0.2.3:53: i/o timeout" image="registry.cn-hangzhou.aliyuncs.com/kainstall/kube-apiserver:v1.22.10"
+time="2023-05-04T22:51:44+08:00" level=fatal msg="pulling image: rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-apiserver:v1.22.10\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-apiserver:v1.22.10\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/kube-apiserver/manifests/v1.22.10\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:41529->10.0.2.3:53: i/o timeout"
+, error: exit status 1
+	[ERROR ImagePull]: failed to pull image registry.cn-hangzhou.aliyuncs.com/kainstall/kube-controller-manager:v1.22.10: output: E0504 22:52:45.262061   14616 remote_image.go:238] "PullImage from image service failed" err="rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-controller-manager:v1.22.10\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-controller-manager:v1.22.10\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/kube-controller-manager/manifests/v1.22.10\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:58745->10.0.2.3:53: i/o timeout" image="registry.cn-hangzhou.aliyuncs.com/kainstall/kube-controller-manager:v1.22.10"
+time="2023-05-04T22:52:45+08:00" level=fatal msg="pulling image: rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-controller-manager:v1.22.10\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-controller-manager:v1.22.10\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/kube-controller-manager/manifests/v1.22.10\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:58745->10.0.2.3:53: i/o timeout"
+, error: exit status 1
+	[ERROR ImagePull]: failed to pull image registry.cn-hangzhou.aliyuncs.com/kainstall/kube-scheduler:v1.22.10: output: E0504 22:53:45.582822   14719 remote_image.go:238] "PullImage from image service failed" err="rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-scheduler:v1.22.10\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-scheduler:v1.22.10\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/kube-scheduler/manifests/v1.22.10\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:62174->10.0.2.3:53: i/o timeout" image="registry.cn-hangzhou.aliyuncs.com/kainstall/kube-scheduler:v1.22.10"
+time="2023-05-04T22:53:45+08:00" level=fatal msg="pulling image: rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-scheduler:v1.22.10\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-scheduler:v1.22.10\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/kube-scheduler/manifests/v1.22.10\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:62174->10.0.2.3:53: i/o timeout"
+, error: exit status 1
+	[ERROR ImagePull]: failed to pull image registry.cn-hangzhou.aliyuncs.com/kainstall/kube-proxy:v1.22.10: output: E0504 22:54:46.023877   14835 remote_image.go:238] "PullImage from image service failed" err="rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-proxy:v1.22.10\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-proxy:v1.22.10\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/kube-proxy/manifests/v1.22.10\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:24368->10.0.2.3:53: i/o timeout" image="registry.cn-hangzhou.aliyuncs.com/kainstall/kube-proxy:v1.22.10"
+time="2023-05-04T22:54:46+08:00" level=fatal msg="pulling image: rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-proxy:v1.22.10\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/kube-proxy:v1.22.10\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/kube-proxy/manifests/v1.22.10\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:24368->10.0.2.3:53: i/o timeout"
+, error: exit status 1
+	[ERROR ImagePull]: failed to pull image registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.5: output: E0504 22:55:46.213602   14952 remote_image.go:238] "PullImage from image service failed" err="rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.5\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.5\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/pause/manifests/3.5\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:41551->10.0.2.3:53: i/o timeout" image="registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.5"
+time="2023-05-04T22:55:46+08:00" level=fatal msg="pulling image: rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.5\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/pause:3.5\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/pause/manifests/3.5\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:41551->10.0.2.3:53: i/o timeout"
+, error: exit status 1
+	[ERROR ImagePull]: failed to pull image registry.cn-hangzhou.aliyuncs.com/kainstall/etcd:3.5.0-0: output: E0504 22:56:46.631875   15069 remote_image.go:238] "PullImage from image service failed" err="rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/etcd:3.5.0-0\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/etcd:3.5.0-0\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/etcd/manifests/3.5.0-0\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:62517->10.0.2.3:53: i/o timeout" image="registry.cn-hangzhou.aliyuncs.com/kainstall/etcd:3.5.0-0"
+time="2023-05-04T22:56:46+08:00" level=fatal msg="pulling image: rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/etcd:3.5.0-0\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/etcd:3.5.0-0\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/etcd/manifests/3.5.0-0\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:62517->10.0.2.3:53: i/o timeout"
+, error: exit status 1
+	[ERROR ImagePull]: failed to pull image registry.cn-hangzhou.aliyuncs.com/kainstall/coredns:v1.8.4: output: E0504 22:57:46.889382   15186 remote_image.go:238] "PullImage from image service failed" err="rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/coredns:v1.8.4\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/coredns:v1.8.4\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/coredns/manifests/v1.8.4\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:30316->10.0.2.3:53: i/o timeout" image="registry.cn-hangzhou.aliyuncs.com/kainstall/coredns:v1.8.4"
+time="2023-05-04T22:57:46+08:00" level=fatal msg="pulling image: rpc error: code = Unknown desc = failed to pull and unpack image \"registry.cn-hangzhou.aliyuncs.com/kainstall/coredns:v1.8.4\": failed to resolve reference \"registry.cn-hangzhou.aliyuncs.com/kainstall/coredns:v1.8.4\": failed to do request: Head \"https://registry.cn-hangzhou.aliyuncs.com/v2/kainstall/coredns/manifests/v1.8.4\": dial tcp: lookup registry.cn-hangzhou.aliyuncs.com on 10.0.2.3:53: read udp 10.0.2.15:30316->10.0.2.3:53: i/o timeout"
+, error: exit status 1
+[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
+To see the stack trace of this error execute with --v=5 or higher
+[2023-05-04T22:57:46.900687589+0800]: [31mERROR:   [0m[kubeadm init] 10.50.10.21: kubeadm init failed.

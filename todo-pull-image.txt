@@ -1,0 +1,26 @@
+# install ingress-nginx
+registry.k8s.io/ingress-nginx/controller:v1.3.1
+registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.3.0
+
+# install metric-server
+k8s.gcr.io/metrics-server/metrics-server:v0.6.1
+
+# install rook-ceph
+quay.io/ceph/ceph:v16.2.9
+rook/ceph:v1.9.7
+
+# install prometheus
+alertmanager-alertmanager.yaml:  image: quay.io/prometheus/alertmanager:v0.24.0
+blackboxExporter-deployment.yaml:        image: quay.io/prometheus/blackbox-exporter:v0.21.0
+blackboxExporter-deployment.yaml:        image: jimmidyson/configmap-reload:v0.5.0
+blackboxExporter-deployment.yaml:        image: quay.io/brancz/kube-rbac-proxy:v0.12.0
+grafana-deployment.yaml:        image: grafana/grafana:8.5.5
+kubeStateMetrics-deployment.yaml:        image: k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.5.0
+kubeStateMetrics-deployment.yaml:        image: quay.io/brancz/kube-rbac-proxy:v0.12.0
+kubeStateMetrics-deployment.yaml:        image: quay.io/brancz/kube-rbac-proxy:v0.12.0
+nodeExporter-daemonset.yaml:        image: quay.io/prometheus/node-exporter:v1.3.1
+nodeExporter-daemonset.yaml:        image: quay.io/brancz/kube-rbac-proxy:v0.12.0
+prometheus-prometheus.yaml:  image: quay.io/prometheus/prometheus:v2.36.1
+prometheusAdapter-deployment.yaml:        image: k8s.gcr.io/prometheus-adapter/prometheus-adapter:v0.9.1
+prometheusOperator-deployment.yaml:        image: quay.io/prometheus-operator/prometheus-operator:v0.57.0
+prometheusOperator-deployment.yaml:        image: quay.io/brancz/kube-rbac-proxy:v0.12.0
