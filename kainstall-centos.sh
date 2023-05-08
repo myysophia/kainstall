@@ -2423,7 +2423,7 @@ spec:
     spec:
       containers:
       - name: whoami
-        image: traefik/whoami:v1.7.1
+        image: ${KUBE_IMAGE_REPO}/traefik/whoami:v1.7.1
         ports:
         - containerPort: 80
 ---
