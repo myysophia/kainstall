@@ -3070,7 +3070,8 @@ function add::storage() {
   if [[ "$KUBE_STORAGE" == "rook" ]]; then
 
     log::info "[storage]" "add rook"
-    utils::download_file "${GITHUB_PROXY}https://github.com/rook/rook/archive/v${ROOK_VERSION}.zip" "${OFFLINE_DIR}/manifests/rook-${ROOK_VERSION}.zip" "unzip"
+    # utils::download_file "${GITHUB_PROXY}https://github.com/rook/rook/archive/v${ROOK_VERSION}.zip" "${OFFLINE_DIR}/manifests/rook-${ROOK_VERSION}.zip" "unzip"
+    utils::download_file "http://10.50.10.25/pigsty/rook-${ROOK_VERSION}.zip" "${OFFLINE_DIR}/manifests/rook-${ROOK_VERSION}.zip" "unzip"
 
     command::exec "${MGMT_NODE}" "
       cd '${OFFLINE_DIR}/manifests/rook-${ROOK_VERSION}/deploy/examples' \
@@ -3522,9 +3523,10 @@ function offline::load() {
           systemctl stop \$target &>/dev/null || true
           systemctl disable \$target &>/dev/null || true
         done
-        systemctl start docker && \
-        cd ${OFFLINE_DIR} && \
-        gzip -d -c ${1}.tgz | docker load && gzip -d -c all.tgz | docker load
+        systemctl start docker 
+        # && \
+        # cd ${OFFLINE_DIR} && \
+        # gzip -d -c ${1}.tgz | docker load && gzip -d -c all.tgz | docker load
       "
       check::exit_code "$?" "offline" "$host: load images" "exit"  
     fi
@@ -3578,8 +3580,8 @@ function init::cluster() {
   add::ingress
   # 8. 添加storage
   [[ "${STORAGE_TAG:-}" == "1" ]] && add::storage
-  # 9. 添加web ui
-  add::ui
+  # 9. 添加web ui, 默认取消add:ui
+  # add::ui
   # 10. 添加monitor
   [[ "${MONITOR_TAG:-}" == "1" ]] && add::monitor
   # 11. 添加log
