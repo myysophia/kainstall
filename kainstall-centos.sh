@@ -1819,8 +1819,8 @@ kubernetesVersion: $KUBE_VERSION
 controlPlaneEndpoint: $KUBE_APISERVER:6443
 networking:
   dnsDomain: $KUBE_DNSDOMAIN
-  podSubnet: $KUBE_POD_SUBNET
-  serviceSubnet: $KUBE_SERVICE_SUBNET
+  podSubnet: $KUBE_POD_SUBNET # 这个配置等价于 kubeadm init --pod-network-cidr=10.244.0.0/16， 这个也可以在controller-manager中修改
+  serviceSubnet: $KUBE_SERVICE_SUBNET # 
 imageRepository: $KUBE_IMAGE_REPO
 apiServer:
   certSANs:
