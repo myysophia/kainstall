@@ -970,7 +970,7 @@ EOF
   "max-concurrent-downloads": 10,
   "max-concurrent-uploads": 10,
   "storage-driver": "overlay2",
-  "storage-opts": ["overlay2.override_kernel_check=true"],
+  
   "exec-opts": ["native.cgroupdriver=systemd"],
   "registry-mirrors": [
     "https://yssx4sxy.mirror.aliyuncs.com/"
